@@ -5,23 +5,28 @@ export const data = [
     inputs: [
       {
         label: 'First Name',
-        value: 'John',
+        placeholder: 'John',
+        type: 'text',
       },
       {
         label: 'Last Name',
-        value: 'Smith',
+        placeholder: 'Smith',
+        type: 'text',
       },
       {
         label: 'Email',
-        value: 'johnsmith123@gmail.com',
+        placeholder: 'johnsmith123@gmail.com',
+        type: 'email',
       },
       {
         label: 'Phone',
-        value: '(555) 123-4567',
+        placeholder: '(555) 123-4567',
+        type: 'tel',
       },
       {
         label: 'Location',
-        value: 'Springfield, IL',
+        placeholder: 'Springfield, IL',
+        type: 'text',
       },
     ],
     isSubmitted: false,
@@ -32,23 +37,28 @@ export const data = [
     inputs: [
       {
         label: 'School Name',
-        value: 'Harvard',
+        placeholder: 'Harvard',
+        type: 'text',
       },
       {
         label: 'Location',
-        value: 'Cambridge, MA',
+        placeholder: 'Cambridge, MA',
+        type: 'text',
       },
       {
         label: 'Degree',
-        value: 'Culinary Arts',
+        placeholder: 'Culinary Arts',
+        type: 'text',
       },
       {
         label: 'Start Date',
-        value: '2010',
+        placeholder: '2010',
+        type: 'number',
       },
       {
         label: 'End Date',
-        value: '2014',
+        placeholder: '2014',
+        type: 'number',
       },
     ],
     isSubmitted: false,
@@ -59,27 +69,33 @@ export const data = [
     inputs: [
       {
         label: 'Company Name',
-        value: 'Burger King',
+        placeholder: 'Burger King',
+        type: 'text',
       },
       {
         label: 'Location',
-        value: 'Boston, MA',
+        placeholder: 'Boston, MA',
+        type: 'text',
       },
       {
         label: 'Position',
-        value: 'Head Chef',
+        placeholder: 'Head Chef',
+        type: 'text',
       },
       {
         label: 'Start Date',
-        value: '2014',
+        placeholder: '2014',
+        type: 'number',
       },
       {
         label: 'End Date',
-        value: '2020',
+        placeholder: '2020',
+        type: 'number',
       },
       {
         label: 'Responsibilities',
-        value: 'Use the fryer',
+        placeholder: 'Use the fryer',
+        type: 'textarea',
       },
     ],
     isSubmitted: false,
