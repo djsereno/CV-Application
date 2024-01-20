@@ -3,11 +3,13 @@ import { useState } from 'react';
 import { data } from './data';
 import './App.css';
 
-function Input({ label, placeholder, type }) {
-  let inputField;
-  type === 'textarea'
-    ? (inputField = <textarea placeholder={placeholder} required></textarea>)
-    : (inputField = <input type={type} placeholder={placeholder} required></input>);
+function Input({ label, placeholder, type, isSubmitted }) {
+  const inputField =
+    type === 'textarea' ? (
+      <textarea placeholder={placeholder} readOnly={isSubmitted} required rea></textarea>
+    ) : (
+      <input type={type} placeholder={placeholder} readOnly={isSubmitted} required></input>
+    );
 
   return (
     <label>
@@ -19,21 +21,29 @@ function Input({ label, placeholder, type }) {
 
 function Section({ section }) {
   const { id, heading, inputs } = section;
+  const [isSubmitted, setIsSubmitted] = useState(false);
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    setIsSubmitted(!isSubmitted);
+  };
+
   const inputsFields = inputs.map((input) => (
     <Input
       key={input.label}
       label={input.label}
       placeholder={input.placeholder}
       type={input.type}
+      isSubmitted={isSubmitted}
     />
   ));
 
   return (
     <section id={id}>
       <h2>{heading}</h2>
-      <form>
+      <form onSubmit={handleSubmit}>
         {inputsFields}
-        <button type="button">{section.isSubmitted ? 'Edit' : 'Submit'}</button>
+        <button type="submit">{isSubmitted ? 'Edit' : 'Submit'}</button>
       </form>
     </section>
   );
