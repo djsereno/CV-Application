@@ -6,7 +6,7 @@ import './App.css';
 function Input({ label, placeholder, type, isSubmitted }) {
   const inputField =
     type === 'textarea' ? (
-      <textarea placeholder={placeholder} readOnly={isSubmitted} required rea></textarea>
+      <textarea placeholder={placeholder} readOnly={isSubmitted} required></textarea>
     ) : (
       <input type={type} placeholder={placeholder} readOnly={isSubmitted} required></input>
     );
@@ -19,8 +19,7 @@ function Input({ label, placeholder, type, isSubmitted }) {
   );
 }
 
-function Section({ section }) {
-  const { id, heading, inputs } = section;
+function Section({ id, heading, inputs }) {
   const [isSubmitted, setIsSubmitted] = useState(false);
 
   const handleSubmit = (e) => {
@@ -29,13 +28,7 @@ function Section({ section }) {
   };
 
   const inputsFields = inputs.map((input) => (
-    <Input
-      key={input.label}
-      label={input.label}
-      placeholder={input.placeholder}
-      type={input.type}
-      isSubmitted={isSubmitted}
-    />
+    <Input key={input.label} isSubmitted={isSubmitted} {...input} />
   ));
 
   return (
@@ -53,7 +46,7 @@ function App() {
   return (
     <>
       {data.map((section) => (
-        <Section key={section.heading} section={section} />
+        <Section key={section.heading} {...section} />
       ))}
     </>
   );
