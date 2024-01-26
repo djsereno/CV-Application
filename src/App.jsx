@@ -32,27 +32,25 @@ function Input({ label, placeholder, type, value, isSubmitted, onChange }) {
 
 function Section({ id, heading, inputs }) {
   const [isSubmitted, setIsSubmitted] = useState(false);
-  const [inputVals, setInputVals] = useState(
-    inputs.reduce((obj, input) => ({ ...obj, [input.label]: input.value }), {})
-  );
+  const [inputVals, setInputVals] = useState(Array(inputs.length).fill(''));
 
   const handleSubmit = (e) => {
     e.preventDefault();
     setIsSubmitted(!isSubmitted);
   };
 
-  const handleChange = (e, label) => {
-    const newInputVals = inputVals;
-    newInputVals[label] = e.target.value;
+  const handleChange = (value, index) => {
+    const newInputVals = [...inputVals];
+    newInputVals[index] = value;
     setInputVals(newInputVals);
   };
 
-  const inputsFields = inputs.map((input) => (
+  const inputsFields = inputs.map((input, index) => (
     <Input
       key={input.label}
       isSubmitted={isSubmitted}
-      onChange={(e) => handleChange(e, input.label)}
-      value={inputVals[input.label]}
+      onChange={(e) => handleChange(e.target.value, index)}
+      value={inputVals[index]}
       {...input}
     />
   ));
