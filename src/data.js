@@ -6,27 +6,27 @@ export const data = [
       {
         label: 'First Name',
         placeholder: 'John',
-        type: 'text'
+        type: 'text',
       },
       {
         label: 'Last Name',
         placeholder: 'Smith',
-        type: 'text'
+        type: 'text',
       },
       {
         label: 'Email',
         placeholder: 'johnsmith123@gmail.com',
-        type: 'email'
+        type: 'email',
       },
       {
         label: 'Phone',
         placeholder: '(555) 123-4567',
-        type: 'tel'
+        type: 'tel',
       },
       {
         label: 'Location',
         placeholder: 'Springfield, IL',
-        type: 'text'
+        type: 'text',
       }
     ]
   },
@@ -37,27 +37,27 @@ export const data = [
       {
         label: 'School Name',
         placeholder: 'Harvard',
-        type: 'text'
+        type: 'text',
       },
       {
         label: 'Location',
         placeholder: 'Cambridge, MA',
-        type: 'text'
+        type: 'text',
       },
       {
         label: 'Degree',
         placeholder: 'Culinary Arts',
-        type: 'text'
+        type: 'text',
       },
       {
         label: 'Start Date',
         placeholder: '2010',
-        type: 'number'
+        type: 'number',
       },
       {
         label: 'End Date',
         placeholder: '2014',
-        type: 'number'
+        type: 'number',
       }
     ]
   },
@@ -68,32 +68,43 @@ export const data = [
       {
         label: 'Company Name',
         placeholder: 'Burger King',
-        type: 'text'
+        type: 'text',
       },
       {
         label: 'Location',
         placeholder: 'Boston, MA',
-        type: 'text'
+        type: 'text',
       },
       {
         label: 'Position',
         placeholder: 'Head Chef',
-        type: 'text'
+        type: 'text',
       },
       {
         label: 'Start Date',
         placeholder: '2014',
-        type: 'number'
+        type: 'number',
       },
       {
         label: 'End Date',
         placeholder: '2020',
-        type: 'number'
+        type: 'number',
       },
       {
         label: 'Responsibilities',
         placeholder: 'Use the fryer',
-        type: 'textarea'
+        type: 'textarea',
+      }
+    ]
+  },
+  {
+    id: 3,
+    heading: 'Test Section',
+    inputs: [
+      {
+        label: 'Test Input',
+        placeholder: 'Hello',
+        type: 'text',
       }
     ]
   }
