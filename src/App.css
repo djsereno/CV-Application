@@ -11,9 +11,40 @@ body {
 }
 
 #dropdown-container {
-  background-color: grey;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
 }
 
 #cv-container {
   background-color: white;
+}
+
+.dropdown-module {
+  border-radius: 15px;
+  background-color: rgb(255, 255, 255);
+}
+
+.dropdown-header {
+  padding: 1rem;
+  border-radius: 15px;
+  background-color: grey;
+  display: flex;
+  justify-content: space-between;
+}
+
+.dropdown-header button {
+  background-color: transparent;
+}
+
+.section-form {
+  display: flex;
+  flex-direction: column;
+}
+
+.section-form label {
+  display: flex;
+  flex-direction: column;
+  color: black;
+  margin: 20px;
 }

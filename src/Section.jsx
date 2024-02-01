@@ -33,7 +33,7 @@ function Section({ id, heading, inputs }) {
   const outputComp = <OutputGeneral key={`${heading}Output`} {...outputFields} />;
 
   return (
-    <form onSubmit={handleSubmit}>
+    <form className="section-form" onSubmit={handleSubmit}>
       {isSubmitted ? outputComp : inputFields}
       <button type="submit">{isSubmitted ? 'Edit' : 'Submit'}</button>
     </form>
