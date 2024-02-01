@@ -2,6 +2,7 @@
 import { useState } from 'react';
 import './App.css';
 import Input from './Input';
+import OutputGeneral from './Outputs';
 
 function Section({ id, heading, inputs }) {
   const [isSubmitted, setIsSubmitted] = useState(false);
@@ -18,7 +19,7 @@ function Section({ id, heading, inputs }) {
     setIsSubmitted(!isSubmitted);
   };
 
-  const inputsFields = inputs.map((input, index) => (
+  const inputFields = inputs.map((input, index) => (
     <Input
       key={input.label}
       isSubmitted={isSubmitted}
@@ -28,16 +29,14 @@ function Section({ id, heading, inputs }) {
     />
   ));
 
+  const outputFields = inputs.reduce((acc, input) => ({ ...acc, [input.id]: input.label }), {});
+  const outputComp = <OutputGeneral key={`${heading}Output`} {...outputFields} />;
+
   return (
-    <section id={id}>
-      <h2>{heading}</h2>
-      <form onSubmit={handleSubmit}>
-        {isSubmitted ? null : inputsFields}
-        <button type="submit">{isSubmitted ? 'Edit' : 'Submit'}</button>
-      </form>
-      <button>Previous Section</button>
-      <button>Next Section</button>
-    </section>
+    <form onSubmit={handleSubmit}>
+      {isSubmitted ? outputComp : inputFields}
+      <button type="submit">{isSubmitted ? 'Edit' : 'Submit'}</button>
+    </form>
   );
 }
 

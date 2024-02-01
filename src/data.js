@@ -1,110 +1,104 @@
 export const data = [
   {
     id: 0,
-    heading: 'General',
+    label: 'General',
     inputs: [
       {
+        id: 'firstName',
         label: 'First Name',
         placeholder: 'John',
-        type: 'text',
+        type: 'text'
       },
       {
+        id: 'lastName',
         label: 'Last Name',
         placeholder: 'Smith',
-        type: 'text',
+        type: 'text'
       },
       {
+        id: 'email',
         label: 'Email',
         placeholder: 'johnsmith123@gmail.com',
-        type: 'email',
+        type: 'email'
       },
       {
+        id: 'phone',
         label: 'Phone',
         placeholder: '(555) 123-4567',
-        type: 'tel',
+        type: 'tel'
       },
       {
+        id: 'location',
         label: 'Location',
         placeholder: 'Springfield, IL',
-        type: 'text',
+        type: 'text'
       }
     ]
   },
   {
     id: 1,
-    heading: 'Education',
+    label: 'Education',
     inputs: [
       {
         label: 'School Name',
         placeholder: 'Harvard',
-        type: 'text',
+        type: 'text'
       },
       {
         label: 'Location',
         placeholder: 'Cambridge, MA',
-        type: 'text',
+        type: 'text'
       },
       {
         label: 'Degree',
         placeholder: 'Culinary Arts',
-        type: 'text',
+        type: 'text'
       },
       {
         label: 'Start Date',
         placeholder: '2010',
-        type: 'number',
+        type: 'number'
       },
       {
         label: 'End Date',
         placeholder: '2014',
-        type: 'number',
+        type: 'number'
       }
     ]
   },
   {
     id: 2,
-    heading: 'Work Experience',
+    label: 'Work Experience',
     inputs: [
       {
         label: 'Company Name',
         placeholder: 'Burger King',
-        type: 'text',
+        type: 'text'
       },
       {
         label: 'Location',
         placeholder: 'Boston, MA',
-        type: 'text',
+        type: 'text'
       },
       {
         label: 'Position',
         placeholder: 'Head Chef',
-        type: 'text',
+        type: 'text'
       },
       {
         label: 'Start Date',
         placeholder: '2014',
-        type: 'number',
+        type: 'number'
       },
       {
         label: 'End Date',
         placeholder: '2020',
-        type: 'number',
+        type: 'number'
       },
       {
         label: 'Responsibilities',
         placeholder: 'Use the fryer',
-        type: 'textarea',
-      }
-    ]
-  },
-  {
-    id: 3,
-    heading: 'Test Section',
-    inputs: [
-      {
-        label: 'Test Input',
-        placeholder: 'Hello',
-        type: 'text',
+        type: 'textarea'
       }
     ]
   }

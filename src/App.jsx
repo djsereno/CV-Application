@@ -12,10 +12,19 @@ library.add(faAngleDown, faAngleUp);
 function App() {
   return (
     <>
-      <Dropdown key={'test'} label="Test Dropdown" initOpenStatus={true} />
-      {data.map((section) => (
-        <Section key={section.heading} {...section} />
-      ))}
+      <div id="dropdown-container">
+        {data.map((section) => (
+          <Dropdown
+            key={`${section.label} Dropdown`}
+            label={section.label}
+            initOpenStatus={false}
+            sectionData={section}
+          />
+        ))}
+      </div>
+      <div id="cv-container">
+        Preview goes here
+      </div>
     </>
   );
 }
