@@ -2,7 +2,7 @@
 import { useState } from 'react';
 import { data } from './data';
 import './App.css';
-import Section from './Section';
+import Section from './Form';
 import Dropdown from './Dropdown';
 import { library } from '@fortawesome/fontawesome-svg-core';
 import { faAngleDown, faAngleUp } from '@fortawesome/free-solid-svg-icons';
@@ -18,7 +18,7 @@ function App() {
             key={`${section.label} Dropdown`}
             label={section.label}
             initOpenStatus={false}
-            sectionData={section}
+            data={section}
           />
         ))}
       </div>

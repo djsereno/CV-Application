@@ -3,7 +3,7 @@ import './App.css';
 
 function OutputGeneral({ firstName, lastName, email, phone, location }) {
   return (
-    <div>
+    <div className='section-output'>
       <h3>
         {firstName} {lastName}
       </h3>

@@ -4,7 +4,7 @@ import './App.css';
 import Input from './Input';
 import OutputGeneral from './Outputs';
 
-function Section({ id, heading, inputs }) {
+function Form({ id, heading, inputs }) {
   const [isSubmitted, setIsSubmitted] = useState(false);
   const [inputVals, setInputVals] = useState(Array(inputs.length).fill(''));
 
@@ -32,12 +32,18 @@ function Section({ id, heading, inputs }) {
   const outputFields = inputs.reduce((acc, input) => ({ ...acc, [input.id]: input.label }), {});
   const outputComp = <OutputGeneral key={`${heading}Output`} {...outputFields} />;
 
-  return (
-    <form className="section-form" onSubmit={handleSubmit}>
-      {isSubmitted ? outputComp : inputFields}
-      <button type="submit">{isSubmitted ? 'Edit' : 'Submit'}</button>
+  const content = isSubmitted ? (
+    outputComp
+  ) : (
+    <form id={id} className="section-form" onSubmit={handleSubmit}>
+      {outputinputFieldsComp}
+      <button type="submit" form={id}>
+        Submit
+      </button>
     </form>
   );
+
+  return <div className="dropdown-section">{content}</div>;
 }
 
-export default Section;
+export default Form;

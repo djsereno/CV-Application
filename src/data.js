@@ -1,6 +1,6 @@
 export const data = [
   {
-    id: 0,
+    id: 'general',
     label: 'General',
     inputs: [
       {
@@ -36,7 +36,7 @@ export const data = [
     ]
   },
   {
-    id: 1,
+    id: 'education',
     label: 'Education',
     inputs: [
       {
@@ -67,7 +67,7 @@ export const data = [
     ]
   },
   {
-    id: 2,
+    id: 'workExperience',
     label: 'Work Experience',
     inputs: [
       {
