@@ -1,13 +1,14 @@
 import { useState } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import Form from './Form';
+import Section from './Section';
 
 function Dropdown({ label, initOpenStatus, data }) {
   const [isOpen, setIsOpen] = useState(initOpenStatus);
 
   const handleClick = () => setIsOpen(!isOpen);
 
-  const inputForm = <Form key={`${label} Form`} {...data} />;
+  // const inputForm = <Form key={`${label} Form`} {...data} />;
 
   return (
     <div className="dropdown-module">
@@ -17,7 +18,7 @@ function Dropdown({ label, initOpenStatus, data }) {
           {isOpen ? <FontAwesomeIcon icon="angle-up" /> : <FontAwesomeIcon icon="angle-down" />}
         </button>
       </div>
-      <>{isOpen ? inputForm : null}</>
+      <>{isOpen ? <Section key={`${label} Section`} data={data} /> : null}</>
     </div>
   );
 }
