@@ -1,9 +1,9 @@
-/* eslint-disable react/prop-types */
+import PropTypes from 'prop-types';
 import './App.css';
 
-function OutputGeneral({ firstName, lastName, email, phone, location }) {
+function FormInput({ firstName, lastName, email, phone, location }) {
   return (
-    <div className='section-output'>
+    <div className="section-output">
       <h3>
         {firstName} {lastName}
       </h3>

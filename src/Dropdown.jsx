@@ -1,14 +1,12 @@
 import { useState } from 'react';
+import PropTypes from 'prop-types';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import Form from './Form';
-import Section from './Section';
+import Subsection from './Subsection';
 
 function Dropdown({ label, initOpenStatus, data }) {
   const [isOpen, setIsOpen] = useState(initOpenStatus);
 
   const handleClick = () => setIsOpen(!isOpen);
-
-  // const inputForm = <Form key={`${label} Form`} {...data} />;
 
   return (
     <div className="dropdown-module">
@@ -18,9 +16,15 @@ function Dropdown({ label, initOpenStatus, data }) {
           {isOpen ? <FontAwesomeIcon icon="angle-up" /> : <FontAwesomeIcon icon="angle-down" />}
         </button>
       </div>
-      <>{isOpen ? <Section key={`${label} Section`} data={data} /> : null}</>
+      <>{isOpen ? <Subsection key={`${label} Section`} data={data} /> : null}</>
     </div>
   );
 }
+
+Dropdown.propTypes = {
+  label: PropTypes.string,
+  initOpenStatus: PropTypes.bool,
+  data: PropTypes.array
+};
 
 export default Dropdown;
