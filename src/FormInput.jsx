@@ -2,7 +2,7 @@ import PropTypes from 'prop-types';
 import './App.css';
 import Input from './Input';
 
-function FormInput({ data, handleChange, toggleSubmit }) {
+function FormInput({ data, handleChange, handleSubmit }) {
   const inputFields = data.map((input, index) => (
     <Input
       key={input.label}
@@ -14,7 +14,7 @@ function FormInput({ data, handleChange, toggleSubmit }) {
 
   return (
     <div className="dropdown-section">
-      <form className="section-form" onSubmit={toggleSubmit}>
+      <form className="section-form" onSubmit={handleSubmit}>
         {inputFields}
         <button type="submit">Submit</button>
       </form>

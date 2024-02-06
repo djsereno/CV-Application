@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import PropTypes from 'prop-types';
 import FormInput from './FormInput';
+import FormOutput from './FormOutput';
 
 function Subsection({ data }) {
   const [isSubmitted, setIsSubmitted] = useState(false);
@@ -20,13 +21,13 @@ function Subsection({ data }) {
   return (
     <>
       {isSubmitted ? (
-        'edit'
+        <FormOutput key={`${data.label} Output`} data={data} handleEdit={toggleSubmit} />
       ) : (
         <FormInput
           key={`${data.label} Form`}
           data={data}
           handleChange={handleChange}
-          toggleSubmit={toggleSubmit}
+          handleSubmit={toggleSubmit}
         />
       )}
     </>

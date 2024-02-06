@@ -4,35 +4,35 @@ export const data = [
     label: 'General',
     data: [
       {
-        // id: 'firstName',
+        id: 'firstName',
         label: 'First Name',
         placeholder: 'John',
         type: 'text',
         value: ''
       },
       {
-        // id: 'lastName',
+        id: 'lastName',
         label: 'Last Name',
         placeholder: 'Smith',
         type: 'text',
         value: ''
       },
       {
-        // id: 'email',
+        id: 'email',
         label: 'Email',
         placeholder: 'johnsmith123@gmail.com',
         type: 'email',
         value: ''
       },
       {
-        // id: 'phone',
+        id: 'phone',
         label: 'Phone',
         placeholder: '(555) 123-4567',
         type: 'tel',
         value: ''
       },
       {
-        // id: 'location',
+        id: 'location',
         label: 'Location',
         placeholder: 'Springfield, IL',
         type: 'text',
