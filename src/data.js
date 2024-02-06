@@ -45,30 +45,35 @@ export const data = [
     label: 'Education',
     data: [
       {
+        id: 'schoolName',
         label: 'School Name',
         placeholder: 'Harvard',
         type: 'text',
         value: ''
       },
       {
+        id: 'location',
         label: 'Location',
         placeholder: 'Cambridge, MA',
         type: 'text',
         value: ''
       },
       {
+        id: 'degree',
         label: 'Degree',
         placeholder: 'Culinary Arts',
         type: 'text',
         value: ''
       },
       {
+        id: 'startDate',
         label: 'Start Date',
         placeholder: '2010',
         type: 'number',
         value: ''
       },
       {
+        id: 'endDate',
         label: 'End Date',
         placeholder: '2014',
         type: 'number',
@@ -81,36 +86,42 @@ export const data = [
     label: 'Work Experience',
     data: [
       {
+        id: 'companyName',
         label: 'Company Name',
         placeholder: 'Burger King',
         type: 'text',
         value: ''
       },
       {
+        id: 'location',
         label: 'Location',
         placeholder: 'Boston, MA',
         type: 'text',
         value: ''
       },
       {
-        label: 'Position',
+        id: 'jobTitle',
+        label: 'Job Title',
         placeholder: 'Head Chef',
         type: 'text',
         value: ''
       },
       {
+        id: 'startDate',
         label: 'Start Date',
         placeholder: '2014',
         type: 'number',
         value: ''
       },
       {
+        id: 'endDate',
         label: 'End Date',
         placeholder: '2020',
         type: 'number',
         value: ''
       },
       {
+        id: 'duties',
         label: 'Responsibilities',
         placeholder: 'Use the fryer',
         type: 'textarea',

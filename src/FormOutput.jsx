@@ -1,20 +1,55 @@
 import PropTypes from 'prop-types';
 import './App.css';
 
-function FormOutput({ data, handleEdit }) {
+function FormOutput({ sectionId, data, handleEdit }) {
   const formValues = data.reduce((acc, input) => ({ [input.id]: input.value, ...acc }), {});
-  const { firstName, lastName, email, phone, location } = { ...formValues };
+
+  let content;
+  switch (sectionId) {
+    case 'general':
+      content = (
+        <div>
+          <h3>
+            {formValues.firstName} {formValues.lastName}
+          </h3>
+          <a href={`mailto: ${formValues.email}`}>{formValues.email}</a>
+          <a href={`tel: ${formValues.phone}`}>{formValues.phone}</a>
+          <p>{formValues.location}</p>
+        </div>
+      );
+      break;
+
+    case 'education':
+      content = (
+        <div>
+          <h3>{formValues.schoolName}</h3>
+          <p>{formValues.location}</p>
+          <p>{formValues.degree}</p>
+          <p>
+            {formValues.startDate} - {formValues.endDate}
+          </p>
+        </div>
+      );
+      break;
+
+    case 'workExperience':
+      content = (
+        <div>
+          <h3>{formValues.companyName}</h3>
+          <p>{formValues.location}</p>
+          <p>{formValues.jobTitle}</p>
+          <p>
+            {formValues.startDate} - {formValues.endDate}
+          </p>
+          <p>{formValues.duties}</p>
+        </div>
+      );
+      break;
+  }
 
   return (
     <div className="section-output">
-      <div>
-        <h3>
-          {firstName} {lastName}
-        </h3>
-        <a href={`mailto: ${email}`}>{email}</a>
-        <a href={`tel: ${phone}`}>{phone}</a>
-        <p>{location}</p>
-      </div>
+      {content}
       <button type="submit" onClick={handleEdit}>
         Edit
       </button>
@@ -23,6 +58,7 @@ function FormOutput({ data, handleEdit }) {
 }
 
 FormOutput.propTypes = {
+  sectionId: PropTypes.string,
   data: PropTypes.array,
   handleEdit: PropTypes.func
 };

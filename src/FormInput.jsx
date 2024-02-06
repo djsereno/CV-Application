@@ -25,7 +25,7 @@ function FormInput({ data, handleChange, handleSubmit }) {
 FormInput.propTypes = {
   data: PropTypes.array,
   handleChange: PropTypes.func,
-  toggleSubmit: PropTypes.func
+  handleSubmit: PropTypes.func
 };
 
 export default FormInput;

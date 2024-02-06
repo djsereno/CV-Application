@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import Subsection from './Subsection';
 
-function Dropdown({ label, initOpenStatus, data }) {
+function Dropdown({ id, label, initOpenStatus, data }) {
   const [isOpen, setIsOpen] = useState(initOpenStatus);
   const [isSubmitted, setIsSubmitted] = useState(false);
 
@@ -26,6 +26,7 @@ function Dropdown({ label, initOpenStatus, data }) {
         {isOpen ? (
           <Subsection
             key={`${label} Section`}
+            sectionId={id}
             data={data}
             isSubmitted={isSubmitted}
             toggleSubmit={toggleSubmit}
@@ -37,6 +38,7 @@ function Dropdown({ label, initOpenStatus, data }) {
 }
 
 Dropdown.propTypes = {
+  id: PropTypes.string,
   label: PropTypes.string,
   initOpenStatus: PropTypes.bool,
   data: PropTypes.array
