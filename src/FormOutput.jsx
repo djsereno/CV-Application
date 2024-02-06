@@ -22,4 +22,9 @@ function FormOutput({ data, handleEdit }) {
   );
 }
 
+FormOutput.propTypes = {
+  data: PropTypes.array,
+  handleEdit: PropTypes.func
+};
+
 export default FormOutput;

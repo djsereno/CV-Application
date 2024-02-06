@@ -5,8 +5,14 @@ import Subsection from './Subsection';
 
 function Dropdown({ label, initOpenStatus, data }) {
   const [isOpen, setIsOpen] = useState(initOpenStatus);
+  const [isSubmitted, setIsSubmitted] = useState(false);
 
   const handleClick = () => setIsOpen(!isOpen);
+
+  const toggleSubmit = (e) => {
+    e.preventDefault();
+    setIsSubmitted(!isSubmitted);
+  };
 
   return (
     <div className="dropdown-module">
@@ -16,7 +22,16 @@ function Dropdown({ label, initOpenStatus, data }) {
           {isOpen ? <FontAwesomeIcon icon="angle-up" /> : <FontAwesomeIcon icon="angle-down" />}
         </button>
       </div>
-      <>{isOpen ? <Subsection key={`${label} Section`} data={data} /> : null}</>
+      <>
+        {isOpen ? (
+          <Subsection
+            key={`${label} Section`}
+            data={data}
+            isSubmitted={isSubmitted}
+            toggleSubmit={toggleSubmit}
+          />
+        ) : null}
+      </>
     </div>
   );
 }
