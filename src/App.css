@@ -23,6 +23,7 @@ body {
 
 #cv-container {
   background-color: white;
+  color: black;
 }
 
 .dropdown-module {
@@ -46,7 +47,8 @@ body {
   padding: 20px;
 }
 
-.dropdown-section, .section-form {
+.dropdown-section,
+.section-form {
   display: flex;
   flex-direction: column;
   gap: 20px;

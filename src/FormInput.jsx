@@ -2,12 +2,12 @@ import PropTypes from 'prop-types';
 import './App.css';
 import Input from './Input';
 
-function FormInput({ formFields, data, handleChange, handleSubmit }) {
-  const inputFields = formFields.map((input, index) => (
+function FormInput({ formFields, formVals, updateFormVals, handleSubmit }) {
+  const inputFields = formFields.map((input) => (
     <Input
       key={input.id}
-      handleChange={(e) => handleChange(e.target.value, index)}
-      value={data[input.id]}
+      handleChange={(e) => updateFormVals(e.target.value, input.id)}
+      value={formVals[input.id]}
       {...input}
     />
   ));
@@ -24,8 +24,8 @@ function FormInput({ formFields, data, handleChange, handleSubmit }) {
 
 FormInput.propTypes = {
   formFields: PropTypes.array,
-  data: PropTypes.object,
-  handleChange: PropTypes.func,
+  formVals: PropTypes.object,
+  updateFormVals: PropTypes.func,
   handleSubmit: PropTypes.func
 };
 

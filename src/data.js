@@ -35,7 +35,6 @@ export const data = [
       }
     ]
   },
-
   {
     id: 'education',
     label: 'Education',
@@ -72,7 +71,6 @@ export const data = [
       }
     ]
   },
-
   {
     id: 'workExperience',
     label: 'Work Experience',

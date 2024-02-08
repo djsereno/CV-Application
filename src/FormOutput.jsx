@@ -1,8 +1,8 @@
 import PropTypes from 'prop-types';
 import './App.css';
 
-function FormOutput({ dropdownId, data, handleEdit }) {
-  const formValues = data.reduce((acc, input) => ({ [input.id]: input.value, ...acc }), {});
+function FormOutput({ dropdownId, formVals, handleEdit }) {
+  // const formValues = formVals.reduce((acc, input) => ({ [input.id]: input.value, ...acc }), {});
 
   let content;
   switch (dropdownId) {
@@ -10,11 +10,11 @@ function FormOutput({ dropdownId, data, handleEdit }) {
       content = (
         <div>
           <h3>
-            {formValues.firstName} {formValues.lastName}
+            {formVals.firstName} {formVals.lastName}
           </h3>
-          <a href={`mailto: ${formValues.email}`}>{formValues.email}</a>
-          <a href={`tel: ${formValues.phone}`}>{formValues.phone}</a>
-          <p>{formValues.location}</p>
+          <a href={`mailto: ${formVals.email}`}>{formVals.email}</a>
+          <a href={`tel: ${formVals.phone}`}>{formVals.phone}</a>
+          <p>{formVals.location}</p>
         </div>
       );
       break;
@@ -22,11 +22,11 @@ function FormOutput({ dropdownId, data, handleEdit }) {
     case 'education':
       content = (
         <div>
-          <h3>{formValues.schoolName}</h3>
-          <p>{formValues.location}</p>
-          <p>{formValues.degree}</p>
+          <h3>{formVals.schoolName}</h3>
+          <p>{formVals.location}</p>
+          <p>{formVals.degree}</p>
           <p>
-            {formValues.startDate} - {formValues.endDate}
+            {formVals.startDate} - {formVals.endDate}
           </p>
         </div>
       );
@@ -35,13 +35,13 @@ function FormOutput({ dropdownId, data, handleEdit }) {
     case 'workExperience':
       content = (
         <div>
-          <h3>{formValues.companyName}</h3>
-          <p>{formValues.location}</p>
-          <p>{formValues.jobTitle}</p>
+          <h3>{formVals.companyName}</h3>
+          <p>{formVals.location}</p>
+          <p>{formVals.jobTitle}</p>
           <p>
-            {formValues.startDate} - {formValues.endDate}
+            {formVals.startDate} - {formVals.endDate}
           </p>
-          <p>{formValues.duties}</p>
+          <p>{formVals.duties}</p>
         </div>
       );
       break;
@@ -59,7 +59,7 @@ function FormOutput({ dropdownId, data, handleEdit }) {
 
 FormOutput.propTypes = {
   dropdownId: PropTypes.string,
-  data: PropTypes.array,
+  formVals: PropTypes.object,
   handleEdit: PropTypes.func
 };
 
