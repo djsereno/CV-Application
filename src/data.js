@@ -9,35 +9,35 @@ export const data = [
           label: 'First Name',
           placeholder: 'John',
           type: 'text',
-          value: ''
+          value: 'John'
         },
         {
           id: 'lastName',
           label: 'Last Name',
           placeholder: 'Smith',
           type: 'text',
-          value: ''
+          value: 'Smith'
         },
         {
           id: 'email',
           label: 'Email',
           placeholder: 'johnsmith123@gmail.com',
           type: 'email',
-          value: ''
+          value: 'johnsmith123@gmail.com'
         },
         {
           id: 'phone',
           label: 'Phone',
           placeholder: '(555) 123-4567',
           type: 'tel',
-          value: ''
+          value: '(555) 123-4567'
         },
         {
           id: 'location',
           label: 'Location',
           placeholder: 'Springfield, IL',
           type: 'text',
-          value: ''
+          value: 'Springfield, IL'
         }
       ]
     ]
@@ -53,35 +53,35 @@ export const data = [
           label: 'School Name',
           placeholder: 'Harvard',
           type: 'text',
-          value: ''
+          value: 'Harvard'
         },
         {
           id: 'location',
           label: 'Location',
           placeholder: 'Cambridge, MA',
           type: 'text',
-          value: ''
+          value: 'Cambridge, MA'
         },
         {
           id: 'degree',
           label: 'Degree',
           placeholder: 'Culinary Arts',
           type: 'text',
-          value: ''
+          value: 'Culinary Arts'
         },
         {
           id: 'startDate',
           label: 'Start Date',
           placeholder: '2010',
           type: 'number',
-          value: ''
+          value: '2010'
         },
         {
           id: 'endDate',
           label: 'End Date',
           placeholder: '2014',
           type: 'number',
-          value: ''
+          value: '2014'
         }
       ]
     ]
@@ -97,42 +97,42 @@ export const data = [
           label: 'Company Name',
           placeholder: 'Burger King',
           type: 'text',
-          value: ''
+          value: 'Burger King'
         },
         {
           id: 'location',
           label: 'Location',
           placeholder: 'Boston, MA',
           type: 'text',
-          value: ''
+          value: 'Boston, MA'
         },
         {
           id: 'jobTitle',
           label: 'Job Title',
           placeholder: 'Head Chef',
           type: 'text',
-          value: ''
+          value: 'Head Chef'
         },
         {
           id: 'startDate',
           label: 'Start Date',
           placeholder: '2014',
           type: 'number',
-          value: ''
+          value: '2014'
         },
         {
           id: 'endDate',
           label: 'End Date',
           placeholder: '2020',
           type: 'number',
-          value: ''
+          value: '2020'
         },
         {
           id: 'duties',
           label: 'Responsibilities',
           placeholder: 'Use the fryer',
           type: 'textarea',
-          value: ''
+          value: '- Use the fryer\n- Take orders\n - Clean the floors'
         }
       ]
     ]
