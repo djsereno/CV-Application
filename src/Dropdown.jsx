@@ -3,46 +3,36 @@ import PropTypes from 'prop-types';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import Subsection from './Subsection';
 
-function Dropdown({ id, label, initOpenStatus, updateCVData, sectionData, formFields }) {
+function Dropdown({ formFields, id, initOpenStatus, initSectionVals, label, updateCvVals }) {
   const [isOpen, setIsOpen] = useState(initOpenStatus);
   const [isSubmitted, setIsSubmitted] = useState(false);
-  const [sectionVals, setSectionVals] = useState(sectionData);
+  const [sectionVals, setSectionVals] = useState(initSectionVals);
 
   const updateSectionVals = (newSubsectionVals, subsectionIndex) => {
     const newSectionVals = [...sectionVals];
     newSectionVals[subsectionIndex] = newSubsectionVals;
     setSectionVals(newSectionVals);
-    updateCVData(newSectionVals, id);
+    updateCvVals(newSectionVals, id);
   };
 
   const handleClick = () => setIsOpen(!isOpen);
-
-  // const handleChange = (newValue, inputId, subsectionIndex) => {
-  //   const newData = [...subsectionData];
-  //   newData[subsectionIndex][inputId] = newValue;
-  //   setSubsectionData(newData);
-  // };
 
   const toggleSubmit = (e) => {
     e.preventDefault();
     setIsSubmitted(!isSubmitted);
   };
 
-  // const addSubsection = () => {
-
-  // }
-
   const content = isOpen
-    ? sectionVals.map((subsectionData, index) => (
+    ? sectionVals.map((subsectionVals, index) => (
         <Subsection
           key={`${id}${index}`}
-          dropdownId={id}
           formFields={formFields}
-          data={subsectionData}
-          updateSectionVals={updateSectionVals}
           index={index}
+          initSubsectionVals={subsectionVals}
           isSubmitted={isSubmitted}
+          sectionId={id}
           toggleSubmit={toggleSubmit}
+          updateSectionVals={updateSectionVals}
         />
       ))
     : null;
@@ -62,12 +52,12 @@ function Dropdown({ id, label, initOpenStatus, updateCVData, sectionData, formFi
 }
 
 Dropdown.propTypes = {
+  formFields: PropTypes.array,
   id: PropTypes.string,
-  label: PropTypes.string,
   initOpenStatus: PropTypes.bool,
-  updateSectionData: PropTypes.func,
-  sectionData: PropTypes.array,
-  formFields: PropTypes.array
+  initSectionVals: PropTypes.array,
+  label: PropTypes.string,
+  updateCvVals: PropTypes.func
 };
 
 export default Dropdown;

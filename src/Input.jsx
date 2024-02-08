@@ -1,8 +1,7 @@
 import PropTypes from 'prop-types';
-import './App.css';
 
-function Input({ label, placeholder, type, value, handleChange }) {
-  const inputField =
+function Input({ handleChange, label, placeholder, type, value }) {
+  const inputTag =
     type === 'textarea' ? (
       <textarea value={value} placeholder={placeholder} onChange={handleChange} required></textarea>
     ) : (
@@ -17,17 +16,17 @@ function Input({ label, placeholder, type, value, handleChange }) {
   return (
     <label>
       {`${label}: `}
-      {inputField}
+      {inputTag}
     </label>
   );
 }
 
 Input.propTypes = {
+  handleChange: PropTypes.func,
   label: PropTypes.string,
   placeholder: PropTypes.string,
   type: PropTypes.string,
-  value: PropTypes.any,
-  handleChange: PropTypes.func
+  value: PropTypes.any
 };
 
 export default Input;

@@ -1,13 +1,12 @@
 import PropTypes from 'prop-types';
-import './App.css';
 import Input from './Input';
 
-function FormInput({ formFields, formVals, updateFormVals, handleSubmit }) {
-  const inputFields = formFields.map((input) => (
+function FormInput({ formFields, handleSubmit, subsectionVals, updateSubsectionVals }) {
+  const inputComponents = formFields.map((input) => (
     <Input
       key={input.id}
-      handleChange={(e) => updateFormVals(e.target.value, input.id)}
-      value={formVals[input.id]}
+      handleChange={(e) => updateSubsectionVals(e.target.value, input.id)}
+      value={subsectionVals[input.id]}
       {...input}
     />
   ));
@@ -15,7 +14,7 @@ function FormInput({ formFields, formVals, updateFormVals, handleSubmit }) {
   return (
     <div className="dropdown-section">
       <form className="section-form" onSubmit={handleSubmit}>
-        {inputFields}
+        {inputComponents}
         <button type="submit">Submit</button>
       </form>
     </div>
@@ -24,9 +23,9 @@ function FormInput({ formFields, formVals, updateFormVals, handleSubmit }) {
 
 FormInput.propTypes = {
   formFields: PropTypes.array,
-  formVals: PropTypes.object,
-  updateFormVals: PropTypes.func,
-  handleSubmit: PropTypes.func
+  handleSubmit: PropTypes.func,
+  subsectionVals: PropTypes.object,
+  updateSubsectionVals: PropTypes.func
 };
 
 export default FormInput;

@@ -4,37 +4,37 @@ import FormInput from './FormInput';
 import FormOutput from './FormOutput';
 
 function Subsection({
-  dropdownId,
   formFields,
-  data,
-  updateSectionVals,
   index,
+  initSubsectionVals,
   isSubmitted,
-  toggleSubmit
+  sectionId,
+  toggleSubmit,
+  updateSectionVals
 }) {
-  // const [inputVals, setInputVals] = useState(data);
+  const [subsectionVals, setSubsectionVals] = useState(initSubsectionVals);
 
-  const [formVals, setFormVals] = useState(data);
-
-  const updateFormVals = (newInputVal, inputId) => {
-    const newFormVals = { ...data };
-    // DEBUG
-    newFormVals[inputId] = `${newInputVal}z`;
-    // DEBUG
-    setFormVals(newFormVals);
-    updateSectionVals(newFormVals, index);
+  const updateSubsectionVals = (newInputVal, inputId) => {
+    const newSubsectionVals = { ...subsectionVals };
+    newSubsectionVals[inputId] = newInputVal;
+    setSubsectionVals(newSubsectionVals);
+    updateSectionVals(newSubsectionVals, index);
   };
 
   return (
     <>
       {isSubmitted ? (
-        <FormOutput dropdownId={dropdownId} formVals={formVals} handleEdit={toggleSubmit} />
+        <FormOutput
+          handleEdit={toggleSubmit}
+          sectionId={sectionId}
+          subsectionVals={subsectionVals}
+        />
       ) : (
         <FormInput
           formFields={formFields}
-          formVals={formVals}
-          updateFormVals={updateFormVals}
           handleSubmit={toggleSubmit}
+          subsectionVals={subsectionVals}
+          updateSubsectionVals={updateSubsectionVals}
         />
       )}
     </>
@@ -42,12 +42,13 @@ function Subsection({
 }
 
 Subsection.propTypes = {
-  dropdownId: PropTypes.string,
   formFields: PropTypes.array,
-  data: PropTypes.object,
-  handleChange: PropTypes.func,
+  index: PropTypes.number,
+  initSubsectionVals: PropTypes.object,
   isSubmitted: PropTypes.bool,
-  toggleSubmit: PropTypes.func
+  sectionId: PropTypes.string,
+  toggleSubmit: PropTypes.func,
+  updateSectionVals: PropTypes.func
 };
 
 export default Subsection;

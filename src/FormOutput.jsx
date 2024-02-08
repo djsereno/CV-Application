@@ -1,20 +1,18 @@
 import PropTypes from 'prop-types';
 import './App.css';
 
-function FormOutput({ dropdownId, formVals, handleEdit }) {
-  // const formValues = formVals.reduce((acc, input) => ({ [input.id]: input.value, ...acc }), {});
-
+function FormOutput({ handleEdit, sectionId, subsectionVals }) {
   let content;
-  switch (dropdownId) {
+  switch (sectionId) {
     case 'general':
       content = (
         <div>
           <h3>
-            {formVals.firstName} {formVals.lastName}
+            {subsectionVals.firstName} {subsectionVals.lastName}
           </h3>
-          <a href={`mailto: ${formVals.email}`}>{formVals.email}</a>
-          <a href={`tel: ${formVals.phone}`}>{formVals.phone}</a>
-          <p>{formVals.location}</p>
+          <a href={`mailto: ${subsectionVals.email}`}>{subsectionVals.email}</a>
+          <a href={`tel: ${subsectionVals.phone}`}>{subsectionVals.phone}</a>
+          <p>{subsectionVals.location}</p>
         </div>
       );
       break;
@@ -22,11 +20,11 @@ function FormOutput({ dropdownId, formVals, handleEdit }) {
     case 'education':
       content = (
         <div>
-          <h3>{formVals.schoolName}</h3>
-          <p>{formVals.location}</p>
-          <p>{formVals.degree}</p>
+          <h3>{subsectionVals.schoolName}</h3>
+          <p>{subsectionVals.location}</p>
+          <p>{subsectionVals.degree}</p>
           <p>
-            {formVals.startDate} - {formVals.endDate}
+            {subsectionVals.startDate} - {subsectionVals.endDate}
           </p>
         </div>
       );
@@ -35,13 +33,13 @@ function FormOutput({ dropdownId, formVals, handleEdit }) {
     case 'workExperience':
       content = (
         <div>
-          <h3>{formVals.companyName}</h3>
-          <p>{formVals.location}</p>
-          <p>{formVals.jobTitle}</p>
+          <h3>{subsectionVals.companyName}</h3>
+          <p>{subsectionVals.location}</p>
+          <p>{subsectionVals.jobTitle}</p>
           <p>
-            {formVals.startDate} - {formVals.endDate}
+            {subsectionVals.startDate} - {subsectionVals.endDate}
           </p>
-          <p>{formVals.duties}</p>
+          <p>{subsectionVals.duties}</p>
         </div>
       );
       break;
@@ -58,9 +56,9 @@ function FormOutput({ dropdownId, formVals, handleEdit }) {
 }
 
 FormOutput.propTypes = {
-  dropdownId: PropTypes.string,
-  formVals: PropTypes.object,
-  handleEdit: PropTypes.func
+  handleEdit: PropTypes.func,
+  sectionId: PropTypes.string,
+  subsectionVals: PropTypes.object
 };
 
 export default FormOutput;
