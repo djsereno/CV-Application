@@ -14,6 +14,18 @@ function Dropdown({ id, label, initOpenStatus, data }) {
     setIsSubmitted(!isSubmitted);
   };
 
+  const content = isOpen
+    ? data.map((subsectionData, index) => (
+        <Subsection
+          key={`${id}${index}`}
+          dropdownId={id}
+          data={subsectionData}
+          isSubmitted={isSubmitted}
+          toggleSubmit={toggleSubmit}
+        />
+      ))
+    : null;
+
   return (
     <div className="dropdown-module">
       <div className="dropdown-header">
@@ -22,17 +34,7 @@ function Dropdown({ id, label, initOpenStatus, data }) {
           {isOpen ? <FontAwesomeIcon icon="angle-up" /> : <FontAwesomeIcon icon="angle-down" />}
         </button>
       </div>
-      <>
-        {isOpen ? (
-          <Subsection
-            key={id}
-            sectionId={id}
-            data={data}
-            isSubmitted={isSubmitted}
-            toggleSubmit={toggleSubmit}
-          />
-        ) : null}
-      </>
+      <>{content}</>
     </div>
   );
 }

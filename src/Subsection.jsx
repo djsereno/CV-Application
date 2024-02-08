@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import FormInput from './FormInput';
 import FormOutput from './FormOutput';
 
-function Subsection({ sectionId, data, isSubmitted, toggleSubmit }) {
+function Subsection({ dropdownId, data, isSubmitted, toggleSubmit }) {
   const [inputs, setInputs] = useState(data);
 
   const handleChange = (newValue, index) => {
@@ -15,21 +15,16 @@ function Subsection({ sectionId, data, isSubmitted, toggleSubmit }) {
   return (
     <>
       {isSubmitted ? (
-        <FormOutput key={sectionId} sectionId={sectionId} data={data} handleEdit={toggleSubmit} />
+        <FormOutput dropdownId={dropdownId} data={data} handleEdit={toggleSubmit} />
       ) : (
-        <FormInput
-          key={sectionId}
-          data={data}
-          handleChange={handleChange}
-          handleSubmit={toggleSubmit}
-        />
+        <FormInput data={data} handleChange={handleChange} handleSubmit={toggleSubmit} />
       )}
     </>
   );
 }
 
 Subsection.propTypes = {
-  sectionId: PropTypes.string,
+  dropdownId: PropTypes.string,
   data: PropTypes.array,
   isSubmitted: PropTypes.bool,
   toggleSubmit: PropTypes.func

@@ -1,11 +1,11 @@
 import PropTypes from 'prop-types';
 import './App.css';
 
-function FormOutput({ sectionId, data, handleEdit }) {
+function FormOutput({ dropdownId, data, handleEdit }) {
   const formValues = data.reduce((acc, input) => ({ [input.id]: input.value, ...acc }), {});
 
   let content;
-  switch (sectionId) {
+  switch (dropdownId) {
     case 'general':
       content = (
         <div>
@@ -58,7 +58,7 @@ function FormOutput({ sectionId, data, handleEdit }) {
 }
 
 FormOutput.propTypes = {
-  sectionId: PropTypes.string,
+  dropdownId: PropTypes.string,
   data: PropTypes.array,
   handleEdit: PropTypes.func
 };
