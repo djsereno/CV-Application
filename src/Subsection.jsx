@@ -15,15 +15,10 @@ function Subsection({ sectionId, data, isSubmitted, toggleSubmit }) {
   return (
     <>
       {isSubmitted ? (
-        <FormOutput
-          key={`${data.label} Output`}
-          sectionId={sectionId}
-          data={data}
-          handleEdit={toggleSubmit}
-        />
+        <FormOutput key={sectionId} sectionId={sectionId} data={data} handleEdit={toggleSubmit} />
       ) : (
         <FormInput
-          key={`${data.label} Form`}
+          key={sectionId}
           data={data}
           handleChange={handleChange}
           handleSubmit={toggleSubmit}

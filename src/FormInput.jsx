@@ -5,7 +5,7 @@ import Input from './Input';
 function FormInput({ data, handleChange, handleSubmit }) {
   const inputFields = data.map((input, index) => (
     <Input
-      key={input.label}
+      key={input.id}
       handleChange={(e) => handleChange(e.target.value, index)}
       value={input.value}
       {...input}

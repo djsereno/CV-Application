@@ -11,7 +11,7 @@ function App() {
     <>
       <div id="dropdown-container">
         {data.map((dropdown) => (
-          <Dropdown key={`${dropdown.label} Dropdown`} initOpenStatus={false} {...dropdown} />
+          <Dropdown key={dropdown.id} initOpenStatus={false} {...dropdown} />
         ))}
       </div>
       <div id="cv-container">Preview goes here</div>

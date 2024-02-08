@@ -25,7 +25,7 @@ function Dropdown({ id, label, initOpenStatus, data }) {
       <>
         {isOpen ? (
           <Subsection
-            key={`${label} Section`}
+            key={id}
             sectionId={id}
             data={data}
             isSubmitted={isSubmitted}
