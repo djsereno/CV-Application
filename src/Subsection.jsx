@@ -34,6 +34,7 @@ function Subsection({
           updateSubsectionVals={updateSubsectionVals}
         />
       )}
+      {subsectionVals.length > 0 ? <button>Delete</button> : null}
     </>
   );
 }

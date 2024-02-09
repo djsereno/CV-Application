@@ -16,6 +16,7 @@ function FormInput({ formFields, handleSubmit, subsectionVals, updateSubsectionV
       <form className="section-form" onSubmit={handleSubmit}>
         {inputComponents}
         <button type="submit">Submit</button>
+        <button type="button">Delete</button>
       </form>
     </div>
   );

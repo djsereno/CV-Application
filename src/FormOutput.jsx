@@ -51,6 +51,7 @@ function FormOutput({ handleEdit, sectionId, subsectionVals }) {
       <button type="submit" onClick={handleEdit}>
         Edit
       </button>
+      <button type="button">Delete</button>
     </div>
   );
 }
