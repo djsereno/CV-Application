@@ -5,8 +5,8 @@ import Subsection from './Subsection';
 
 function Dropdown({ formFields, id, initOpenStatus, initSectionVals, label, updateCvVals }) {
   const [isOpen, setIsOpen] = useState(initOpenStatus);
-  const [isSubmitted, setIsSubmitted] = useState(false);
   const [sectionVals, setSectionVals] = useState(initSectionVals);
+  const [isSubmitted, setIsSubmitted] = useState(new Array(sectionVals.length).fill(false));
 
   const updateSectionVals = (newSubsectionVals, subsectionIndex) => {
     const newSectionVals = [...sectionVals];
@@ -15,11 +15,28 @@ function Dropdown({ formFields, id, initOpenStatus, initSectionVals, label, upda
     updateCvVals(newSectionVals, id);
   };
 
+  console.log(id, isSubmitted);
+
+  const addSubsection = () => {
+    const newSubsection = formFields.reduce(
+      (subsectionValsAcc, input) => ({ [input.id]: '', ...subsectionValsAcc }),
+      {}
+    );
+    const newSectionVals = [...sectionVals, newSubsection];
+
+    setSectionVals(newSectionVals);
+    updateCvVals(newSectionVals, id);
+    setIsSubmitted([...isSubmitted, false]);
+  };
+
   const handleClick = () => setIsOpen(!isOpen);
 
-  const toggleSubmit = (e) => {
+  const toggleSubmit = (e, subsectionIndex) => {
     e.preventDefault();
-    setIsSubmitted(!isSubmitted);
+
+    const newIsSubmitted = [...isSubmitted];
+    newIsSubmitted[subsectionIndex] = !newIsSubmitted[subsectionIndex];
+    setIsSubmitted(newIsSubmitted);
   };
 
   const content = isOpen
@@ -29,13 +46,15 @@ function Dropdown({ formFields, id, initOpenStatus, initSectionVals, label, upda
           formFields={formFields}
           index={index}
           initSubsectionVals={subsectionVals}
-          isSubmitted={isSubmitted}
+          isSubmitted={isSubmitted[index]}
           sectionId={id}
-          toggleSubmit={toggleSubmit}
+          toggleSubmit={(e) => toggleSubmit(e, index)}
           updateSectionVals={updateSectionVals}
         />
       ))
     : null;
+
+  const addButton = id !== 'general' ? <button onClick={addSubsection}>+ {label}</button> : null;
 
   return (
     <div className="dropdown-module">
@@ -46,7 +65,7 @@ function Dropdown({ formFields, id, initOpenStatus, initSectionVals, label, upda
         </button>
       </div>
       <>{content}</>
-      {id !== 'general' ? <button>+ {label}</button> : null}
+      <>{addButton}</>
     </div>
   );
 }
