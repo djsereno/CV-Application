@@ -15,9 +15,9 @@ function Dropdown({ formFields, id, initOpenStatus, initSectionVals, label, upda
     updateCvVals(newSectionVals, id);
   };
 
-  console.log(id, isSubmitted);
-
   const addSubsection = () => {
+    if (isSubmitted.some((value) => value === false)) return false;
+
     const newSubsection = formFields.reduce(
       (subsectionValsAcc, input) => ({ [input.id]: '', ...subsectionValsAcc }),
       {}
@@ -29,11 +29,10 @@ function Dropdown({ formFields, id, initOpenStatus, initSectionVals, label, upda
     setIsSubmitted([...isSubmitted, false]);
   };
 
-  const handleClick = () => setIsOpen(!isOpen);
+  const toggleDropdown = () => setIsOpen(!isOpen);
 
   const toggleSubmit = (e, subsectionIndex) => {
     e.preventDefault();
-
     const newIsSubmitted = [...isSubmitted];
     newIsSubmitted[subsectionIndex] = !newIsSubmitted[subsectionIndex];
     setIsSubmitted(newIsSubmitted);
@@ -60,7 +59,7 @@ function Dropdown({ formFields, id, initOpenStatus, initSectionVals, label, upda
     <div className="dropdown-module">
       <div className="dropdown-header">
         <h2>{label}</h2>
-        <button onClick={handleClick}>
+        <button onClick={toggleDropdown}>
           {isOpen ? <FontAwesomeIcon icon="angle-up" /> : <FontAwesomeIcon icon="angle-down" />}
         </button>
       </div>
