@@ -12,7 +12,6 @@ function Dropdown({ formFields, id, initOpenStatus, initSectionVals, label, upda
     const newSectionVals = [...sectionVals];
     newSectionVals[subsectionIndex] = newSubsectionVals;
     setSectionVals(newSectionVals);
-    updateCvVals(newSectionVals, id);
   };
 
   const addSubsection = () => {
@@ -25,17 +24,17 @@ function Dropdown({ formFields, id, initOpenStatus, initSectionVals, label, upda
     const newSectionVals = [...sectionVals, newSubsection];
 
     setSectionVals(newSectionVals);
-    updateCvVals(newSectionVals, id);
     setIsSubmitted([...isSubmitted, false]);
   };
 
   const toggleDropdown = () => setIsOpen(!isOpen);
 
-  const toggleSubmit = (e, subsectionIndex) => {
+  const toggleSubmit = (e, subsectionIndex, isSubmit) => {
     e.preventDefault();
     const newIsSubmitted = [...isSubmitted];
     newIsSubmitted[subsectionIndex] = !newIsSubmitted[subsectionIndex];
     setIsSubmitted(newIsSubmitted);
+    if (isSubmit) updateCvVals(sectionVals, id);
   };
 
   const content = isOpen
@@ -43,11 +42,12 @@ function Dropdown({ formFields, id, initOpenStatus, initSectionVals, label, upda
         <Subsection
           key={`${id}${index}`}
           formFields={formFields}
+          handleEdit={(e) => toggleSubmit(e, index, false)}
+          handleSubmit={(e) => toggleSubmit(e, index, true)}
           index={index}
           initSubsectionVals={subsectionVals}
           isSubmitted={isSubmitted[index]}
           sectionId={id}
-          toggleSubmit={(e) => toggleSubmit(e, index)}
           updateSectionVals={updateSectionVals}
         />
       ))

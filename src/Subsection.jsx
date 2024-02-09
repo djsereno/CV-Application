@@ -5,11 +5,12 @@ import FormOutput from './FormOutput';
 
 function Subsection({
   formFields,
+  handleEdit,
+  handleSubmit,
   index,
   initSubsectionVals,
   isSubmitted,
   sectionId,
-  toggleSubmit,
   updateSectionVals
 }) {
   const [subsectionVals, setSubsectionVals] = useState(initSubsectionVals);
@@ -24,15 +25,11 @@ function Subsection({
   return (
     <>
       {isSubmitted ? (
-        <FormOutput
-          handleEdit={toggleSubmit}
-          sectionId={sectionId}
-          subsectionVals={subsectionVals}
-        />
+        <FormOutput handleEdit={handleEdit} sectionId={sectionId} subsectionVals={subsectionVals} />
       ) : (
         <FormInput
           formFields={formFields}
-          handleSubmit={toggleSubmit}
+          handleSubmit={handleSubmit}
           subsectionVals={subsectionVals}
           updateSubsectionVals={updateSubsectionVals}
         />
@@ -43,11 +40,12 @@ function Subsection({
 
 Subsection.propTypes = {
   formFields: PropTypes.array,
+  handleEdit: PropTypes.func,
+  handleSubmit: PropTypes.func,
   index: PropTypes.number,
   initSubsectionVals: PropTypes.object,
   isSubmitted: PropTypes.bool,
   sectionId: PropTypes.string,
-  toggleSubmit: PropTypes.func,
   updateSectionVals: PropTypes.func
 };
 
