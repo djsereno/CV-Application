@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import PropTypes from 'prop-types';
+import { v4 as uuidv4 } from 'uuid';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import Subsection from './Subsection';
 
@@ -7,6 +8,7 @@ function Dropdown({ formFields, id, initOpenStatus, initSectionVals, label, upda
   const [isOpen, setIsOpen] = useState(initOpenStatus);
   const [sectionVals, setSectionVals] = useState(initSectionVals);
   const [isSubmitted, setIsSubmitted] = useState(new Array(sectionVals.length).fill(false));
+  const [subsectionKeys, setSubsectionKeys] = useState(sectionVals.map(() => uuidv4()));
 
   const updateSectionVals = (newSubsectionVals, subsectionIndex) => {
     const newSectionVals = [...sectionVals];
@@ -24,6 +26,7 @@ function Dropdown({ formFields, id, initOpenStatus, initSectionVals, label, upda
     const newSectionVals = [...sectionVals, newSubsection];
 
     setSectionVals(newSectionVals);
+    setSubsectionKeys([...subsectionKeys, uuidv4()]);
     setIsSubmitted([...isSubmitted, false]);
   };
 
@@ -37,21 +40,19 @@ function Dropdown({ formFields, id, initOpenStatus, initSectionVals, label, upda
     if (isSubmit) updateCvVals(sectionVals, id);
   };
 
-  const content = isOpen
-    ? sectionVals.map((subsectionVals, index) => (
-        <Subsection
-          key={`${id}${index}`}
-          formFields={formFields}
-          handleEdit={(e) => toggleSubmit(e, index, false)}
-          handleSubmit={(e) => toggleSubmit(e, index, true)}
-          index={index}
-          initSubsectionVals={subsectionVals}
-          isSubmitted={isSubmitted[index]}
-          sectionId={id}
-          updateSectionVals={updateSectionVals}
-        />
-      ))
-    : null;
+  const content = sectionVals.map((subsectionVals, index) => (
+    <Subsection
+      key={subsectionKeys[index]}
+      formFields={formFields}
+      handleEdit={(e) => toggleSubmit(e, index, false)}
+      handleSubmit={(e) => toggleSubmit(e, index, true)}
+      index={index}
+      initSubsectionVals={subsectionVals}
+      isSubmitted={isSubmitted[index]}
+      sectionId={id}
+      updateSectionVals={updateSectionVals}
+    />
+  ));
 
   const addButton = id !== 'general' ? <button onClick={addSubsection}>+ {label}</button> : null;
 
@@ -63,8 +64,12 @@ function Dropdown({ formFields, id, initOpenStatus, initSectionVals, label, upda
           {isOpen ? <FontAwesomeIcon icon="angle-up" /> : <FontAwesomeIcon icon="angle-down" />}
         </button>
       </div>
-      <>{content}</>
-      <>{addButton}</>
+      {isOpen ? (
+        <div>
+          {content}
+          {addButton}
+        </div>
+      ) : null}
     </div>
   );
 }
