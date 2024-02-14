@@ -8,15 +8,16 @@ import Dropdown from './Dropdown';
 library.add(faAngleDown, faAngleUp);
 
 function App() {
-  const initialCvVals = data.reduce((cvValsAcc, section) => {
-    const subsectionVals = section.formFields.reduce(
-      (subsectionValsAcc, input) => ({ [input.id]: input.placeholder, ...subsectionValsAcc }),
-      {}
-    );
-    return { [section.id]: [subsectionVals], ...cvValsAcc };
-  }, {});
-
-  const [cvVals, setCvVals] = useState(initialCvVals);
+  const [openStatus, setOpenStatus] = useState([true, false, false]);
+  const [cvVals, setCvVals] = useState(
+    data.reduce((cvValsAcc, section) => {
+      const subsectionVals = section.formFields.reduce(
+        (subsectionValsAcc, input) => ({ [input.id]: input.placeholder, ...subsectionValsAcc }),
+        {}
+      );
+      return { [section.id]: [subsectionVals], ...cvValsAcc };
+    }, {})
+  );
 
   const updateCvVals = (newSectionVals, sectionId) => {
     const newCvVals = { ...cvVals };
@@ -24,14 +25,21 @@ function App() {
     setCvVals(newCvVals);
   };
 
+  const toggleOpenStatus = (index) => {
+    const newOpenStatus = new Array(3).fill(false);
+    newOpenStatus[index] = !openStatus[index];
+    setOpenStatus(newOpenStatus);
+  };
+
   return (
     <>
       <div id="dropdown-container">
-        {data.map((section) => (
+        {data.map((section, index) => (
           <Dropdown
             key={section.id}
-            initOpenStatus={false}
             initSectionVals={cvVals[section.id]}
+            isOpen={openStatus[index]}
+            toggleOpenStatus={() => toggleOpenStatus(index)}
             updateCvVals={updateCvVals}
             {...section}
           />

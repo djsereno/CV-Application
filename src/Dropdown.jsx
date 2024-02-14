@@ -4,8 +4,15 @@ import { v4 as uuidv4 } from 'uuid';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import Subsection from './Subsection';
 
-function Dropdown({ formFields, id, initOpenStatus, initSectionVals, label, updateCvVals }) {
-  const [isOpen, setIsOpen] = useState(initOpenStatus);
+function Dropdown({
+  formFields,
+  id,
+  initSectionVals,
+  isOpen,
+  label,
+  toggleOpenStatus,
+  updateCvVals
+}) {
   const [sectionVals, setSectionVals] = useState(initSectionVals);
   const [isSubmitted, setIsSubmitted] = useState(new Array(sectionVals.length).fill(false));
   const [subsectionKeys, setSubsectionKeys] = useState(sectionVals.map(() => uuidv4()));
@@ -29,8 +36,6 @@ function Dropdown({ formFields, id, initOpenStatus, initSectionVals, label, upda
     setSubsectionKeys([...subsectionKeys, uuidv4()]);
     setIsSubmitted([...isSubmitted, false]);
   };
-
-  const toggleDropdown = () => setIsOpen(!isOpen);
 
   const toggleSubmit = (e, subsectionIndex, isSubmit) => {
     e.preventDefault();
@@ -60,7 +65,7 @@ function Dropdown({ formFields, id, initOpenStatus, initSectionVals, label, upda
     <div className="dropdown-module">
       <div className="dropdown-header">
         <h2>{label}</h2>
-        <button onClick={toggleDropdown}>
+        <button onClick={toggleOpenStatus}>
           {isOpen ? <FontAwesomeIcon icon="angle-up" /> : <FontAwesomeIcon icon="angle-down" />}
         </button>
       </div>
@@ -77,9 +82,10 @@ function Dropdown({ formFields, id, initOpenStatus, initSectionVals, label, upda
 Dropdown.propTypes = {
   formFields: PropTypes.array,
   id: PropTypes.string,
-  initOpenStatus: PropTypes.bool,
   initSectionVals: PropTypes.array,
+  isOpen: PropTypes.bool,
   label: PropTypes.string,
+  toggleOpenStatus: PropTypes.func,
   updateCvVals: PropTypes.func
 };
 
