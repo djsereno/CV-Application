@@ -25,16 +25,29 @@ function Dropdown({
 
   const addSubsection = () => {
     if (isSubmitted.some((value) => value === false)) return false;
-
     const newSubsection = formFields.reduce(
       (subsectionValsAcc, input) => ({ [input.id]: '', ...subsectionValsAcc }),
       {}
     );
     const newSectionVals = [...sectionVals, newSubsection];
-
     setSectionVals(newSectionVals);
     setSubsectionKeys([...subsectionKeys, uuidv4()]);
     setIsSubmitted([...isSubmitted, false]);
+  };
+
+  const deleteSubsection = (index) => {
+    // CV needs index removed AND values cleaned so unsubmitted form values don't get pushed
+    // However, sectionVals should preserve unsubmitted form data
+    const newKeys = [...subsectionKeys.slice(0, index), ...subsectionKeys.slice(index + 1)];
+    const newIsSubmitted = [...isSubmitted.slice(0, index), ...isSubmitted.slice(index + 1)];
+    const newSectionVals = sectionVals.filter((values, i) => index !== i);
+    const newCVVals = newSectionVals.map((values, i) =>
+      newIsSubmitted[i] ? values : Object.fromEntries(Object.keys(values).map((key) => [key, '']))
+    );
+    setSectionVals(newSectionVals);
+    setSubsectionKeys(newKeys);
+    setIsSubmitted(newIsSubmitted);
+    updateCvVals(newCVVals, id);
   };
 
   const toggleSubmit = (e, subsectionIndex, isSubmit) => {
@@ -49,10 +62,12 @@ function Dropdown({
     <Subsection
       key={subsectionKeys[index]}
       formFields={formFields}
+      handleDelete={() => deleteSubsection(index)}
       handleEdit={(e) => toggleSubmit(e, index, false)}
       handleSubmit={(e) => toggleSubmit(e, index, true)}
       index={index}
       initSubsectionVals={subsectionVals}
+      isDeletable={sectionVals.length > 1}
       isSubmitted={isSubmitted[index]}
       sectionId={id}
       updateSectionVals={updateSectionVals}

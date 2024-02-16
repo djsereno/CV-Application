@@ -5,10 +5,12 @@ import FormOutput from './FormOutput';
 
 function Subsection({
   formFields,
+  handleDelete,
   handleEdit,
   handleSubmit,
   index,
   initSubsectionVals,
+  isDeletable,
   isSubmitted,
   sectionId,
   updateSectionVals
@@ -34,17 +36,19 @@ function Subsection({
           updateSubsectionVals={updateSubsectionVals}
         />
       )}
-      {subsectionVals.length > 0 ? <button>Delete</button> : null}
+      {isDeletable ? <button onClick={handleDelete}>Delete</button> : null}
     </>
   );
 }
 
 Subsection.propTypes = {
   formFields: PropTypes.array,
+  handleDelete: PropTypes.func,
   handleEdit: PropTypes.func,
   handleSubmit: PropTypes.func,
   index: PropTypes.number,
   initSubsectionVals: PropTypes.object,
+  isDeletable: PropTypes.bool,
   isSubmitted: PropTypes.bool,
   sectionId: PropTypes.string,
   updateSectionVals: PropTypes.func
