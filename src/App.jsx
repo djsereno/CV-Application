@@ -4,6 +4,7 @@ import { faAngleDown, faAngleUp } from '@fortawesome/free-solid-svg-icons';
 import './App.css';
 import { data } from './data';
 import Dropdown from './Dropdown';
+import CvPage from './CV';
 
 library.add(faAngleDown, faAngleUp);
 
@@ -45,9 +46,7 @@ function App() {
           />
         ))}
       </div>
-      <div id="cv-container">
-        <pre>{JSON.stringify(cvVals, null, 2)}</pre>
-      </div>
+      <CvPage {...cvVals} />
     </>
   );
 }
