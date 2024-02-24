@@ -6,7 +6,7 @@ function Education({ educationData }) {
   const content = educationData.map((data, index) => {
     const { schoolName, degree, location, startDate, endDate } = data;
     return (
-      <div className="education" key={index}>
+      <div className="educationContainer" key={index}>
         <div className="schoolAndDegree">
           <p className="schoolName">{schoolName}</p>
           <p className="degree">{degree}</p>

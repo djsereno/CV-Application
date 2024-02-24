@@ -19,7 +19,7 @@ General.propTypes = {
   firstName: PropTypes.string,
   lastName: PropTypes.string,
   email: PropTypes.string,
-  phone: PropTypes.number,
+  phone: PropTypes.string,
   location: PropTypes.string
 };
 
