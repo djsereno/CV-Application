@@ -12,7 +12,7 @@ function Input({ handleChange, icon, label, type, value }) {
   return (
     <label className="input-group">
       <span className="input-icon">
-        <FontAwesomeIcon icon={icon} />
+        <FontAwesomeIcon icon={icon} className="fa-fw" />
       </span>
       {inputTag}
     </label>
