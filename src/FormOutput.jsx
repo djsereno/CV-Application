@@ -1,5 +1,4 @@
 import PropTypes from 'prop-types';
-import './App.css';
 import { textToArray } from './functions';
 
 function FormOutput({ handleEdit, sectionId, subsectionVals }) {

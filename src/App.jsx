@@ -1,8 +1,8 @@
 import { useState } from 'react';
-import './App.css';
 import { data } from './data';
 import Dropdown from './Dropdown';
 import CvPage from './CV';
+import './App.css';
 import './icons.js';
 
 function App() {
@@ -10,7 +10,7 @@ function App() {
   const [cvVals, setCvVals] = useState(
     data.reduce((cvValsAcc, section) => {
       const subsectionVals = section.formFields.reduce(
-        (subsectionValsAcc, input) => ({ [input.id]: input.placeholder, ...subsectionValsAcc }),
+        (subsectionValsAcc, input) => ({ [input.id]: '', ...subsectionValsAcc }),
         {}
       );
       return { [section.id]: [subsectionVals], ...cvValsAcc };

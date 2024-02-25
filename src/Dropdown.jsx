@@ -3,10 +3,12 @@ import PropTypes from 'prop-types';
 import { v4 as uuidv4 } from 'uuid';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import Subsection from './Subsection';
+import './Dropdown.css';
 
 function Dropdown({
   formFields,
   id,
+  icon,
   initSectionVals,
   isOpen,
   label,
@@ -79,16 +81,18 @@ function Dropdown({
   return (
     <div className="dropdown-module">
       <div className="dropdown-header">
-        <h2>{label}</h2>
+        <h2>
+          <FontAwesomeIcon icon={icon} /> {label}
+        </h2>
         <button onClick={toggleOpenStatus}>
           {isOpen ? <FontAwesomeIcon icon="angle-up" /> : <FontAwesomeIcon icon="angle-down" />}
         </button>
       </div>
       {isOpen ? (
-        <div>
+        <>
           {content}
           {addButton}
-        </div>
+        </>
       ) : null}
     </div>
   );
@@ -96,6 +100,7 @@ function Dropdown({
 
 Dropdown.propTypes = {
   formFields: PropTypes.array,
+  icon: PropTypes.string,
   id: PropTypes.string,
   initSectionVals: PropTypes.array,
   isOpen: PropTypes.bool,
