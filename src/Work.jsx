@@ -2,8 +2,15 @@ import PropTypes from 'prop-types';
 
 function Work({ workData }) {
   if (workData.length === 0) return null;
+  if (
+    workData.length === 1 &&
+    Object.values(workData[0]).filter((value) => value !== '').length === 0
+  )
+    return null;
 
   const content = workData.map((data, index) => {
+    if (Object.values(data).filter((value) => value !== '').length === 0) return null;
+
     const { companyName, jobTitle, location, duties, startDate, endDate } = data;
     return (
       <div className="workContainer" key={index}>

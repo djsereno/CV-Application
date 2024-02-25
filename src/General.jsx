@@ -1,6 +1,9 @@
 import PropTypes from 'prop-types';
 
-function General({ firstName, lastName, email, phone, location }) {
+function General({ generalData }) {
+  if (Object.values(generalData).filter((value) => value !== '').length === 0) return null;
+  const { firstName, lastName, email, phone, location } = generalData;
+  
   return (
     <div id="general">
       <h2 className="fullName">
@@ -16,11 +19,7 @@ function General({ firstName, lastName, email, phone, location }) {
 }
 
 General.propTypes = {
-  firstName: PropTypes.string,
-  lastName: PropTypes.string,
-  email: PropTypes.string,
-  phone: PropTypes.string,
-  location: PropTypes.string
+  generalData: PropTypes.object
 };
 
 export default General;

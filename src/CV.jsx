@@ -6,7 +6,7 @@ import Work from './Work';
 function CvPage({ general, education, workExperience }) {
   return (
     <div id="cv-container">
-      <General {...general[0]} />
+      <General generalData={general[0]} />
       <Education educationData={education} />
       <Work workData={workExperience} />
       <pre>{JSON.stringify({ general, education, workExperience }, null, 2)}</pre>

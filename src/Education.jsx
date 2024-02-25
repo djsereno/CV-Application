@@ -2,6 +2,11 @@ import PropTypes from 'prop-types';
 
 function Education({ educationData }) {
   if (educationData.length === 0) return null;
+  if (
+    educationData.length === 1 &&
+    Object.values(educationData[0]).filter((value) => value !== '').length === 0
+  )
+    return null;
 
   const content = educationData.map((data, index) => {
     const { schoolName, degree, location, startDate, endDate } = data;
