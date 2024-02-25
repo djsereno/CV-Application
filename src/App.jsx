@@ -1,19 +1,16 @@
 import { useState } from 'react';
-import { library } from '@fortawesome/fontawesome-svg-core';
-import { faAngleDown, faAngleUp } from '@fortawesome/free-solid-svg-icons';
 import './App.css';
 import { data } from './data';
 import Dropdown from './Dropdown';
 import CvPage from './CV';
-
-library.add(faAngleDown, faAngleUp);
+import './icons.js';
 
 function App() {
   const [openStatus, setOpenStatus] = useState([true, false, false]);
   const [cvVals, setCvVals] = useState(
     data.reduce((cvValsAcc, section) => {
       const subsectionVals = section.formFields.reduce(
-        (subsectionValsAcc, input) => ({ [input.id]: '', ...subsectionValsAcc }),
+        (subsectionValsAcc, input) => ({ [input.id]: input.placeholder, ...subsectionValsAcc }),
         {}
       );
       return { [section.id]: [subsectionVals], ...cvValsAcc };
