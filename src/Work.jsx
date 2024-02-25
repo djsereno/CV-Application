@@ -1,11 +1,17 @@
 import PropTypes from 'prop-types';
-import { hasNonEmptyObjects } from './functions';
+import { hasNonEmptyObjects, textToArray } from './functions';
 
 function Work({ workData }) {
   if (hasNonEmptyObjects(workData)) return null;
 
   const content = workData.map((data, index) => {
     const { companyName, jobTitle, location, duties, startDate, endDate } = data;
+    const dutyBullets = textToArray(duties).map((duty, index) => (
+      <li className="duty" key={index}>
+        {duty}
+      </li>
+    ));
+
     return (
       <div className="workContainer" key={index}>
         <div className="companyInfo">
@@ -20,7 +26,7 @@ function Work({ workData }) {
             </p>
           </div>
         </div>
-        <p className="duties">{duties}</p>
+        <ul className="duties">{dutyBullets}</ul>
       </div>
     );
   });

@@ -1,8 +1,10 @@
 import PropTypes from 'prop-types';
 import './App.css';
+import { textToArray } from './functions';
 
 function FormOutput({ handleEdit, sectionId, subsectionVals }) {
   let content;
+  let dutyBullets;
   switch (sectionId) {
     case 'general':
       content = (
@@ -31,6 +33,12 @@ function FormOutput({ handleEdit, sectionId, subsectionVals }) {
       break;
 
     case 'workExperience':
+      dutyBullets = textToArray(subsectionVals.duties).map((duty, index) => (
+        <li className="duty" key={index}>
+          {duty}
+        </li>
+      ));
+
       content = (
         <div>
           <h3>{subsectionVals.companyName}</h3>
@@ -39,7 +47,7 @@ function FormOutput({ handleEdit, sectionId, subsectionVals }) {
           <p>
             {subsectionVals.startDate} - {subsectionVals.endDate}
           </p>
-          <p>{subsectionVals.duties}</p>
+          <ul>{dutyBullets}</ul>
         </div>
       );
       break;
