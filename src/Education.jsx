@@ -1,15 +1,12 @@
 import PropTypes from 'prop-types';
+import { hasNonEmptyObjects } from './functions';
 
 function Education({ educationData }) {
-  if (educationData.length === 0) return null;
-  if (
-    educationData.length === 1 &&
-    Object.values(educationData[0]).filter((value) => value !== '').length === 0
-  )
-    return null;
+  if (hasNonEmptyObjects(educationData)) return null;
 
   const content = educationData.map((data, index) => {
     const { schoolName, degree, location, startDate, endDate } = data;
+
     return (
       <div className="educationContainer" key={index}>
         <div className="schoolAndDegree">
