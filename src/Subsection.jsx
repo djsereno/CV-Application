@@ -1,3 +1,4 @@
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { useState } from 'react';
 import PropTypes from 'prop-types';
 import FormInput from './FormInput';
@@ -25,7 +26,7 @@ function Subsection({
   };
 
   return (
-    <>
+    <div className="section-container">
       {isSubmitted ? (
         <FormOutput handleEdit={handleEdit} sectionId={sectionId} subsectionVals={subsectionVals} />
       ) : (
@@ -36,8 +37,12 @@ function Subsection({
           updateSubsectionVals={updateSubsectionVals}
         />
       )}
-      {isDeletable ? <button onClick={handleDelete}>Delete</button> : null}
-    </>
+      {isDeletable ? (
+        <button onClick={handleDelete}>
+          <FontAwesomeIcon icon="fa-trash-can" />
+        </button>
+      ) : null}
+    </div>
   );
 }
 

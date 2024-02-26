@@ -1,5 +1,6 @@
 import PropTypes from 'prop-types';
 import { textToArray } from './functions';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 function FormOutput({ handleEdit, sectionId, subsectionVals }) {
   let content;
@@ -7,27 +8,27 @@ function FormOutput({ handleEdit, sectionId, subsectionVals }) {
   switch (sectionId) {
     case 'general':
       content = (
-        <div>
+        <>
           <h3>
             {subsectionVals.firstName} {subsectionVals.lastName}
           </h3>
           <a href={`mailto: ${subsectionVals.email}`}>{subsectionVals.email}</a>
           <a href={`tel: ${subsectionVals.phone}`}>{subsectionVals.phone}</a>
           <p>{subsectionVals.location}</p>
-        </div>
+        </>
       );
       break;
 
     case 'education':
       content = (
-        <div>
+        <>
           <h3>{subsectionVals.schoolName}</h3>
           <p>{subsectionVals.location}</p>
           <p>{subsectionVals.degree}</p>
           <p>
             {subsectionVals.startDate} - {subsectionVals.endDate}
           </p>
-        </div>
+        </>
       );
       break;
 
@@ -39,7 +40,7 @@ function FormOutput({ handleEdit, sectionId, subsectionVals }) {
       ));
 
       content = (
-        <div>
+        <>
           <h3>{subsectionVals.companyName}</h3>
           <p>{subsectionVals.location}</p>
           <p>{subsectionVals.jobTitle}</p>
@@ -47,18 +48,18 @@ function FormOutput({ handleEdit, sectionId, subsectionVals }) {
             {subsectionVals.startDate} - {subsectionVals.endDate}
           </p>
           <ul>{dutyBullets}</ul>
-        </div>
+        </>
       );
       break;
   }
 
   return (
-    <div className="section-output">
-      {content}
-      <button type="submit" onClick={handleEdit}>
-        Edit
+    <>
+      <div className="section-content">{content}</div>
+      <button onClick={handleEdit}>
+        <FontAwesomeIcon icon="fa-pencil" />
       </button>
-    </div>
+    </>
   );
 }
 

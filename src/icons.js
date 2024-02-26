@@ -12,7 +12,10 @@ import {
   faCalendarCheck,
   faBuilding,
   faIdBadge,
-  faListCheck
+  faListCheck,
+  faCircleCheck,
+  faPencil,
+  faTrashCan
 } from '@fortawesome/free-solid-svg-icons';
 
 library.add(
@@ -28,5 +31,8 @@ library.add(
   faCalendarCheck,
   faBuilding,
   faIdBadge,
-  faListCheck
+  faListCheck,
+  faCircleCheck,
+  faPencil,
+  faTrashCan
 );

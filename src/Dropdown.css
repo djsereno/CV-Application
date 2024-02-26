@@ -10,11 +10,11 @@
 }
 
 .dropdown-header {
+  display: flex;
+  justify-content: space-between;
   padding: 1.5em;
   border-radius: 10px;
   background-color: grey;
-  display: flex;
-  justify-content: space-between;
   color: white;
 }
 
@@ -23,21 +23,30 @@
 }
 
 .dropdown-header button {
-  background-color: transparent;
   border: none;
-  color: white;
+  background-color: transparent;
   font-size: 1.5em;
+  color: white;
 }
 
-.dropdown-header button:hover {
+button:hover {
   filter: brightness(0.8);
   cursor: pointer;
 }
 
-.section-form {
-  padding: 20px;
+.section-container {
+  width: 100%;
+}
+
+.section-form,
+.section-output {
   display: flex;
   flex-direction: column;
+  width: 100%;
+  padding: 20px;
+}
+
+.section-form {
   gap: 20px;
 }
 
@@ -47,42 +56,91 @@
   border: 1px solid #e5e5e5;
   border-radius: 5px;
 }
+.input-group,
+.section-form button {
+  width: 100%;
+  border-radius: 5px;
+}
+
+.section-form button {
+  border: transparent;
+}
 
 .input-group,
 .input-icon {
+  transition: 0.35s ease-in-out;
+  transition: all 0.35s ease-in-out;
   -webkit-transition: 0.35s ease-in-out;
   -moz-transition: 0.35s ease-in-out;
   -o-transition: 0.35s ease-in-out;
-  transition: 0.35s ease-in-out;
-  transition: all 0.35s ease-in-out;
+}
+
+.input-icon,
+.section-form input,
+.section-form button {
+  padding: 1em;
 }
 
 .input-icon {
-  color: rgba(0, 0, 0, 0.4);
-  background-color: #f1f1f1;
-  padding: 1em;
-  border-radius: 5px 0 0 5px;
   border-right: 1px solid #e5e5e5;
+  border-radius: 5px 0 0 5px;
+  background-color: #f1f1f1;
+  color: rgba(0, 0, 0, 0.4);
 }
 
 input {
-  border: none;
-  background-color: #f9f9f9;
-  padding: 1em;
   width: 100%;
+  border: none;
   border-radius: 0 5px 5px 0;
+  background-color: #f9f9f9;
 }
 
 input:focus {
-  outline: 0;
   border-color: #bd8200;
+  outline: 0;
 }
 
 .input-group:has(input:focus) .input-icon {
-  color: #f0a500;
   border-color: #bd8200;
+  color: #f0a500;
 }
 .input-group:has(input:focus) {
-  outline: 0;
   border-color: #bd8200;
+  outline: 0;
+}
+
+.section-form button {
+  background-color: black;
+  color: white;
+}
+
+.section-container {
+  display: flex;
+  flex-direction: row;
+}
+
+.section-content {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+}
+
+.section-container button {
+  width: 2rem;
+  height: 2rem;
+  margin: auto;
+  border: transparent;
+  background-color: transparent;
+  font-size: 0;
+  transition: 0.1s ease-in-out;
+  transition: all 0.1s ease-in-out;
+}
+
+.section-container:hover button {
+  font-size: 1em;
+  color: #c8c8c8;
+}
+
+.section-container {
+  display: flex;
 }
