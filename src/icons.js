@@ -8,7 +8,8 @@ import {
   faLocationDot,
   faSchool,
   faGraduationCap,
-  faCalendarDays,
+  faCalendar,
+  faCalendarCheck,
   faBuilding,
   faIdBadge,
   faListCheck
@@ -23,7 +24,8 @@ library.add(
   faLocationDot,
   faSchool,
   faGraduationCap,
-  faCalendarDays,
+  faCalendar,
+  faCalendarCheck,
   faBuilding,
   faIdBadge,
   faListCheck

@@ -54,13 +54,6 @@ export const data = [
         icon: 'fa-school'
       },
       {
-        id: 'location',
-        label: 'Location',
-        placeholder: 'Cambridge, MA',
-        type: 'text',
-        icon: 'fa-location-dot'
-      },
-      {
         id: 'degree',
         label: 'Degree',
         placeholder: 'Culinary Arts',
@@ -68,18 +61,25 @@ export const data = [
         icon: 'fa-graduation-cap'
       },
       {
+        id: 'location',
+        label: 'Location',
+        placeholder: 'Cambridge, MA',
+        type: 'text',
+        icon: 'fa-location-dot'
+      },
+      {
         id: 'startDate',
         label: 'Start Date',
         placeholder: '2010',
         type: 'number',
-        icon: 'fa-calendar-days'
+        icon: 'fa-calendar'
       },
       {
         id: 'endDate',
         label: 'End Date',
         placeholder: '2014',
         type: 'number',
-        icon: 'fa-calendar-days'
+        icon: 'fa-calendar-check'
       }
     ]
   },
@@ -96,13 +96,6 @@ export const data = [
         icon: 'fa-building'
       },
       {
-        id: 'location',
-        label: 'Location',
-        placeholder: 'Boston, MA',
-        type: 'text',
-        icon: 'fa-location-dot'
-      },
-      {
         id: 'jobTitle',
         label: 'Job Title',
         placeholder: 'Head Chef',
@@ -110,18 +103,25 @@ export const data = [
         icon: 'fa-id-badge'
       },
       {
+        id: 'location',
+        label: 'Location',
+        placeholder: 'Boston, MA',
+        type: 'text',
+        icon: 'fa-location-dot'
+      },
+      {
         id: 'startDate',
         label: 'Start Date',
         placeholder: '2014',
         type: 'number',
-        icon: 'fa-calendar-days'
+        icon: 'fa-calendar'
       },
       {
         id: 'endDate',
         label: 'End Date',
         placeholder: '2020',
         type: 'number',
-        icon: 'fa-calendar-days'
+        icon: 'fa-calendar-check'
       },
       {
         id: 'duties',
