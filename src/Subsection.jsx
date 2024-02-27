@@ -9,6 +9,7 @@ function Subsection({
   handleDelete,
   handleEdit,
   handleSubmit,
+  id,
   index,
   initSubsectionVals,
   isDeletable,
@@ -33,13 +34,14 @@ function Subsection({
         <FormInput
           formFields={formFields}
           handleSubmit={handleSubmit}
+          id={id}
           subsectionVals={subsectionVals}
           updateSubsectionVals={updateSubsectionVals}
         />
       )}
       {isDeletable ? (
-        <button onClick={handleDelete}>
-          <FontAwesomeIcon icon="fa-trash-can" />
+        <button onClick={handleDelete} className="delete-button">
+          <FontAwesomeIcon icon="fa-trash-can" /> {' Delete'}
         </button>
       ) : null}
     </div>
@@ -51,6 +53,7 @@ Subsection.propTypes = {
   handleDelete: PropTypes.func,
   handleEdit: PropTypes.func,
   handleSubmit: PropTypes.func,
+  id: PropTypes.string,
   index: PropTypes.number,
   initSubsectionVals: PropTypes.object,
   isDeletable: PropTypes.bool,

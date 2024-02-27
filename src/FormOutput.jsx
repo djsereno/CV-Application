@@ -56,7 +56,7 @@ function FormOutput({ handleEdit, sectionId, subsectionVals }) {
   return (
     <>
       <div className="section-content">{content}</div>
-      <button onClick={handleEdit}>
+      <button onClick={handleEdit} className="edit-button">
         <FontAwesomeIcon icon="fa-pencil" />
       </button>
     </>

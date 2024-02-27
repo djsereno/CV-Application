@@ -67,6 +67,7 @@ function Dropdown({
       handleDelete={() => deleteSubsection(index)}
       handleEdit={(e) => toggleSubmit(e, index, false)}
       handleSubmit={(e) => toggleSubmit(e, index, true)}
+      id={subsectionKeys[index]}
       index={index}
       initSubsectionVals={subsectionVals}
       isDeletable={sectionVals.length > 1}
@@ -76,10 +77,15 @@ function Dropdown({
     />
   ));
 
-  const addButton = id !== 'general' ? <button onClick={addSubsection}>+ {label}</button> : null;
+  const addButton =
+    id !== 'general' ? (
+      <button onClick={addSubsection} className="add-button">
+        + {label}
+      </button>
+    ) : null;
 
   return (
-    <div className="dropdown-module">
+    <div id={id} className="dropdown-module">
       <div className="dropdown-header">
         <h2>
           <FontAwesomeIcon icon={icon} /> {label}

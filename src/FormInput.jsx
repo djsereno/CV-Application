@@ -2,7 +2,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import PropTypes from 'prop-types';
 import Input from './Input';
 
-function FormInput({ formFields, handleSubmit, subsectionVals, updateSubsectionVals }) {
+function FormInput({ formFields, handleSubmit, id, subsectionVals, updateSubsectionVals }) {
   const inputComponents = formFields.map((input) => (
     <Input
       key={input.id}
@@ -13,21 +13,22 @@ function FormInput({ formFields, handleSubmit, subsectionVals, updateSubsectionV
   ));
 
   return (
-    <div className="dropdown-section">
-      <form className="section-form" onSubmit={handleSubmit}>
+    <>
+      <form className="section-form" id={id} onSubmit={handleSubmit}>
         {inputComponents}
-        <button type="submit">
-          <FontAwesomeIcon icon="fa-circle-check" />
-          {' Submit'}
-        </button>
       </form>
-    </div>
+      <button form={id} type="submit" className="submit-button">
+        <FontAwesomeIcon icon="fa-circle-check" />
+        {' Submit'}
+      </button>
+    </>
   );
 }
 
 FormInput.propTypes = {
   formFields: PropTypes.array,
   handleSubmit: PropTypes.func,
+  id: PropTypes.string,
   subsectionVals: PropTypes.object,
   updateSubsectionVals: PropTypes.func
 };
