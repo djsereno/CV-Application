@@ -41,7 +41,7 @@ function Subsection({
       )}
       {isDeletable ? (
         <button onClick={handleDelete} className="delete-button">
-          <FontAwesomeIcon icon="fa-trash-can" /> {' Delete'}
+          <FontAwesomeIcon icon="fa-trash-can" /> {isSubmitted ? null : ' Delete'}
         </button>
       ) : null}
     </div>

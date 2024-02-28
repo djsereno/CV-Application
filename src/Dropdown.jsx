@@ -38,7 +38,7 @@ function Dropdown({
   };
 
   const deleteSubsection = (index) => {
-    // CV needs index removed AND values cleaned so unsubmitted form values don't get pushed
+    // CV component needs index removed AND values cleaned so unsubmitted form values don't get pushed
     // However, sectionVals should preserve unsubmitted form data
     const newKeys = [...subsectionKeys.slice(0, index), ...subsectionKeys.slice(index + 1)];
     const newIsSubmitted = [...isSubmitted.slice(0, index), ...isSubmitted.slice(index + 1)];
@@ -78,7 +78,7 @@ function Dropdown({
   ));
 
   const addButton =
-    id !== 'general' ? (
+    id !== 'general' && isSubmitted.every((value) => value === true) ? (
       <button onClick={addSubsection} className="add-button">
         <FontAwesomeIcon icon="fa-circle-plus" /> Add {label}
       </button>

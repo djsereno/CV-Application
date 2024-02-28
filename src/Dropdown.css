@@ -38,6 +38,13 @@ button:hover {
   padding: 20px;
 }
 
+.subsection-container:first-child {
+  border-top: 0;
+}
+.subsection-container {
+  border-top: 1px solid red;
+}
+
 .subsection-container:has(.section-form) {
   display: grid;
   grid-template-columns: 1fr 1fr;
@@ -45,13 +52,13 @@ button:hover {
   column-gap: 10px;
   row-gap: 10px;
 }
-.subsection-container:has(.section-output) {
+.subsection-container:has(.section-content) {
   display: flex;
   flex-direction: row;
 }
 
 .section-form,
-.section-output {
+.section-content {
   display: flex;
   flex-direction: column;
   width: 100%;
@@ -161,6 +168,9 @@ button:hover {
 
 .edit-button,
 .edit-button + .delete-button {
+  display: flex;
+  justify-content: center;
+  align-items: center;
   width: 2rem;
   height: 2rem;
   margin: auto;
@@ -174,5 +184,9 @@ button:hover {
 .subsection-container:hover .edit-button,
 .subsection-container:hover .edit-button + .delete-button {
   font-size: 1em;
-  color: #c8c8c8;
+  color: #717171;
+}
+
+input[type='date']:invalid {
+  color: #717171;
 }
