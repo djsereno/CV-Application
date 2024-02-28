@@ -27,7 +27,7 @@ function Subsection({
   };
 
   return (
-    <div className="section-container">
+    <div className="subsection-container">
       {isSubmitted ? (
         <FormOutput handleEdit={handleEdit} sectionId={sectionId} subsectionVals={subsectionVals} />
       ) : (

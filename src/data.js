@@ -71,14 +71,14 @@ export const data = [
         id: 'startDate',
         label: 'Start Date',
         placeholder: '2010',
-        type: 'number',
-        icon: 'fa-calendar'
+        type: 'month',
+        icon: 'fa-calendar-plus'
       },
       {
         id: 'endDate',
         label: 'End Date',
         placeholder: '2014',
-        type: 'number',
+        type: 'month',
         icon: 'fa-calendar-check'
       }
     ]
@@ -113,14 +113,14 @@ export const data = [
         id: 'startDate',
         label: 'Start Date',
         placeholder: '2014',
-        type: 'number',
-        icon: 'fa-calendar'
+        type: 'date',
+        icon: 'fa-calendar-plus'
       },
       {
         id: 'endDate',
         label: 'End Date',
         placeholder: '2020',
-        type: 'number',
+        type: 'date',
         icon: 'fa-calendar-check'
       },
       {

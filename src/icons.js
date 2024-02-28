@@ -8,14 +8,15 @@ import {
   faLocationDot,
   faSchool,
   faGraduationCap,
-  faCalendar,
+  faCalendarPlus,
   faCalendarCheck,
   faBuilding,
   faIdBadge,
   faListCheck,
   faCircleCheck,
   faPencil,
-  faTrashCan
+  faTrashCan,
+  faCirclePlus
 } from '@fortawesome/free-solid-svg-icons';
 
 library.add(
@@ -27,12 +28,13 @@ library.add(
   faLocationDot,
   faSchool,
   faGraduationCap,
-  faCalendar,
+  faCalendarPlus,
   faCalendarCheck,
   faBuilding,
   faIdBadge,
   faListCheck,
   faCircleCheck,
   faPencil,
-  faTrashCan
+  faTrashCan,
+  faCirclePlus
 );

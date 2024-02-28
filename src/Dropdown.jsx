@@ -80,7 +80,7 @@ function Dropdown({
   const addButton =
     id !== 'general' ? (
       <button onClick={addSubsection} className="add-button">
-        + {label}
+        <FontAwesomeIcon icon="fa-circle-plus" /> Add {label}
       </button>
     ) : null;
 
@@ -95,10 +95,10 @@ function Dropdown({
         </button>
       </div>
       {isOpen ? (
-        <>
+        <div className="section-container">
           {content}
           {addButton}
-        </>
+        </div>
       ) : null}
     </div>
   );

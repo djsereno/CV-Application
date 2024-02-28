@@ -37,14 +37,15 @@ button:hover {
 .section-container {
   padding: 20px;
 }
-.section-container:has(.section-form) {
+
+.subsection-container:has(.section-form) {
   display: grid;
   grid-template-columns: 1fr 1fr;
   grid-template-rows: auto auto;
   column-gap: 10px;
   row-gap: 10px;
 }
-.section-container:has(.section-output) {
+.subsection-container:has(.section-output) {
   display: flex;
   flex-direction: row;
 }
@@ -81,7 +82,7 @@ button:hover {
 .input-icon,
 .section-form input,
 .section-form textarea,
-.section-container button {
+.subsection-container button {
   padding: 1em;
 }
 
@@ -129,6 +130,16 @@ button:hover {
   width: 100%;
 }
 
+.add-button {
+  width: 100%;
+  margin-top: 10px;
+  padding: 1em;
+  border: transparent;
+  border-radius: 5px;
+  background-color: black;
+  color: white;
+}
+
 .submit-button,
 .submit-button + .delete-button {
   width: 100%;
@@ -160,8 +171,8 @@ button:hover {
   transition: all 0.1s ease-in-out;
 }
 
-.section-container:hover .edit-button,
-.section-container:hover .edit-button + .delete-button {
+.subsection-container:hover .edit-button,
+.subsection-container:hover .edit-button + .delete-button {
   font-size: 1em;
   color: #c8c8c8;
 }
