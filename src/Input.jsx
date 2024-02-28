@@ -4,7 +4,12 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 function Input({ handleChange, icon, label, type, value }) {
   const inputTag =
     type === 'textarea' ? (
-      <textarea value={value} placeholder={label} onChange={handleChange} required></textarea>
+      <textarea
+        value={value}
+        placeholder={label}
+        onChange={handleChange}
+        rows='5'
+        required></textarea>
     ) : (
       <input type={type} value={value} placeholder={label} onChange={handleChange} required></input>
     );

@@ -80,8 +80,15 @@ button:hover {
 
 .input-icon,
 .section-form input,
+.section-form textarea,
 .section-container button {
   padding: 1em;
+}
+
+.section-form textarea {
+  flex: 1;
+  width: 100%;
+  min-height: calc(1.15 * 5em + 2em);
 }
 
 .input-icon {
@@ -91,25 +98,29 @@ button:hover {
   color: rgba(0, 0, 0, 0.4);
 }
 
-input {
+.section-form input,
+.section-form textarea {
   width: 100%;
   border: none;
   border-radius: 0 5px 5px 0;
   background-color: #f9f9f9;
 }
 
-input:focus {
+.section-form input:focus,
+.section-form textarea:focus {
   border-color: #bd8200;
   outline: 0;
 }
 
-.input-group:has(input:focus) .input-icon {
-  border-color: #bd8200;
-  color: #f0a500;
-}
-.input-group:has(input:focus) {
+.input-group:has(input:focus),
+.input-group:has(textarea:focus) {
   border-color: #bd8200;
   outline: 0;
+}
+.input-group:has(input:focus) .input-icon,
+.input-group:has(textarea:focus) .input-icon {
+  border-color: #bd8200;
+  color: #f0a500;
 }
 
 .section-content {
