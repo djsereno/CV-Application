@@ -1,5 +1,5 @@
 import PropTypes from 'prop-types';
-import { textToArray } from './functions';
+import { formatDate, textToArray } from './functions';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 function FormOutput({ handleEdit, sectionId, subsectionVals }) {
@@ -12,9 +12,18 @@ function FormOutput({ handleEdit, sectionId, subsectionVals }) {
           <h3>
             {subsectionVals.firstName} {subsectionVals.lastName}
           </h3>
-          <a href={`mailto: ${subsectionVals.email}`}>{subsectionVals.email}</a>
-          <a href={`tel: ${subsectionVals.phone}`}>{subsectionVals.phone}</a>
-          <p>{subsectionVals.location}</p>
+          <p className="output-group">
+            <FontAwesomeIcon icon={'fa-envelope'} className="fa-fw" />
+            {subsectionVals.email}
+          </p>
+          <p className="output-group">
+            <FontAwesomeIcon icon={'fa-phone'} className="fa-fw" />
+            {subsectionVals.phone}
+          </p>
+          <p className="output-group">
+            <FontAwesomeIcon icon={'fa-location-dot'} className="fa-fw" />
+            {subsectionVals.location}
+          </p>
         </>
       );
       break;
@@ -23,10 +32,17 @@ function FormOutput({ handleEdit, sectionId, subsectionVals }) {
       content = (
         <>
           <h3>{subsectionVals.schoolName}</h3>
-          <p>{subsectionVals.location}</p>
-          <p>{subsectionVals.degree}</p>
-          <p>
-            {subsectionVals.startDate} - {subsectionVals.endDate}
+          <p className="output-group">
+            <FontAwesomeIcon icon="fa-graduation-cap" className="fa-fw" />
+            {subsectionVals.degree}
+          </p>
+          <p className="output-group">
+            <FontAwesomeIcon icon="fa-location-dot" className="fa-fw" />
+            {subsectionVals.location}
+          </p>
+          <p className="output-group">
+            <FontAwesomeIcon icon="fa-calendar-days" className="fa-fw" />
+            {formatDate(subsectionVals.startDate)} - {formatDate(subsectionVals.endDate)}
           </p>
         </>
       );
@@ -42,10 +58,17 @@ function FormOutput({ handleEdit, sectionId, subsectionVals }) {
       content = (
         <>
           <h3>{subsectionVals.companyName}</h3>
-          <p>{subsectionVals.location}</p>
-          <p>{subsectionVals.jobTitle}</p>
-          <p>
-            {subsectionVals.startDate} - {subsectionVals.endDate}
+          <p className="output-group">
+            <FontAwesomeIcon icon="fa-id-badge" className="fa-fw" />
+            {subsectionVals.jobTitle}
+          </p>
+          <p className="output-group">
+            <FontAwesomeIcon icon="fa-location-dot" className="fa-fw" />
+            {subsectionVals.location}
+          </p>
+          <p className="output-group">
+            <FontAwesomeIcon icon="fa-calendar-days" className="fa-fw" />
+            {formatDate(subsectionVals.startDate)} - {formatDate(subsectionVals.endDate)}
           </p>
           <ul>{dutyBullets}</ul>
         </>

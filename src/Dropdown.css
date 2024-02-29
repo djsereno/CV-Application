@@ -71,6 +71,13 @@ button:hover {
   width: 100%;
 }
 
+.section-content {
+  gap: 5px;
+}
+.section-content svg {
+  color: rgba(0, 0, 0, 0.4);
+}
+
 .section-form {
   grid-column: 1 / 3;
   grid-row: 1;
@@ -196,4 +203,10 @@ button:hover {
 
 input[type='date']:invalid {
   color: #717171;
+}
+
+.output-group {
+  display: flex;
+  flex-direction: row;
+  gap: 0.5em;
 }

@@ -24,3 +24,11 @@ export function hasNonEmptyObjects(array) {
 
   return false;
 }
+
+export function formatDate(dateString) {
+  const options = { year: 'numeric', month: 'short' };
+  const date = new Date(dateString);
+  if (isNaN(date.getTime())) return 'Invalid Date';
+
+  return date.toLocaleDateString('en-US', options);
+}
