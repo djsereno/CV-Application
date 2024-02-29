@@ -57,10 +57,10 @@ function FormOutput({ handleEdit, sectionId, subsectionVals }) {
 
       content = (
         <>
-          <h3>{subsectionVals.companyName}</h3>
+          <h3>{subsectionVals.jobTitle}</h3>
           <p className="output-group">
-            <FontAwesomeIcon icon="fa-id-badge" className="fa-fw" />
-            {subsectionVals.jobTitle}
+            <FontAwesomeIcon icon="fa-building" className="fa-fw" />
+            {subsectionVals.companyName}
           </p>
           <p className="output-group">
             <FontAwesomeIcon icon="fa-location-dot" className="fa-fw" />
@@ -70,7 +70,7 @@ function FormOutput({ handleEdit, sectionId, subsectionVals }) {
             <FontAwesomeIcon icon="fa-calendar-days" className="fa-fw" />
             {formatDate(subsectionVals.startDate)} - {formatDate(subsectionVals.endDate)}
           </p>
-          <ul>{dutyBullets}</ul>
+          <ul className="duty-list">{dutyBullets}</ul>
         </>
       );
       break;

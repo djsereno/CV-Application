@@ -4,17 +4,20 @@ import Dropdown from './Dropdown';
 import CvPage from './CV';
 import './App.css';
 import './icons.js';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { exampleData } from './exampledata.js';
 
 function App() {
   const [openStatus, setOpenStatus] = useState([true, false, false]);
   const [cvVals, setCvVals] = useState(
-    data.reduce((cvValsAcc, section) => {
-      const subsectionVals = section.formFields.reduce(
-        (subsectionValsAcc, input) => ({ [input.id]: '', ...subsectionValsAcc }),
-        {}
-      );
-      return { [section.id]: [subsectionVals], ...cvValsAcc };
-    }, {})
+    // data.reduce((cvValsAcc, section) => {
+    //   const subsectionVals = section.formFields.reduce(
+    //     (subsectionValsAcc, input) => ({ [input.id]: '', ...subsectionValsAcc }),
+    //     {}
+    //   );
+    //   return { [section.id]: [subsectionVals], ...cvValsAcc };
+    // }, {})
+    exampleData
   );
 
   const updateCvVals = (newSectionVals, sectionId) => {
@@ -27,6 +30,12 @@ function App() {
     const newOpenStatus = new Array(3).fill(false);
     newOpenStatus[index] = !openStatus[index];
     setOpenStatus(newOpenStatus);
+  };
+
+  const loadExampleData = () => {
+    // for (const [key, value] of Object.entries(exampleData)) {
+    //   updateCvVals(value, key);
+    // }
   };
 
   return (
@@ -42,6 +51,9 @@ function App() {
             {...section}
           />
         ))}
+        <button className="load-example-data" onClick={loadExampleData}>
+          <FontAwesomeIcon icon="fa-file-import" /> Load Example Data
+        </button>
       </div>
       <CvPage {...cvVals} />
     </>

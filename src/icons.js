@@ -17,7 +17,8 @@ import {
   faCircleCheck,
   faPencil,
   faTrashCan,
-  faCirclePlus
+  faCirclePlus,
+  faFileImport
 } from '@fortawesome/free-solid-svg-icons';
 
 library.add(
@@ -38,5 +39,6 @@ library.add(
   faCircleCheck,
   faPencil,
   faTrashCan,
-  faCirclePlus
+  faCirclePlus,
+  faFileImport
 );
