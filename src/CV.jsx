@@ -6,7 +6,7 @@ import './CV.css';
 
 function CvPage({ general, education, workExperience }) {
   return (
-    <div id="cv-container">
+    <div id="page-container">
       <General generalData={general[0]} />
       <Education educationData={education} />
       <Work workData={workExperience} />
