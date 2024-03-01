@@ -26,9 +26,16 @@ export function hasNonEmptyObjects(array) {
 }
 
 export function formatDate(dateString) {
-  const options = { year: 'numeric', month: 'short' };
   const date = new Date(dateString);
-  if (isNaN(date.getTime())) return 'Invalid Date';
+  if (isNaN(date.getTime())) return dateString;
 
+  const options = { year: 'numeric', month: 'short' };
   return date.toLocaleDateString('en-US', options);
+}
+
+export function formatPhoneNumber(phoneNumber) {
+  const cleanedNumber = phoneNumber.replace(/\D/g, '');
+  if (cleanedNumber.length !== 10) return phoneNumber;
+
+  return `(${cleanedNumber.substring(0, 3)}) ${cleanedNumber.substring(3, 6)}-${cleanedNumber.substring(6)}`;
 }

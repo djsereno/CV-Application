@@ -1,5 +1,5 @@
 import PropTypes from 'prop-types';
-import { formatDate, textToArray } from './functions';
+import { formatDate, textToArray, formatPhoneNumber } from './functions';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 function FormOutput({ handleEdit, sectionId, subsectionVals }) {
@@ -18,7 +18,7 @@ function FormOutput({ handleEdit, sectionId, subsectionVals }) {
           </p>
           <p className="output-group">
             <FontAwesomeIcon icon={'fa-phone'} className="fa-fw" />
-            {subsectionVals.phone}
+            {formatPhoneNumber(subsectionVals.phone)}
           </p>
           <p className="output-group">
             <FontAwesomeIcon icon={'fa-location-dot'} className="fa-fw" />
