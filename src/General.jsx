@@ -6,7 +6,7 @@ function General({ generalData }) {
   const { firstName, lastName, email, phone, location } = generalData;
 
   return (
-    <div id="general">
+    <div id="header">
       <h2 className="fullName">
         {firstName} {lastName}
       </h2>
