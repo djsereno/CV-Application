@@ -8,7 +8,7 @@ function General({ generalData }) {
   const formattedPhone = formatPhoneNumber(phone);
 
   return (
-    <div id="header">
+    <div id="page-header">
       <h2 className="full-name">
         {firstName} {lastName}
       </h2>

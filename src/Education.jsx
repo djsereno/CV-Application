@@ -30,8 +30,7 @@ function Education({ educationData }) {
 
   return (
     <div id="education-section">
-      <h2 className="section-header">Education</h2>
-
+      <h3 className="section-header">Education</h3>
       {content}
     </div>
   );

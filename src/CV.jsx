@@ -8,9 +8,10 @@ function CvPage({ general, education, workExperience }) {
   return (
     <div id="page-container">
       <General generalData={general[0]} />
-      <Education educationData={education} />
-      <Work workData={workExperience} />
-      {/* <pre>{JSON.stringify({ general, education, workExperience }, null, 2)}</pre> */}
+      <div id="page-body">
+        <Work workData={workExperience} />
+        <Education educationData={education} />
+      </div>
     </div>
   );
 }

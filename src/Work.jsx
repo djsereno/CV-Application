@@ -1,5 +1,6 @@
 import PropTypes from 'prop-types';
-import { hasNonEmptyObjects, textToArray } from './functions';
+import { formatDate, hasNonEmptyObjects, textToArray } from './functions';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 function Work({ workData }) {
   if (hasNonEmptyObjects(workData)) return null;
@@ -13,16 +14,20 @@ function Work({ workData }) {
     ));
 
     return (
-      <div className="workContainer" key={index}>
-        <div className="companyInfo">
-          <div className="companyAndTitle">
-            <p className="companyName">{companyName}</p>
-            <p className="jobTitle">{jobTitle}</p>
+      <div className="work-container" key={index}>
+        <div className="company-info">
+          <div className="company-and-title">
+            <p className="company-name">{companyName}</p>
+            <p className="job-title">{jobTitle}</p>
           </div>
-          <div className="locationAndDates">
-            <p className="location">{location}</p>
+          <div className="location-and-dates">
+            <p className="location">
+              {location}
+              <FontAwesomeIcon icon="fa-location-dot" className="fa-fw" />
+            </p>
             <p className="dates">
-              {startDate} - {endDate}
+              {formatDate(startDate)} - {formatDate(endDate)}
+              <FontAwesomeIcon icon="fa-calendar-days" className="fa-fw" />
             </p>
           </div>
         </div>
@@ -31,7 +36,12 @@ function Work({ workData }) {
     );
   });
 
-  return <div id="workSection">{content}</div>;
+  return (
+    <div id="work-section">
+      <h3 className="section-header">Work Experience</h3>
+      {content}
+    </div>
+  );
 }
 
 Work.propTypes = {
