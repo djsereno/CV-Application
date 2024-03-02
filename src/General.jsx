@@ -9,10 +9,10 @@ function General({ generalData }) {
 
   return (
     <div id="header">
-      <h2 className="fullName">
+      <h2 className="full-name">
         {firstName} {lastName}
       </h2>
-      <div id="contactInfo">
+      <div id="contact-info">
         <p className="email">
           <FontAwesomeIcon icon="fa-envelope" /> {email}
         </p>
