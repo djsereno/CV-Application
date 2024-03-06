@@ -5,17 +5,17 @@
 
 body {
   background-color: silver;
-  margin: 0;
   display: flex;
   place-items: center;
-  min-width: 320px;
-  min-height: 100vh;
 }
 
 #root {
   margin: auto;
+  padding: 100px;
   display: grid;
-  grid-template-columns: 1fr 2fr;
+  grid-template-columns: minmax(400px, 600px) auto;
   gap: 20px;
   min-width: 75%;
+  overflow: hidden;
+  height: 100vh;
 }
