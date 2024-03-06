@@ -2,7 +2,7 @@ import PropTypes from 'prop-types';
 import General from './General';
 import Education from './Education';
 import Work from './Work';
-import './CV.css';
+import './CV.scss';
 
 function CvPage({ general, education, workExperience }) {
   return (

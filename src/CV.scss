@@ -63,7 +63,6 @@
 }
 .company-info {
   padding: 0 0 0.5em;
-
 }
 
 .school-and-degree,
@@ -74,16 +73,18 @@
   justify-content: center;
 }
 
-#page-body .location,
-#page-body .dates {
-  display: flex;
-  gap: 0.5em;
-  justify-content: end;
-}
+#page-body {
+  .location,
+  .dates {
+    display: flex;
+    gap: 0.5em;
+    justify-content: end;
+  }
 
-#page-body .school-name,
-#page-body .company-name,
-#page-body .location {
-  font-weight: bold;
-  margin-bottom: 0.1em;
+  .school-name,
+  .company-name,
+  .location {
+    font-weight: bold;
+    margin-bottom: 0.1em;
+  }
 }
