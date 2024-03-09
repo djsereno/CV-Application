@@ -1,15 +1,15 @@
 import PropTypes from 'prop-types';
-import General from './General';
-import Education from './Education';
-import Work from './Work';
+import CvGeneral from './CvGeneral';
+import CvEducation from './CvEducation';
+import CvWork from './CvWork';
 
 function CvPage({ general, education, workExperience }) {
   return (
     <div id="page-container">
-      <General generalData={general[0]} />
+      <CvGeneral generalData={general[0]} />
       <div id="page-body">
-        <Work workData={workExperience} />
-        <Education educationData={education} />
+        <CvWork workData={workExperience} />
+        <CvEducation educationData={education} />
       </div>
     </div>
   );

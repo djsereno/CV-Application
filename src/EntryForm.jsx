@@ -1,10 +1,10 @@
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import PropTypes from 'prop-types';
-import Input from './Input';
+import InputField from './InputField';
 
-function FormInput({ formFields, handleSubmit, id, subsectionVals, updateSubsectionVals }) {
+function EntryForm({ formFields, handleSubmit, id, subsectionVals, updateSubsectionVals }) {
   const inputComponents = formFields.map((input) => (
-    <Input
+    <InputField
       key={input.id}
       handleChange={(e) => updateSubsectionVals(e.target.value, input.id)}
       value={subsectionVals[input.id]}
@@ -25,7 +25,7 @@ function FormInput({ formFields, handleSubmit, id, subsectionVals, updateSubsect
   );
 }
 
-FormInput.propTypes = {
+EntryForm.propTypes = {
   formFields: PropTypes.array,
   handleSubmit: PropTypes.func,
   id: PropTypes.string,
@@ -33,4 +33,4 @@ FormInput.propTypes = {
   updateSubsectionVals: PropTypes.func
 };
 
-export default FormInput;
+export default EntryForm;

@@ -1,10 +1,10 @@
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { useState } from 'react';
 import PropTypes from 'prop-types';
-import FormInput from './FormInput';
-import FormOutput from './FormOutput';
+import EntryForm from './EntryForm';
+import EntryOutput from './EntryOutput';
 
-function Subsection({
+function EntryContainer({
   formFields,
   handleDelete,
   handleEdit,
@@ -29,9 +29,13 @@ function Subsection({
   return (
     <div className="subsection-container">
       {isSubmitted ? (
-        <FormOutput handleEdit={handleEdit} sectionId={sectionId} subsectionVals={subsectionVals} />
+        <EntryOutput
+          handleEdit={handleEdit}
+          sectionId={sectionId}
+          subsectionVals={subsectionVals}
+        />
       ) : (
-        <FormInput
+        <EntryForm
           formFields={formFields}
           handleSubmit={handleSubmit}
           id={id}
@@ -48,7 +52,7 @@ function Subsection({
   );
 }
 
-Subsection.propTypes = {
+EntryContainer.propTypes = {
   formFields: PropTypes.array,
   handleDelete: PropTypes.func,
   handleEdit: PropTypes.func,
@@ -62,4 +66,4 @@ Subsection.propTypes = {
   updateSectionVals: PropTypes.func
 };
 
-export default Subsection;
+export default EntryContainer;

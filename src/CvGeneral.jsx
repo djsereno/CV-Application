@@ -2,7 +2,7 @@ import PropTypes from 'prop-types';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { formatPhoneNumber } from './functions';
 
-function General({ generalData }) {
+function CvGeneral({ generalData }) {
   if (Object.values(generalData).filter((value) => value !== '').length === 0) return null;
   const { firstName, lastName, email, phone, location } = generalData;
   const formattedPhone = formatPhoneNumber(phone);
@@ -27,8 +27,8 @@ function General({ generalData }) {
   );
 }
 
-General.propTypes = {
+CvGeneral.propTypes = {
   generalData: PropTypes.object
 };
 
-export default General;
+export default CvGeneral;

@@ -2,7 +2,7 @@ import { useState } from 'react';
 import PropTypes from 'prop-types';
 import { v4 as uuidv4 } from 'uuid';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import Subsection from './Subsection';
+import EntryContainer from './EntryContainer';
 
 function Dropdown({
   formFields,
@@ -60,7 +60,7 @@ function Dropdown({
   };
 
   const content = sectionVals.map((subsectionVals, index) => (
-    <Subsection
+    <EntryContainer
       key={subsectionKeys[index]}
       formFields={formFields}
       handleDelete={() => deleteSubsection(index)}

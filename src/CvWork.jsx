@@ -2,7 +2,7 @@ import PropTypes from 'prop-types';
 import { formatDate, hasNonEmptyObjects, textToArray } from './functions';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
-function Work({ workData }) {
+function CvWork({ workData }) {
   if (hasNonEmptyObjects(workData)) return null;
 
   const content = workData.map((data, index) => {
@@ -44,8 +44,8 @@ function Work({ workData }) {
   );
 }
 
-Work.propTypes = {
+CvWork.propTypes = {
   workData: PropTypes.array
 };
 
-export default Work;
+export default CvWork;

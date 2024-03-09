@@ -2,7 +2,7 @@ import PropTypes from 'prop-types';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { formatDate, hasNonEmptyObjects } from './functions';
 
-function Education({ educationData }) {
+function CvEducation({ educationData }) {
   if (hasNonEmptyObjects(educationData)) return null;
 
   const content = educationData.map((data, index) => {
@@ -36,8 +36,8 @@ function Education({ educationData }) {
   );
 }
 
-Education.propTypes = {
+CvEducation.propTypes = {
   educationData: PropTypes.array
 };
 
-export default Education;
+export default CvEducation;

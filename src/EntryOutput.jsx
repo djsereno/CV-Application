@@ -2,7 +2,7 @@ import PropTypes from 'prop-types';
 import { formatDate, textToArray, formatPhoneNumber } from './functions';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
-function FormOutput({ handleEdit, sectionId, subsectionVals }) {
+function EntryOutput({ handleEdit, sectionId, subsectionVals }) {
   let content;
   let dutyBullets;
   switch (sectionId) {
@@ -86,10 +86,10 @@ function FormOutput({ handleEdit, sectionId, subsectionVals }) {
   );
 }
 
-FormOutput.propTypes = {
+EntryOutput.propTypes = {
   handleEdit: PropTypes.func,
   sectionId: PropTypes.string,
   subsectionVals: PropTypes.object
 };
 
-export default FormOutput;
+export default EntryOutput;

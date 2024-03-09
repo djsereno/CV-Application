@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { data } from './data';
 import Dropdown from './Dropdown';
-import CvPage from './CV';
+import CvPage from './CvPage.jsx';
 import './normalize.css';
 import './App.css';
 import './Dropdown.scss';
@@ -36,9 +36,11 @@ function App() {
   };
 
   const loadExampleData = () => {
-    // for (const [key, value] of Object.entries(exampleData)) {
-    //   updateCvVals(value, key);
-    // }
+    console.log(cvVals);
+    for (const [key, value] of Object.entries(exampleData)) {
+      console.log(key);
+      updateCvVals(value, key);
+    }
   };
 
   return (

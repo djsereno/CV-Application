@@ -1,14 +1,14 @@
 import PropTypes from 'prop-types';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
-function Input({ handleChange, icon, label, type, value }) {
+function InputField({ handleChange, icon, label, type, value }) {
   const inputTag =
     type === 'textarea' ? (
       <textarea
         value={value}
         placeholder={label}
         onChange={handleChange}
-        rows='5'
+        rows="5"
         required></textarea>
     ) : (
       <input type={type} value={value} placeholder={label} onChange={handleChange} required></input>
@@ -24,7 +24,7 @@ function Input({ handleChange, icon, label, type, value }) {
   );
 }
 
-Input.propTypes = {
+InputField.propTypes = {
   handleChange: PropTypes.func,
   icon: PropTypes.string,
   label: PropTypes.string,
@@ -32,4 +32,4 @@ Input.propTypes = {
   value: PropTypes.any
 };
 
-export default Input;
+export default InputField;
