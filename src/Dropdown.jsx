@@ -12,7 +12,8 @@ function Dropdown({
   isOpen,
   label,
   toggleOpenStatus,
-  updateCvVals
+  updateCvVals,
+  updateUnsubmittedData
 }) {
   const [sectionVals, setSectionVals] = useState(initSectionVals);
   const [isSubmitted, setIsSubmitted] = useState(new Array(sectionVals.length).fill(false));
@@ -73,6 +74,9 @@ function Dropdown({
       isSubmitted={isSubmitted[index]}
       sectionId={id}
       updateSectionVals={updateSectionVals}
+      updateUnsubmittedData={(newValue, inputFieldId) =>
+        updateUnsubmittedData(newValue, inputFieldId, index)
+      }
     />
   ));
 
@@ -111,7 +115,8 @@ Dropdown.propTypes = {
   isOpen: PropTypes.bool,
   label: PropTypes.string,
   toggleOpenStatus: PropTypes.func,
-  updateCvVals: PropTypes.func
+  updateCvVals: PropTypes.func,
+  updateUnsubmittedData: PropTypes.func
 };
 
 export default Dropdown;

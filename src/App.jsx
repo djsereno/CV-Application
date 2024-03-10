@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { data } from './data';
+import { formProperties } from './formProperties';
 import Dropdown from './Dropdown';
 import CvPage from './CvPage.jsx';
 import './normalize.css';
@@ -12,21 +12,20 @@ import { exampleData } from './exampledata.js';
 
 function App() {
   const [openStatus, setOpenStatus] = useState([true, false, false]);
-  const [cvVals, setCvVals] = useState(
-    // data.reduce((cvValsAcc, section) => {
-    //   const subsectionVals = section.formFields.reduce(
-    //     (subsectionValsAcc, input) => ({ [input.id]: '', ...subsectionValsAcc }),
-    //     {}
-    //   );
-    //   return { [section.id]: [subsectionVals], ...cvValsAcc };
-    // }, {})
-    exampleData
-  );
+  const [submittedData, setSubmittedData] = useState(createDataStructure(formProperties));
+  const [ubsubmittedData, setUnsubmittedData] = useState(createDataStructure(formProperties));
 
   const updateCvVals = (newSectionVals, sectionId) => {
-    const newCvVals = { ...cvVals };
+    const newCvVals = { ...submittedData };
     newCvVals[sectionId] = newSectionVals;
-    setCvVals(newCvVals);
+    setSubmittedData(newCvVals);
+  };
+
+  const updateUnsubmittedData = (newValue, inputFieldId, entryIndex, dropdownID) => {
+    const newUnsubmittedData = { ...ubsubmittedData };
+    newUnsubmittedData[dropdownID][entryIndex][inputFieldId] = newValue;
+    setUnsubmittedData(newUnsubmittedData);
+    console.log(JSON.stringify(newUnsubmittedData, null, 2));
   };
 
   const toggleOpenStatus = (index) => {
@@ -36,9 +35,7 @@ function App() {
   };
 
   const loadExampleData = () => {
-    console.log(cvVals);
     for (const [key, value] of Object.entries(exampleData)) {
-      console.log(key);
       updateCvVals(value, key);
     }
   };
@@ -46,23 +43,40 @@ function App() {
   return (
     <>
       <div id="dropdown-container">
-        {data.map((section, index) => (
+        {formProperties.map((dropdown, index) => (
           <Dropdown
-            key={section.id}
-            initSectionVals={cvVals[section.id]}
+            key={dropdown.id}
+            initSectionVals={ubsubmittedData[dropdown.id]}
             isOpen={openStatus[index]}
             toggleOpenStatus={() => toggleOpenStatus(index)}
             updateCvVals={updateCvVals}
-            {...section}
+            updateUnsubmittedData={(newValue, inputFieldId, entryIndex) =>
+              updateUnsubmittedData(newValue, inputFieldId, entryIndex, dropdown.id)
+            }
+            {...dropdown}
           />
         ))}
         <button className="load-example-data" onClick={loadExampleData}>
           <FontAwesomeIcon icon="fa-file-import" /> Load Example Data
         </button>
       </div>
-      <CvPage {...cvVals} />
+      <CvPage {...submittedData} />
     </>
   );
 }
+
+const createDataStructure = (data) => {
+  // Creates a blank data structure to store the form data.
+  // Example: {general: [{data}],
+  //           education: [{ school1 }, { school2 }, ...],
+  //           workExperience: [{ job1 }, { job2 }, ...]}
+  const dataStructure = data.map((section) => {
+    const keyValuePairs = section.formFields.map((inputField) => [inputField.id, '']);
+    const formFields = Object.fromEntries(keyValuePairs);
+    return [section.id, [formFields]];
+  });
+
+  return Object.fromEntries(dataStructure);
+};
 
 export default App;

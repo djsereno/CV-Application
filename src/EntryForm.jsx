@@ -2,11 +2,21 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import PropTypes from 'prop-types';
 import InputField from './InputField';
 
-function EntryForm({ formFields, handleSubmit, id, subsectionVals, updateSubsectionVals }) {
+function EntryForm({
+  formFields,
+  handleSubmit,
+  id,
+  subsectionVals,
+  updateSubsectionVals,
+  updateUnsubmittedData
+}) {
   const inputComponents = formFields.map((input) => (
     <InputField
       key={input.id}
-      handleChange={(e) => updateSubsectionVals(e.target.value, input.id)}
+      handleChange={(e) => {
+        updateSubsectionVals(e.target.value, input.id);
+        updateUnsubmittedData(e.target.value, input.id);
+      }}
       value={subsectionVals[input.id]}
       {...input}
     />
@@ -30,7 +40,7 @@ EntryForm.propTypes = {
   handleSubmit: PropTypes.func,
   id: PropTypes.string,
   subsectionVals: PropTypes.object,
-  updateSubsectionVals: PropTypes.func
+  updateUnsubmittedData: PropTypes.func
 };
 
 export default EntryForm;

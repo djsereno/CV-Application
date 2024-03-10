@@ -1,4 +1,4 @@
-export const data = [
+export const formProperties = [
   {
     id: 'general',
     icon: 'fa-user',

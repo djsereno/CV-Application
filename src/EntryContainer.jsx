@@ -15,7 +15,8 @@ function EntryContainer({
   isDeletable,
   isSubmitted,
   sectionId,
-  updateSectionVals
+  updateSectionVals,
+  updateUnsubmittedData
 }) {
   const [subsectionVals, setSubsectionVals] = useState(initSubsectionVals);
 
@@ -41,6 +42,7 @@ function EntryContainer({
           id={id}
           subsectionVals={subsectionVals}
           updateSubsectionVals={updateSubsectionVals}
+          updateUnsubmittedData={updateUnsubmittedData}
         />
       )}
       {isDeletable ? (
@@ -63,7 +65,8 @@ EntryContainer.propTypes = {
   isDeletable: PropTypes.bool,
   isSubmitted: PropTypes.bool,
   sectionId: PropTypes.string,
-  updateSectionVals: PropTypes.func
+  updateSectionVals: PropTypes.func,
+  updateUnsubmittedData: PropTypes.func
 };
 
 export default EntryContainer;
