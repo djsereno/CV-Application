@@ -2,27 +2,27 @@ import PropTypes from 'prop-types';
 import { formatDate, textToArray, formatPhoneNumber } from './functions';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
-function EntryOutput({ handleEdit, sectionId, subsectionVals }) {
+function EntryOutput({ handleEdit, dropdownId, entryData }) {
   let content;
   let dutyBullets;
-  switch (sectionId) {
+  switch (dropdownId) {
     case 'general':
       content = (
         <>
           <h3>
-            {subsectionVals.firstName} {subsectionVals.lastName}
+            {entryData.firstName} {entryData.lastName}
           </h3>
           <p className="output-group">
             <FontAwesomeIcon icon={'fa-envelope'} className="fa-fw" />
-            {subsectionVals.email}
+            {entryData.email}
           </p>
           <p className="output-group">
             <FontAwesomeIcon icon={'fa-phone'} className="fa-fw" />
-            {formatPhoneNumber(subsectionVals.phone)}
+            {formatPhoneNumber(entryData.phone)}
           </p>
           <p className="output-group">
             <FontAwesomeIcon icon={'fa-location-dot'} className="fa-fw" />
-            {subsectionVals.location}
+            {entryData.location}
           </p>
         </>
       );
@@ -31,25 +31,25 @@ function EntryOutput({ handleEdit, sectionId, subsectionVals }) {
     case 'education':
       content = (
         <>
-          <h3>{subsectionVals.schoolName}</h3>
+          <h3>{entryData.schoolName}</h3>
           <p className="output-group">
             <FontAwesomeIcon icon="fa-graduation-cap" className="fa-fw" />
-            {subsectionVals.degree}
+            {entryData.degree}
           </p>
           <p className="output-group">
             <FontAwesomeIcon icon="fa-location-dot" className="fa-fw" />
-            {subsectionVals.location}
+            {entryData.location}
           </p>
           <p className="output-group">
             <FontAwesomeIcon icon="fa-calendar-days" className="fa-fw" />
-            {formatDate(subsectionVals.startDate)} - {formatDate(subsectionVals.endDate)}
+            {formatDate(entryData.startDate)} - {formatDate(entryData.endDate)}
           </p>
         </>
       );
       break;
 
     case 'workExperience':
-      dutyBullets = textToArray(subsectionVals.duties).map((duty, index) => (
+      dutyBullets = textToArray(entryData.duties).map((duty, index) => (
         <li className="duty" key={index}>
           {duty}
         </li>
@@ -57,18 +57,18 @@ function EntryOutput({ handleEdit, sectionId, subsectionVals }) {
 
       content = (
         <>
-          <h3>{subsectionVals.jobTitle}</h3>
+          <h3>{entryData.jobTitle}</h3>
           <p className="output-group">
             <FontAwesomeIcon icon="fa-building" className="fa-fw" />
-            {subsectionVals.companyName}
+            {entryData.companyName}
           </p>
           <p className="output-group">
             <FontAwesomeIcon icon="fa-location-dot" className="fa-fw" />
-            {subsectionVals.location}
+            {entryData.location}
           </p>
           <p className="output-group">
             <FontAwesomeIcon icon="fa-calendar-days" className="fa-fw" />
-            {formatDate(subsectionVals.startDate)} - {formatDate(subsectionVals.endDate)}
+            {formatDate(entryData.startDate)} - {formatDate(entryData.endDate)}
           </p>
           <ul className="duty-list">{dutyBullets}</ul>
         </>
@@ -88,8 +88,8 @@ function EntryOutput({ handleEdit, sectionId, subsectionVals }) {
 
 EntryOutput.propTypes = {
   handleEdit: PropTypes.func,
-  sectionId: PropTypes.string,
-  subsectionVals: PropTypes.object
+  dropdownId: PropTypes.string,
+  entryData: PropTypes.object
 };
 
 export default EntryOutput;

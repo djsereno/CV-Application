@@ -5,29 +5,27 @@ import InputField from './InputField';
 function EntryForm({
   formFields,
   handleSubmit,
-  id,
-  subsectionVals,
-  updateSubsectionVals,
+  formId,
+  entryData,
   updateUnsubmittedData
 }) {
   const inputComponents = formFields.map((input) => (
     <InputField
       key={input.id}
       handleChange={(e) => {
-        updateSubsectionVals(e.target.value, input.id);
         updateUnsubmittedData(e.target.value, input.id);
       }}
-      value={subsectionVals[input.id]}
+      value={entryData[input.id]}
       {...input}
     />
   ));
 
   return (
     <>
-      <form className="section-form" id={id} onSubmit={handleSubmit}>
+      <form className="section-form" id={formId} onSubmit={handleSubmit}>
         {inputComponents}
       </form>
-      <button form={id} type="submit" className="submit-button">
+      <button form={formId} type="submit" className="submit-button">
         <FontAwesomeIcon icon="fa-circle-check" />
         {' Submit'}
       </button>
@@ -38,8 +36,8 @@ function EntryForm({
 EntryForm.propTypes = {
   formFields: PropTypes.array,
   handleSubmit: PropTypes.func,
-  id: PropTypes.string,
-  subsectionVals: PropTypes.object,
+  formId: PropTypes.string,
+  entryData: PropTypes.object,
   updateUnsubmittedData: PropTypes.func
 };
 

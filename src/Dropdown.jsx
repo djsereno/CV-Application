@@ -1,88 +1,76 @@
 import { useState } from 'react';
 import PropTypes from 'prop-types';
-import { v4 as uuidv4 } from 'uuid';
+import { v4 as getUniqueId } from 'uuid';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import EntryContainer from './EntryContainer';
 
 function Dropdown({
-  formFields,
-  id,
-  icon,
-  initSectionVals,
+  addNewEntryData,
+  deleteEntryData,
+  dropdownData,
+  dropdownProps,
   isOpen,
-  label,
   toggleOpenStatus,
-  updateCvVals,
+  updateSubmittedData,
   updateUnsubmittedData
 }) {
-  const [sectionVals, setSectionVals] = useState(initSectionVals);
-  const [isSubmitted, setIsSubmitted] = useState(new Array(sectionVals.length).fill(false));
-  const [subsectionKeys, setSubsectionKeys] = useState(sectionVals.map(() => uuidv4()));
+  const [submissionFlags, setSubmissionFlags] = useState(
+    new Array(dropdownData.length).fill(false)
+  );
+  const [formIds, setFormIds] = useState(dropdownData.map(() => getUniqueId()));
+  const { id, icon, label, formFields } = dropdownProps;
 
-  const updateSectionVals = (newSubsectionVals, subsectionIndex) => {
-    const newSectionVals = [...sectionVals];
-    newSectionVals[subsectionIndex] = newSubsectionVals;
-    setSectionVals(newSectionVals);
+  const addEntry = () => {
+    if (submissionFlags.some((value) => value === false)) return false;
+    setFormIds([...formIds, getUniqueId()]);
+    setSubmissionFlags([...submissionFlags, false]);
+    addNewEntryData();
   };
 
-  const addSubsection = () => {
-    if (isSubmitted.some((value) => value === false)) return false;
-    const newSubsection = formFields.reduce(
-      (subsectionValsAcc, input) => ({ [input.id]: '', ...subsectionValsAcc }),
-      {}
-    );
-    const newSectionVals = [...sectionVals, newSubsection];
-    setSectionVals(newSectionVals);
-    setSubsectionKeys([...subsectionKeys, uuidv4()]);
-    setIsSubmitted([...isSubmitted, false]);
-  };
-
-  const deleteSubsection = (index) => {
+  const deleteEntry = (entryIndex) => {
     // CV component needs index removed AND values cleaned so unsubmitted form values don't get pushed
     // However, sectionVals should preserve unsubmitted form data
-    const newKeys = [...subsectionKeys.slice(0, index), ...subsectionKeys.slice(index + 1)];
-    const newIsSubmitted = [...isSubmitted.slice(0, index), ...isSubmitted.slice(index + 1)];
-    const newSectionVals = sectionVals.filter((values, i) => index !== i);
-    const newCVVals = newSectionVals.map((values, i) =>
-      newIsSubmitted[i] ? values : Object.fromEntries(Object.keys(values).map((key) => [key, '']))
-    );
-    setSectionVals(newSectionVals);
-    setSubsectionKeys(newKeys);
-    setIsSubmitted(newIsSubmitted);
-    updateCvVals(newCVVals, id);
+    const newKeys = [...formIds.slice(0, entryIndex), ...formIds.slice(entryIndex + 1)];
+    const newIsSubmitted = [
+      ...submissionFlags.slice(0, entryIndex),
+      ...submissionFlags.slice(entryIndex + 1)
+    ];
+    setFormIds(newKeys);
+    setSubmissionFlags(newIsSubmitted);
+    deleteEntryData(entryIndex);
   };
 
-  const toggleSubmit = (e, subsectionIndex, isSubmit) => {
+  const toggleSubmit = (e, entryIndex) => {
     e.preventDefault();
-    const newIsSubmitted = [...isSubmitted];
-    newIsSubmitted[subsectionIndex] = !newIsSubmitted[subsectionIndex];
-    setIsSubmitted(newIsSubmitted);
-    if (isSubmit) updateCvVals(sectionVals, id);
+    const newSubmissionFlags = [...submissionFlags];
+    const submissionFlag = !newSubmissionFlags[entryIndex];
+    newSubmissionFlags[entryIndex] = submissionFlag;
+    setSubmissionFlags(newSubmissionFlags);
+    if (submissionFlag) updateSubmittedData(dropdownData, id);
   };
 
-  const content = sectionVals.map((subsectionVals, index) => (
+  const content = dropdownData.map((entryData, entryIndex) => (
     <EntryContainer
-      key={subsectionKeys[index]}
+      key={formIds[entryIndex]}
+      entryData={dropdownData[entryIndex]}
       formFields={formFields}
-      handleDelete={() => deleteSubsection(index)}
-      handleEdit={(e) => toggleSubmit(e, index, false)}
-      handleSubmit={(e) => toggleSubmit(e, index, true)}
-      id={subsectionKeys[index]}
-      index={index}
-      initSubsectionVals={subsectionVals}
-      isDeletable={sectionVals.length > 1}
-      isSubmitted={isSubmitted[index]}
-      sectionId={id}
-      updateSectionVals={updateSectionVals}
+      handleDelete={() => deleteEntry(entryIndex)}
+      handleEdit={(e) => toggleSubmit(e, entryIndex, false)}
+      handleSubmit={(e) => toggleSubmit(e, entryIndex, true)}
+      formId={formIds[entryIndex]}
+      initEntryData={entryData}
+      isDeletable={dropdownData.length > 1}
+      isSubmitted={submissionFlags[entryIndex]}
+      dropdownId={id}
       updateUnsubmittedData={(newValue, inputFieldId) =>
-        updateUnsubmittedData(newValue, inputFieldId, index)
+        updateUnsubmittedData(newValue, entryIndex, inputFieldId)
       }
     />
   ));
 
   const addButton =
-    id !== 'general' && isSubmitted.every((value) => value === true) ? (
-      <button onClick={addSubsection} className="add-button">
+    id !== 'general' && submissionFlags.every((value) => value === true) ? (
+      <button onClick={addEntry} className="add-button">
         <FontAwesomeIcon icon="fa-circle-plus" /> Add {label}
       </button>
     ) : null;
@@ -108,14 +96,13 @@ function Dropdown({
 }
 
 Dropdown.propTypes = {
-  formFields: PropTypes.array,
-  icon: PropTypes.string,
-  id: PropTypes.string,
-  initSectionVals: PropTypes.array,
+  addNewEntryData: PropTypes.func,
+  deleteEntryData: PropTypes.func,
+  dropdownData: PropTypes.array,
+  dropdownProps: PropTypes.object,
   isOpen: PropTypes.bool,
-  label: PropTypes.string,
   toggleOpenStatus: PropTypes.func,
-  updateCvVals: PropTypes.func,
+  updateSubmittedData: PropTypes.func,
   updateUnsubmittedData: PropTypes.func
 };
 

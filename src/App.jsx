@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { formProperties } from './formProperties';
+import { formProps } from './formProps.js';
 import Dropdown from './Dropdown';
 import CvPage from './CvPage.jsx';
 import './normalize.css';
@@ -12,20 +12,42 @@ import { exampleData } from './exampledata.js';
 
 function App() {
   const [openStatus, setOpenStatus] = useState([true, false, false]);
-  const [submittedData, setSubmittedData] = useState(createDataStructure(formProperties));
-  const [ubsubmittedData, setUnsubmittedData] = useState(createDataStructure(formProperties));
+  const [submittedData, setSubmittedData] = useState(createDataStructure(formProps));
+  const [unsubmittedData, setUnsubmittedData] = useState(createDataStructure(formProps));
 
-  const updateCvVals = (newSectionVals, sectionId) => {
-    const newCvVals = { ...submittedData };
-    newCvVals[sectionId] = newSectionVals;
-    setSubmittedData(newCvVals);
+  const updateSubmittedData = (dropdownId, dataToSubmit = unsubmittedData) => {
+    // Due to the async nature of setState, when updateSubmittedData is called right after
+    // updateUnsubmittedData(for example, in deleteEntryData), we need to provide the mutated
+    // form of unsubmittedData directly to this function.
+    const newSubmittedData = { ...submittedData };
+    newSubmittedData[dropdownId] = dataToSubmit[dropdownId];
+    setSubmittedData(newSubmittedData);
   };
 
-  const updateUnsubmittedData = (newValue, inputFieldId, entryIndex, dropdownID) => {
-    const newUnsubmittedData = { ...ubsubmittedData };
-    newUnsubmittedData[dropdownID][entryIndex][inputFieldId] = newValue;
+  const updateUnsubmittedData = (newValue, dropdownId, entryIndex, inputFieldId) => {
+    const newUnsubmittedData = { ...unsubmittedData };
+    newUnsubmittedData[dropdownId][entryIndex][inputFieldId] = newValue;
     setUnsubmittedData(newUnsubmittedData);
-    console.log(JSON.stringify(newUnsubmittedData, null, 2));
+  };
+
+  const addNewEntryData = (dropdownId) => {
+    const [dropdownProps] = formProps.filter((dropdownProps) => dropdownProps.id === dropdownId);
+    const newFormFields = createNewFormFields(dropdownProps);
+    const newUnsubmittedData = { ...unsubmittedData };
+    const currentEntries = newUnsubmittedData[dropdownId];
+    newUnsubmittedData[dropdownId] = [...currentEntries, newFormFields];
+    setUnsubmittedData(newUnsubmittedData);
+  };
+
+  const deleteEntryData = (dropdownId, entryIndex) => {
+    // CV component needs index removed AND values cleaned so unsubmitted form values don't get pushed
+    // However, sectionVals should preserve unsubmitted form data
+    const dropdownData = unsubmittedData[dropdownId];
+    const newDropdownData = dropdownData.filter((values, i) => entryIndex !== i);
+    const newUnsubmittedData = { ...unsubmittedData };
+    newUnsubmittedData[dropdownId] = newDropdownData;
+    setUnsubmittedData(newUnsubmittedData);
+    updateSubmittedData(dropdownId, newUnsubmittedData);
   };
 
   const toggleOpenStatus = (index) => {
@@ -36,24 +58,26 @@ function App() {
 
   const loadExampleData = () => {
     for (const [key, value] of Object.entries(exampleData)) {
-      updateCvVals(value, key);
+      updateSubmittedData(value, key);
     }
   };
 
   return (
     <>
       <div id="dropdown-container">
-        {formProperties.map((dropdown, index) => (
+        {formProps.map((dropdownProps, index) => (
           <Dropdown
-            key={dropdown.id}
-            initSectionVals={ubsubmittedData[dropdown.id]}
+            key={dropdownProps.id}
+            addNewEntryData={() => addNewEntryData(dropdownProps.id)}
+            deleteEntryData={(entryIndex) => deleteEntryData(dropdownProps.id, entryIndex)}
+            dropdownData={unsubmittedData[dropdownProps.id]}
+            dropdownProps={dropdownProps}
             isOpen={openStatus[index]}
             toggleOpenStatus={() => toggleOpenStatus(index)}
-            updateCvVals={updateCvVals}
-            updateUnsubmittedData={(newValue, inputFieldId, entryIndex) =>
-              updateUnsubmittedData(newValue, inputFieldId, entryIndex, dropdown.id)
+            updateSubmittedData={() => updateSubmittedData(dropdownProps.id)}
+            updateUnsubmittedData={(newValue, entryIndex, inputFieldId) =>
+              updateUnsubmittedData(newValue, dropdownProps.id, entryIndex, inputFieldId)
             }
-            {...dropdown}
           />
         ))}
         <button className="load-example-data" onClick={loadExampleData}>
@@ -65,18 +89,21 @@ function App() {
   );
 }
 
-const createDataStructure = (data) => {
+const createDataStructure = (formProperties) => {
   // Creates a blank data structure to store the form data.
   // Example: {general: [{data}],
   //           education: [{ school1 }, { school2 }, ...],
   //           workExperience: [{ job1 }, { job2 }, ...]}
-  const dataStructure = data.map((section) => {
-    const keyValuePairs = section.formFields.map((inputField) => [inputField.id, '']);
-    const formFields = Object.fromEntries(keyValuePairs);
-    return [section.id, [formFields]];
+  const dataStructure = formProperties.map((dropdownProps) => {
+    const formFields = createNewFormFields(dropdownProps);
+    return [dropdownProps.id, [formFields]];
   });
-
   return Object.fromEntries(dataStructure);
+};
+
+const createNewFormFields = (dropdownProps) => {
+  const keyValuePairs = dropdownProps.formFields.map((inputField) => [inputField.id, '']);
+  return Object.fromEntries(keyValuePairs);
 };
 
 export default App;
