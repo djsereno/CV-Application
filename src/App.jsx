@@ -12,8 +12,9 @@ import { exampleData } from './exampledata.js';
 
 function App() {
   const [openStatus, setOpenStatus] = useState([true, false, false]);
-  const [submittedData, setSubmittedData] = useState(createDataStructure(formProps));
-  const [unsubmittedData, setUnsubmittedData] = useState(createDataStructure(formProps));
+  const [submittedData, setSubmittedData] = useState(initDataStructure(formProps));
+  const [unsubmittedData, setUnsubmittedData] = useState(initDataStructure(formProps));
+  const [submissionFlags, setSubmissionFlags] = useState(initSubmissionFlags(unsubmittedData));
 
   const updateSubmittedData = (dropdownId, dataToSubmit = unsubmittedData) => {
     // Due to the async nature of setState, when updateSubmittedData is called right after
@@ -28,11 +29,12 @@ function App() {
     const newUnsubmittedData = { ...unsubmittedData };
     newUnsubmittedData[dropdownId][entryIndex][inputFieldId] = newValue;
     setUnsubmittedData(newUnsubmittedData);
+    console.log(JSON.stringify(newUnsubmittedData, null, 2));
   };
 
   const addNewEntryData = (dropdownId) => {
     const [dropdownProps] = formProps.filter((dropdownProps) => dropdownProps.id === dropdownId);
-    const newFormFields = createNewFormFields(dropdownProps);
+    const newFormFields = initFormFields(dropdownProps);
     const newUnsubmittedData = { ...unsubmittedData };
     const currentEntries = newUnsubmittedData[dropdownId];
     newUnsubmittedData[dropdownId] = [...currentEntries, newFormFields];
@@ -89,20 +91,27 @@ function App() {
   );
 }
 
-const createDataStructure = (formProperties) => {
+const initDataStructure = (formProps) => {
   // Creates a blank data structure to store the form data.
   // Example: {general: [{data}],
   //           education: [{ school1 }, { school2 }, ...],
   //           workExperience: [{ job1 }, { job2 }, ...]}
-  const dataStructure = formProperties.map((dropdownProps) => {
-    const formFields = createNewFormFields(dropdownProps);
+  const dataStructure = formProps.map((dropdownProps) => {
+    const formFields = initFormFields(dropdownProps);
     return [dropdownProps.id, [formFields]];
   });
   return Object.fromEntries(dataStructure);
 };
 
-const createNewFormFields = (dropdownProps) => {
+const initFormFields = (dropdownProps) => {
   const keyValuePairs = dropdownProps.formFields.map((inputField) => [inputField.id, '']);
+  return Object.fromEntries(keyValuePairs);
+};
+
+const initSubmissionFlags = (unsubmittedData) => {
+  const keyValuePairs = Object.entries(unsubmittedData).map(([dropdownId, entries]) => {
+    return [dropdownId, Array(entries.length).fill(false)];
+  });
   return Object.fromEntries(keyValuePairs);
 };
 
