@@ -10,6 +10,10 @@ import './icons.js';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { exampleData } from './exampledata.js';
 
+// TO DO:
+// - Fix issue when deleting a previously submitted entry with a form actively open
+// - Fix issue with LoadExampleData and keys
+
 function App() {
   const [openStatus, setOpenStatus] = useState([true, false, false]);
   const [submittedData, setSubmittedData] = useState(initDataStructure(formProps));
@@ -20,9 +24,13 @@ function App() {
     // Due to the async nature of setState, when updateSubmittedData is called right after
     // updateUnsubmittedData(for example, in deleteEntryData), we need to provide the mutated
     // form of unsubmittedData directly to this function.
-    const newSubmittedData = { ...submittedData };
-    newSubmittedData[dropdownId] = dataToSubmit[dropdownId];
-    setSubmittedData(newSubmittedData);
+    if (dropdownId === null) {
+      setSubmittedData(dataToSubmit);
+    } else {
+      const newSubmittedData = { ...submittedData };
+      newSubmittedData[dropdownId] = dataToSubmit[dropdownId];
+      setSubmittedData(newSubmittedData);
+    }
   };
 
   const updateUnsubmittedData = (newValue, dropdownId, entryIndex, inputFieldId) => {
@@ -58,15 +66,17 @@ function App() {
   };
 
   const toggleOpenStatus = (index) => {
+    // console.log(JSON.stringify(unsubmittedData, null, 2), JSON.stringify(submittedData, null, 2));
+
     const newOpenStatus = new Array(3).fill(false);
     newOpenStatus[index] = !openStatus[index];
     setOpenStatus(newOpenStatus);
   };
 
   const loadExampleData = () => {
-    for (const [key, value] of Object.entries(exampleData)) {
-      updateSubmittedData(value, key);
-    }
+    setUnsubmittedData(exampleData);
+    setSubmissionFlags(initSubmissionFlags(exampleData, true));
+    updateSubmittedData(null, exampleData);
   };
 
   return (
@@ -117,9 +127,11 @@ const initFormFields = (dropdownProps) => {
   return Object.fromEntries(keyValuePairs);
 };
 
-const initSubmissionFlags = (unsubmittedData) => {
+const initSubmissionFlags = (unsubmittedData, submitAll = false) => {
   const keyValuePairs = Object.entries(unsubmittedData).map(([dropdownId, entries]) => {
-    return [dropdownId, Array(entries.length).fill(false)];
+    const flagArray = Array(entries.length).fill(true);
+    if (!submitAll) flagArray[0] = false;
+    return [dropdownId, flagArray];
   });
   return Object.fromEntries(keyValuePairs);
 };
