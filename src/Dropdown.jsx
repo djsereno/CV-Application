@@ -10,20 +10,19 @@ function Dropdown({
   dropdownData,
   dropdownProps,
   isOpen,
+  submissionFlags,
   toggleOpenStatus,
+  updateSubmissionFlags,
   updateSubmittedData,
   updateUnsubmittedData
 }) {
-  const [submissionFlags, setSubmissionFlags] = useState(
-    new Array(dropdownData.length).fill(false)
-  );
   const [formIds, setFormIds] = useState(dropdownData.map(() => getUniqueId()));
   const { id, icon, label, formFields } = dropdownProps;
 
   const addEntry = () => {
     if (submissionFlags.some((value) => value === false)) return false;
     setFormIds([...formIds, getUniqueId()]);
-    setSubmissionFlags([...submissionFlags, false]);
+    updateSubmissionFlags([...submissionFlags, false]);
     addNewEntryData();
   };
 
@@ -36,7 +35,7 @@ function Dropdown({
       ...submissionFlags.slice(entryIndex + 1)
     ];
     setFormIds(newKeys);
-    setSubmissionFlags(newIsSubmitted);
+    updateSubmissionFlags(newIsSubmitted);
     deleteEntryData(entryIndex);
   };
 
@@ -45,7 +44,7 @@ function Dropdown({
     const newSubmissionFlags = [...submissionFlags];
     const submissionFlag = !newSubmissionFlags[entryIndex];
     newSubmissionFlags[entryIndex] = submissionFlag;
-    setSubmissionFlags(newSubmissionFlags);
+    updateSubmissionFlags(newSubmissionFlags);
     if (submissionFlag) updateSubmittedData(dropdownData, id);
   };
 
@@ -101,7 +100,9 @@ Dropdown.propTypes = {
   dropdownData: PropTypes.array,
   dropdownProps: PropTypes.object,
   isOpen: PropTypes.bool,
+  submissionFlags: PropTypes.array,
   toggleOpenStatus: PropTypes.func,
+  updateSubmissionFlags: PropTypes.func,
   updateSubmittedData: PropTypes.func,
   updateUnsubmittedData: PropTypes.func
 };

@@ -29,7 +29,12 @@ function App() {
     const newUnsubmittedData = { ...unsubmittedData };
     newUnsubmittedData[dropdownId][entryIndex][inputFieldId] = newValue;
     setUnsubmittedData(newUnsubmittedData);
-    console.log(JSON.stringify(newUnsubmittedData, null, 2));
+  };
+
+  const updateSubmissionFlags = (dropdownId, newFlagArray) => {
+    const newSubmissionFlags = { ...submissionFlags };
+    newSubmissionFlags[dropdownId] = newFlagArray;
+    setSubmissionFlags(newSubmissionFlags);
   };
 
   const addNewEntryData = (dropdownId) => {
@@ -75,7 +80,11 @@ function App() {
             dropdownData={unsubmittedData[dropdownProps.id]}
             dropdownProps={dropdownProps}
             isOpen={openStatus[index]}
+            submissionFlags={submissionFlags[dropdownProps.id]}
             toggleOpenStatus={() => toggleOpenStatus(index)}
+            updateSubmissionFlags={(newFlagArray) =>
+              updateSubmissionFlags(dropdownProps.id, newFlagArray)
+            }
             updateSubmittedData={() => updateSubmittedData(dropdownProps.id)}
             updateUnsubmittedData={(newValue, entryIndex, inputFieldId) =>
               updateUnsubmittedData(newValue, dropdownProps.id, entryIndex, inputFieldId)
