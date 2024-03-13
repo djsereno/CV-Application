@@ -92,7 +92,7 @@ function App() {
     <>
       <div id="dropdown-container">
         <h1 id="title">
-          <FontAwesomeIcon icon="fa-solid fa-file-signature" />
+          <FontAwesomeIcon icon="fa-file-signature" />
           CVWizard
         </h1>
         {formProps.map((dropdownProps, index) => (
@@ -116,9 +116,14 @@ function App() {
             }
           />
         ))}
-        <button className="load-example-data" onClick={loadExampleData}>
-          <FontAwesomeIcon icon="fa-file-import" /> Load Example Data
-        </button>
+        <div className="button-container">
+          <button className="load-example-data" onClick={loadExampleData}>
+            <FontAwesomeIcon icon="fa-file-import" /> Load Example Data
+          </button>
+          <button className="clear-all-data" onClick={null}>
+            <FontAwesomeIcon icon="fa-trash-can" /> Clear All Data
+          </button>
+        </div>
       </div>
       <CvPage {...submittedData} />
     </>
