@@ -1,4 +1,4 @@
-import { useState } from 'react';
+// import { useState } from 'react';
 import PropTypes from 'prop-types';
 import { v4 as getUniqueId } from 'uuid';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
@@ -9,19 +9,21 @@ function Dropdown({
   deleteEntryData,
   dropdownData,
   dropdownProps,
+  formIds,
   isOpen,
   submissionFlags,
   toggleOpenStatus,
+  updateFormIds,
   updateSubmissionFlags,
   updateSubmittedData,
   updateUnsubmittedData
 }) {
-  const [formIds, setFormIds] = useState(dropdownData.map(() => getUniqueId()));
+  // const [formIds, setFormIds] = useState(dropdownData.map(() => getUniqueId()));
   const { id, icon, label, formFields } = dropdownProps;
 
   const addEntry = () => {
     if (submissionFlags.some((value) => value === false)) return false;
-    setFormIds([...formIds, getUniqueId()]);
+    updateFormIds([...formIds, getUniqueId()]);
     updateSubmissionFlags([...submissionFlags, false]);
     addNewEntryData();
   };
@@ -29,23 +31,23 @@ function Dropdown({
   const deleteEntry = (entryIndex) => {
     // CV component needs index removed AND values cleaned so unsubmitted form values don't get pushed
     // However, sectionVals should preserve unsubmitted form data
-    const newKeys = [...formIds.slice(0, entryIndex), ...formIds.slice(entryIndex + 1)];
-    const newIsSubmitted = [
+    const newFormIds = [...formIds.slice(0, entryIndex), ...formIds.slice(entryIndex + 1)];
+    const newFlags = [
       ...submissionFlags.slice(0, entryIndex),
       ...submissionFlags.slice(entryIndex + 1)
     ];
-    setFormIds(newKeys);
-    updateSubmissionFlags(newIsSubmitted);
+    updateFormIds(newFormIds);
+    updateSubmissionFlags(newFlags);
     deleteEntryData(entryIndex);
   };
 
   const toggleSubmit = (e, entryIndex) => {
     e.preventDefault();
-    const newSubmissionFlags = [...submissionFlags];
-    const submissionFlag = !newSubmissionFlags[entryIndex];
-    newSubmissionFlags[entryIndex] = submissionFlag;
-    updateSubmissionFlags(newSubmissionFlags);
-    if (submissionFlag) updateSubmittedData(dropdownData, id);
+    const newFlags = [...submissionFlags];
+    const newFlag = !newFlags[entryIndex];
+    newFlags[entryIndex] = newFlag;
+    updateSubmissionFlags(newFlags);
+    if (newFlag) updateSubmittedData(dropdownData, id);
   };
 
   const content = dropdownData.map((entryData, entryIndex) => (
@@ -99,9 +101,11 @@ Dropdown.propTypes = {
   deleteEntryData: PropTypes.func,
   dropdownData: PropTypes.array,
   dropdownProps: PropTypes.object,
+  formIds: PropTypes.array,
   isOpen: PropTypes.bool,
   submissionFlags: PropTypes.array,
   toggleOpenStatus: PropTypes.func,
+  updateFormIds: PropTypes.func,
   updateSubmissionFlags: PropTypes.func,
   updateSubmittedData: PropTypes.func,
   updateUnsubmittedData: PropTypes.func

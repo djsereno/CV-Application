@@ -9,6 +9,7 @@ import './CV.scss';
 import './icons.js';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { exampleData } from './exampledata.js';
+import { v4 as getUniqueId } from 'uuid';
 
 // TO DO:
 // - Fix issue when deleting a previously submitted entry with a form actively open
@@ -19,6 +20,8 @@ function App() {
   const [submittedData, setSubmittedData] = useState(initDataStructure(formProps));
   const [unsubmittedData, setUnsubmittedData] = useState(initDataStructure(formProps));
   const [submissionFlags, setSubmissionFlags] = useState(initSubmissionFlags(unsubmittedData));
+  const [formIds, setFormIds] = useState(initFormIds(unsubmittedData));
+  // console.log(formIds);
 
   const updateSubmittedData = (dropdownId, dataToSubmit = unsubmittedData) => {
     // Due to the async nature of setState, when updateSubmittedData is called right after
@@ -43,6 +46,12 @@ function App() {
     const newSubmissionFlags = { ...submissionFlags };
     newSubmissionFlags[dropdownId] = newFlagArray;
     setSubmissionFlags(newSubmissionFlags);
+  };
+
+  const updateFormIds = (dropdownId, newIdArray) => {
+    const newFormIds = { ...formIds };
+    newFormIds[dropdownId] = newIdArray;
+    setFormIds(newFormIds);
   };
 
   const addNewEntryData = (dropdownId) => {
@@ -76,6 +85,7 @@ function App() {
   const loadExampleData = () => {
     setUnsubmittedData(exampleData);
     setSubmissionFlags(initSubmissionFlags(exampleData, true));
+    setFormIds(initFormIds(exampleData, true));
     updateSubmittedData(null, exampleData);
   };
 
@@ -89,9 +99,11 @@ function App() {
             deleteEntryData={(entryIndex) => deleteEntryData(dropdownProps.id, entryIndex)}
             dropdownData={unsubmittedData[dropdownProps.id]}
             dropdownProps={dropdownProps}
+            formIds={formIds[dropdownProps.id]}
             isOpen={openStatus[index]}
             submissionFlags={submissionFlags[dropdownProps.id]}
             toggleOpenStatus={() => toggleOpenStatus(index)}
+            updateFormIds={(newIdArray) => updateFormIds(dropdownProps.id, newIdArray)}
             updateSubmissionFlags={(newFlagArray) =>
               updateSubmissionFlags(dropdownProps.id, newFlagArray)
             }
@@ -132,6 +144,14 @@ const initSubmissionFlags = (unsubmittedData, submitAll = false) => {
     const flagArray = Array(entries.length).fill(true);
     if (!submitAll) flagArray[0] = false;
     return [dropdownId, flagArray];
+  });
+  return Object.fromEntries(keyValuePairs);
+};
+
+const initFormIds = (unsubmittedData) => {
+  const keyValuePairs = Object.entries(unsubmittedData).map(([dropdownId, entries]) => {
+    const idArray = entries.map(() => getUniqueId());
+    return [dropdownId, idArray];
   });
   return Object.fromEntries(keyValuePairs);
 };
