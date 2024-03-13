@@ -5,6 +5,15 @@
   font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
 }
 
+#title {
+  display: flex;
+  align-items: center;
+  gap: 0.25em;
+  font-size: 3em;
+  margin: 0 0 0.5rem;
+  color: #333333;
+}
+
 .dropdown-module {
   border-radius: 15px;
   background-color: rgb(255, 255, 255);
@@ -38,7 +47,7 @@ button:hover {
 .section-container {
   margin: 20px;
   max-height: 600px;
-  overflow-y:auto;
+  overflow-y: auto;
 }
 
 .subsection-container:first-of-type {

@@ -13,7 +13,6 @@ import { v4 as getUniqueId } from 'uuid';
 
 // TO DO:
 // - Fix issue when deleting a previously submitted entry with a form actively open
-// - Fix issue with LoadExampleData and keys
 
 function App() {
   const [openStatus, setOpenStatus] = useState([true, false, false]);
@@ -92,6 +91,10 @@ function App() {
   return (
     <>
       <div id="dropdown-container">
+        <h1 id="title">
+          <FontAwesomeIcon icon="fa-solid fa-file-signature" />
+          CVWizard
+        </h1>
         {formProps.map((dropdownProps, index) => (
           <Dropdown
             key={dropdownProps.id}
