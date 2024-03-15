@@ -18,7 +18,6 @@ function Dropdown({
   updateSubmittedData,
   updateUnsubmittedData
 }) {
-  // const [formIds, setFormIds] = useState(dropdownData.map(() => getUniqueId()));
   const { id, icon, label, formFields } = dropdownProps;
 
   const addEntry = () => {
@@ -47,7 +46,7 @@ function Dropdown({
     const newFlag = !newFlags[entryIndex];
     newFlags[entryIndex] = newFlag;
     updateSubmissionFlags(newFlags);
-    if (newFlag) updateSubmittedData(dropdownData, id);
+    if (newFlag) updateSubmittedData();
   };
 
   const content = dropdownData.map((entryData, entryIndex) => (
@@ -55,7 +54,7 @@ function Dropdown({
       key={formIds[entryIndex]}
       entryData={dropdownData[entryIndex]}
       formFields={formFields}
-      handleDelete={() => deleteEntry(entryIndex)}
+      handleDelete={deleteEntry(entryIndex)}
       handleEdit={(e) => toggleSubmit(e, entryIndex, false)}
       handleSubmit={(e) => toggleSubmit(e, entryIndex, true)}
       formId={formIds[entryIndex]}

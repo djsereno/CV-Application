@@ -12,7 +12,8 @@ import { exampleData } from './exampledata.js';
 import { v4 as getUniqueId } from 'uuid';
 
 // TO DO:
-// - Fix issue when deleting a previously submitted entry with a form actively open
+// - Allow blank entries
+// - Implement "clear all"
 
 function App() {
   const [openStatus, setOpenStatus] = useState([true, false, false]);
@@ -20,25 +21,18 @@ function App() {
   const [unsubmittedData, setUnsubmittedData] = useState(initDataStructure(formProps));
   const [submissionFlags, setSubmissionFlags] = useState(initSubmissionFlags(unsubmittedData));
   const [formIds, setFormIds] = useState(initFormIds(unsubmittedData));
-  // console.log(formIds);
-
-  const updateSubmittedData = (dropdownId, dataToSubmit = unsubmittedData) => {
-    // Due to the async nature of setState, when updateSubmittedData is called right after
-    // updateUnsubmittedData(for example, in deleteEntryData), we need to provide the mutated
-    // form of unsubmittedData directly to this function.
-    if (dropdownId === null) {
-      setSubmittedData(dataToSubmit);
-    } else {
-      const newSubmittedData = { ...submittedData };
-      newSubmittedData[dropdownId] = dataToSubmit[dropdownId];
-      setSubmittedData(newSubmittedData);
-    }
-  };
 
   const updateUnsubmittedData = (newValue, dropdownId, entryIndex, inputFieldId) => {
     const newUnsubmittedData = { ...unsubmittedData };
     newUnsubmittedData[dropdownId][entryIndex][inputFieldId] = newValue;
     setUnsubmittedData(newUnsubmittedData);
+  };
+
+  const updateSubmittedData = (dataToSubmit = unsubmittedData) => {
+    // Due to the async nature of setState, when updateSubmittedData is called right after
+    // updateUnsubmittedData(for example, in deleteEntryData), we need to provide the mutated
+    // form of unsubmittedData directly to this function.
+    setSubmittedData(deepCopy(dataToSubmit));
   };
 
   const updateSubmissionFlags = (dropdownId, newFlagArray) => {
@@ -70,12 +64,10 @@ function App() {
     const newUnsubmittedData = { ...unsubmittedData };
     newUnsubmittedData[dropdownId] = newDropdownData;
     setUnsubmittedData(newUnsubmittedData);
-    updateSubmittedData(dropdownId, newUnsubmittedData);
+    updateSubmittedData(newUnsubmittedData);
   };
 
   const toggleOpenStatus = (index) => {
-    // console.log(JSON.stringify(unsubmittedData, null, 2), JSON.stringify(submittedData, null, 2));
-
     const newOpenStatus = new Array(3).fill(false);
     newOpenStatus[index] = !openStatus[index];
     setOpenStatus(newOpenStatus);
@@ -85,7 +77,7 @@ function App() {
     setUnsubmittedData(exampleData);
     setSubmissionFlags(initSubmissionFlags(exampleData, true));
     setFormIds(initFormIds(exampleData, true));
-    updateSubmittedData(null, exampleData);
+    updateSubmittedData(exampleData);
   };
 
   return (
@@ -98,19 +90,19 @@ function App() {
         {formProps.map((dropdownProps, index) => (
           <Dropdown
             key={dropdownProps.id}
-            addNewEntryData={() => addNewEntryData(dropdownProps.id)}
+            addNewEntryData={addNewEntryData(dropdownProps.id)}
             deleteEntryData={(entryIndex) => deleteEntryData(dropdownProps.id, entryIndex)}
             dropdownData={unsubmittedData[dropdownProps.id]}
             dropdownProps={dropdownProps}
             formIds={formIds[dropdownProps.id]}
             isOpen={openStatus[index]}
             submissionFlags={submissionFlags[dropdownProps.id]}
-            toggleOpenStatus={() => toggleOpenStatus(index)}
+            toggleOpenStatus={toggleOpenStatus(index)}
             updateFormIds={(newIdArray) => updateFormIds(dropdownProps.id, newIdArray)}
             updateSubmissionFlags={(newFlagArray) =>
               updateSubmissionFlags(dropdownProps.id, newFlagArray)
             }
-            updateSubmittedData={() => updateSubmittedData(dropdownProps.id)}
+            updateSubmittedData={updateSubmittedData}
             updateUnsubmittedData={(newValue, entryIndex, inputFieldId) =>
               updateUnsubmittedData(newValue, dropdownProps.id, entryIndex, inputFieldId)
             }
@@ -163,5 +155,7 @@ const initFormIds = (unsubmittedData) => {
   });
   return Object.fromEntries(keyValuePairs);
 };
+
+const deepCopy = (object) => JSON.parse(JSON.stringify(object));
 
 export default App;

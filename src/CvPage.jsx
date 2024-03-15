@@ -4,7 +4,6 @@ import CvEducation from './CvEducation';
 import CvWork from './CvWork';
 
 function CvPage({ general, education, workExperience }) {
-  // console.log(general, education, workExperience);
   return (
     <div id="page-container">
       <CvGeneral generalData={general[0]} />
