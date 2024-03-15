@@ -90,19 +90,19 @@ function App() {
         {formProps.map((dropdownProps, index) => (
           <Dropdown
             key={dropdownProps.id}
-            addNewEntryData={addNewEntryData(dropdownProps.id)}
+            addNewEntryData={() => addNewEntryData(dropdownProps.id)}
             deleteEntryData={(entryIndex) => deleteEntryData(dropdownProps.id, entryIndex)}
             dropdownData={unsubmittedData[dropdownProps.id]}
             dropdownProps={dropdownProps}
             formIds={formIds[dropdownProps.id]}
             isOpen={openStatus[index]}
             submissionFlags={submissionFlags[dropdownProps.id]}
-            toggleOpenStatus={toggleOpenStatus(index)}
+            toggleOpenStatus={() => toggleOpenStatus(index)}
             updateFormIds={(newIdArray) => updateFormIds(dropdownProps.id, newIdArray)}
             updateSubmissionFlags={(newFlagArray) =>
               updateSubmissionFlags(dropdownProps.id, newFlagArray)
             }
-            updateSubmittedData={updateSubmittedData}
+            updateSubmittedData={() => updateSubmittedData()}
             updateUnsubmittedData={(newValue, entryIndex, inputFieldId) =>
               updateUnsubmittedData(newValue, dropdownProps.id, entryIndex, inputFieldId)
             }
