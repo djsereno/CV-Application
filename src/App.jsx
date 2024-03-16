@@ -76,8 +76,16 @@ function App() {
   const loadExampleData = () => {
     setUnsubmittedData(exampleData);
     setSubmissionFlags(initSubmissionFlags(exampleData, true));
-    setFormIds(initFormIds(exampleData, true));
+    setFormIds(initFormIds(exampleData));
     updateSubmittedData(exampleData);
+  };
+
+  const clearAllData = () => {
+    const newBlankData = initDataStructure(formProps);
+    setFormIds(initFormIds(newBlankData));
+    setSubmissionFlags(initSubmissionFlags(newBlankData));
+    setUnsubmittedData(deepCopy(newBlankData));
+    setSubmittedData(deepCopy(newBlankData));
   };
 
   return (
@@ -112,7 +120,7 @@ function App() {
           <button className="load-example-data" onClick={loadExampleData}>
             <FontAwesomeIcon icon="fa-file-import" /> Load Example Data
           </button>
-          <button className="clear-all-data" onClick={null}>
+          <button className="clear-all-data" onClick={clearAllData}>
             <FontAwesomeIcon icon="fa-trash-can" /> Clear All Data
           </button>
         </div>
