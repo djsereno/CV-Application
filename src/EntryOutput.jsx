@@ -1,8 +1,16 @@
 import PropTypes from 'prop-types';
 import { formatDate, textToArray, formatPhoneNumber } from './functions';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { useState } from 'react';
 
 function EntryOutput({ dropdownId, entryData, handleDelete, handleEdit, isDeletable }) {
+  const [detailsShown, setDetailsShown] = useState(false);
+
+  const toggleDetails = () => {
+    if (dropdownId !== 'workExperience') return null;
+    setDetailsShown(!detailsShown);
+  };
+
   let content;
   let dutyBullets;
   switch (dropdownId) {
@@ -70,7 +78,6 @@ function EntryOutput({ dropdownId, entryData, handleDelete, handleEdit, isDeleta
             <FontAwesomeIcon icon="fa-calendar-days" className="fa-fw" />
             {formatDate(entryData.startDate)} - {formatDate(entryData.endDate)}
           </p>
-          {/* <ul className="duty-list">{dutyBullets}</ul> */}
         </>
       );
       break;
@@ -78,7 +85,7 @@ function EntryOutput({ dropdownId, entryData, handleDelete, handleEdit, isDeleta
 
   return (
     <>
-      <div className="subsection-main-details">
+      <div className="subsection-main-info">
         <div className="section-content">{content}</div>
         <div className="output-button-group">
           <button onClick={handleEdit} className="edit-button">
@@ -89,9 +96,25 @@ function EntryOutput({ dropdownId, entryData, handleDelete, handleEdit, isDeleta
               <FontAwesomeIcon icon="fa-trash-can" />
             </button>
           ) : null}
+          {dropdownId === 'workExperience' ? (
+            <button onClick={toggleDetails} className="show-details-button">
+              {detailsShown ? (
+                <FontAwesomeIcon icon="fa-angle-up" />
+              ) : (
+                <FontAwesomeIcon icon="fa-angle-down" />
+              )}
+            </button>
+          ) : null}
         </div>
       </div>
-      <ul className="duty-list">{dutyBullets}</ul>
+      {detailsShown && dropdownId === 'workExperience' ? (
+        <div className="subsection-details">
+          <p className="subsection-subheading">
+            <FontAwesomeIcon icon="fa-list-check" /> Responsibilities:
+          </p>
+          <ul className="duty-list">{dutyBullets}</ul>
+        </div>
+      ) : null}
     </>
   );
 }
