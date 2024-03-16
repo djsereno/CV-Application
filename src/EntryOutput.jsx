@@ -2,7 +2,7 @@ import PropTypes from 'prop-types';
 import { formatDate, textToArray, formatPhoneNumber } from './functions';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
-function EntryOutput({ handleEdit, dropdownId, entryData }) {
+function EntryOutput({ dropdownId, entryData, handleDelete, handleEdit, isDeletable }) {
   let content;
   let dutyBullets;
   switch (dropdownId) {
@@ -70,7 +70,7 @@ function EntryOutput({ handleEdit, dropdownId, entryData }) {
             <FontAwesomeIcon icon="fa-calendar-days" className="fa-fw" />
             {formatDate(entryData.startDate)} - {formatDate(entryData.endDate)}
           </p>
-          <ul className="duty-list">{dutyBullets}</ul>
+          {/* <ul className="duty-list">{dutyBullets}</ul> */}
         </>
       );
       break;
@@ -78,18 +78,30 @@ function EntryOutput({ handleEdit, dropdownId, entryData }) {
 
   return (
     <>
-      <div className="section-content">{content}</div>
-      <button onClick={handleEdit} className="edit-button">
-        <FontAwesomeIcon icon="fa-pencil" />
-      </button>
+      <div className="subsection-main-details">
+        <div className="section-content">{content}</div>
+        <div className="output-button-group">
+          <button onClick={handleEdit} className="edit-button">
+            <FontAwesomeIcon icon="fa-pencil" />
+          </button>
+          {isDeletable ? (
+            <button onClick={handleDelete} className="delete-button">
+              <FontAwesomeIcon icon="fa-trash-can" />
+            </button>
+          ) : null}
+        </div>
+      </div>
+      <ul className="duty-list">{dutyBullets}</ul>
     </>
   );
 }
 
 EntryOutput.propTypes = {
-  handleEdit: PropTypes.func,
   dropdownId: PropTypes.string,
-  entryData: PropTypes.object
+  entryData: PropTypes.object,
+  handleDelete: PropTypes.func,
+  handleEdit: PropTypes.func,
+  isDeletable: PropTypes.bool
 };
 
 export default EntryOutput;

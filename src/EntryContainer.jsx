@@ -1,4 +1,3 @@
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import PropTypes from 'prop-types';
 import EntryForm from './EntryForm';
 import EntryOutput from './EntryOutput';
@@ -18,21 +17,24 @@ function EntryContainer({
   return (
     <div className="subsection-container">
       {isSubmitted ? (
-        <EntryOutput handleEdit={handleEdit} dropdownId={dropdownId} entryData={entryData} />
+        <EntryOutput
+          dropdownId={dropdownId}
+          entryData={entryData}
+          handleDelete={handleDelete}
+          handleEdit={handleEdit}
+          isDeletable={isDeletable}
+        />
       ) : (
         <EntryForm
-          formFields={formFields}
-          handleSubmit={handleSubmit}
-          formId={formId}
           entryData={entryData}
+          formFields={formFields}
+          formId={formId}
+          handleDelete={handleDelete}
+          handleSubmit={handleSubmit}
+          isDeletable={isDeletable}
           updateUnsubmittedData={updateUnsubmittedData}
         />
       )}
-      {isDeletable ? (
-        <button onClick={handleDelete} className="delete-button">
-          <FontAwesomeIcon icon="fa-trash-can" /> {isSubmitted ? null : ' Delete'}
-        </button>
-      ) : null}
     </div>
   );
 }

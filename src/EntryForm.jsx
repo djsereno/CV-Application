@@ -3,10 +3,12 @@ import PropTypes from 'prop-types';
 import InputField from './InputField';
 
 function EntryForm({
-  formFields,
-  handleSubmit,
-  formId,
   entryData,
+  formFields,
+  formId,
+  handleDelete,
+  handleSubmit,
+  isDeletable,
   updateUnsubmittedData
 }) {
   const inputComponents = formFields.map((input) => (
@@ -25,19 +27,28 @@ function EntryForm({
       <form className="section-form" id={formId} onSubmit={handleSubmit}>
         {inputComponents}
       </form>
-      <button form={formId} type="submit" className="submit-button">
-        <FontAwesomeIcon icon="fa-circle-check" />
-        {' Submit'}
-      </button>
+      <div className="form-button-group">
+        <button form={formId} type="submit" className="submit-button">
+          <FontAwesomeIcon icon="fa-circle-check" />
+          {' Submit'}
+        </button>
+        {isDeletable ? (
+          <button onClick={handleDelete} className="delete-button">
+            <FontAwesomeIcon icon="fa-trash-can" /> Delete
+          </button>
+        ) : null}
+      </div>
     </>
   );
 }
 
 EntryForm.propTypes = {
-  formFields: PropTypes.array,
-  handleSubmit: PropTypes.func,
-  formId: PropTypes.string,
   entryData: PropTypes.object,
+  formFields: PropTypes.array,
+  formId: PropTypes.string,
+  handleDelete: PropTypes.func,
+  handleSubmit: PropTypes.func,
+  isDeletable: PropTypes.bool,
   updateUnsubmittedData: PropTypes.func
 };
 

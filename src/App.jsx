@@ -13,7 +13,8 @@ import { v4 as getUniqueId } from 'uuid';
 
 // TO DO:
 // - Allow blank entries
-// - Implement "clear all"
+// - Handle delete on one entry while another is being edited
+// - Make responsibilities a dropdown option
 
 function App() {
   const [openStatus, setOpenStatus] = useState([true, false, false]);
