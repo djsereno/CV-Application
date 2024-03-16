@@ -14,7 +14,6 @@ import { v4 as getUniqueId } from 'uuid';
 // TO DO:
 // - Allow blank entries
 // - Handle delete on one entry while another is being edited
-// - Make responsibilities a dropdown option
 // - Add some animations and transitions
 
 function App() {
