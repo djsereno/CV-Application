@@ -13,7 +13,6 @@ import { v4 as getUniqueId } from 'uuid';
 
 // TO DO:
 // - Allow blank entries
-// - Handle delete on one entry while another is being edited
 // - Add some animations and transitions
 
 function App() {
@@ -60,12 +59,19 @@ function App() {
   const deleteEntryData = (dropdownId, entryIndex) => {
     // CV component needs index removed AND values cleaned so unsubmitted form values don't get pushed
     // However, sectionVals should preserve unsubmitted form data
-    const dropdownData = unsubmittedData[dropdownId];
-    const newDropdownData = dropdownData.filter((values, i) => entryIndex !== i);
+    const newUnsubmittedDropdownData = unsubmittedData[dropdownId].filter(
+      (values, i) => entryIndex !== i
+    );
     const newUnsubmittedData = { ...unsubmittedData };
-    newUnsubmittedData[dropdownId] = newDropdownData;
+    newUnsubmittedData[dropdownId] = newUnsubmittedDropdownData;
     setUnsubmittedData(newUnsubmittedData);
-    updateSubmittedData(newUnsubmittedData);
+
+    const newSubmittedDropdownData = submittedData[dropdownId].filter(
+      (values, i) => entryIndex !== i
+    );
+    const newSubmittedData = { ...submittedData };
+    newSubmittedData[dropdownId] = newSubmittedDropdownData;
+    updateSubmittedData(newSubmittedData);
   };
 
   const toggleOpenStatus = (index) => {
