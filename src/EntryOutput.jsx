@@ -65,10 +65,10 @@ function EntryOutput({ dropdownId, entryData, handleDelete, handleEdit }) {
 
       content = (
         <>
-          <h3>{entryData.jobTitle}</h3>
+          <h3>{entryData.companyName}</h3>
           <p className="output-group">
-            <FontAwesomeIcon icon="fa-building" className="fa-fw" />
-            {entryData.companyName}
+            <FontAwesomeIcon icon="fa-id-badge" className="fa-fw" />
+            {entryData.jobTitle}
           </p>
           <p className="output-group">
             <FontAwesomeIcon icon="fa-location-dot" className="fa-fw" />
