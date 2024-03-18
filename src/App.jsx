@@ -12,7 +12,6 @@ import { exampleData } from './exampledata.js';
 import { v4 as getUniqueId } from 'uuid';
 
 // TO DO:
-// - updateSubmittedData should only ever update the current dropdown
 // - Funny behavior after Loading Example once all entries have been deleted manually
 // - Add some animations and transitions
 
@@ -22,7 +21,6 @@ function App() {
   const [unsubmittedData, setUnsubmittedData] = useState(initDataStructure(formProps));
   const [submissionFlags, setSubmissionFlags] = useState(initSubmissionFlags(unsubmittedData));
   const [formIds, setFormIds] = useState(initFormIds(unsubmittedData));
-  // console.log(JSON.stringify(unsubmittedData, null, 2));
 
   const updateUnsubmittedData = (newValue, dropdownId, entryIndex, inputFieldId) => {
     const newUnsubmittedData = { ...unsubmittedData };
@@ -30,11 +28,16 @@ function App() {
     setUnsubmittedData(newUnsubmittedData);
   };
 
-  const updateSubmittedData = (dataToSubmit = unsubmittedData) => {
+  const updateSubmittedData = (dataToSubmit = unsubmittedData, dropdownId) => {
     // Due to the async nature of setState, when updateSubmittedData is called right after
     // updateUnsubmittedData(for example, in deleteEntryData), we need to provide the mutated
     // form of unsubmittedData directly to this function.
-    setSubmittedData(deepCopy(dataToSubmit));
+    if (!dropdownId) {
+      setSubmittedData(deepCopy(dataToSubmit));
+    } else {
+      const newDropdownData = deepCopy(dataToSubmit)[dropdownId];
+      setSubmittedData({ ...submittedData, [dropdownId]: newDropdownData });
+    }
   };
 
   const updateSubmissionFlags = (dropdownId, newFlagArray) => {
@@ -119,7 +122,7 @@ function App() {
             updateSubmissionFlags={(newFlagArray) =>
               updateSubmissionFlags(dropdownProps.id, newFlagArray)
             }
-            updateSubmittedData={() => updateSubmittedData()}
+            updateSubmittedData={(dropdownId) => updateSubmittedData(unsubmittedData, dropdownId)}
             updateUnsubmittedData={(newValue, entryIndex, inputFieldId) =>
               updateUnsubmittedData(newValue, dropdownProps.id, entryIndex, inputFieldId)
             }

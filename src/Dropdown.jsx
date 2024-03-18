@@ -58,7 +58,8 @@ function Dropdown({
     const newFlag = !newFlags[entryIndex];
     newFlags[entryIndex] = newFlag;
     updateSubmissionFlags(newFlags);
-    if (newFlag) updateSubmittedData();
+
+    if (newFlag) updateSubmittedData(id);
   };
 
   const content = dropdownData.map((entryData, entryIndex) => (
@@ -67,8 +68,8 @@ function Dropdown({
       entryData={dropdownData[entryIndex]}
       formFields={formFields}
       handleDelete={() => deleteEntry(entryIndex)}
-      handleEdit={(e) => toggleSubmit(e, entryIndex, false)}
-      handleSubmit={(e) => toggleSubmit(e, entryIndex, true)}
+      handleEdit={(e) => toggleSubmit(e, entryIndex)}
+      handleSubmit={(e) => toggleSubmit(e, entryIndex)}
       formId={formIds[entryIndex]}
       initEntryData={entryData}
       isDeletable={dropdownData.length > 1}
