@@ -27,17 +27,29 @@ function Dropdown({
     addNewEntryData();
   };
 
+  const clearEntry = (entryIndex) => {
+    Object.keys(dropdownData[entryIndex]).forEach((inputFieldId) => {
+      updateUnsubmittedData('', entryIndex, inputFieldId);
+    });
+    updateSubmittedData();
+  };
+
   const deleteEntry = (entryIndex) => {
     // CV component needs index removed AND values cleaned so unsubmitted form values don't get pushed
     // However, sectionVals should preserve unsubmitted form data
-    const newFormIds = [...formIds.slice(0, entryIndex), ...formIds.slice(entryIndex + 1)];
-    const newFlags = [
-      ...submissionFlags.slice(0, entryIndex),
-      ...submissionFlags.slice(entryIndex + 1)
-    ];
-    updateFormIds(newFormIds);
-    updateSubmissionFlags(newFlags);
-    deleteEntryData(entryIndex);
+    if (dropdownData.length === 1) {
+      updateSubmissionFlags([false]);
+      clearEntry(entryIndex);
+    } else {
+      const newFormIds = [...formIds.slice(0, entryIndex), ...formIds.slice(entryIndex + 1)];
+      const newFlags = [
+        ...submissionFlags.slice(0, entryIndex),
+        ...submissionFlags.slice(entryIndex + 1)
+      ];
+      updateFormIds(newFormIds);
+      updateSubmissionFlags(newFlags);
+      deleteEntryData(entryIndex);
+    }
   };
 
   const toggleSubmit = (e, entryIndex) => {

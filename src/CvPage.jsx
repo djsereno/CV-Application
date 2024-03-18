@@ -4,12 +4,15 @@ import CvEducation from './CvEducation';
 import CvWork from './CvWork';
 
 function CvPage({ general, education, workExperience }) {
+  // console.log(JSON.stringify(general, null, 2));
+  // console.log(JSON.stringify(education, null, 2));
+  // console.log(JSON.stringify(workExperience, null, 2));
   return (
     <div id="page-container">
-      <CvGeneral generalData={general[0]} />
+      {general.length > 0 ? <CvGeneral generalData={general[0]} /> : null}
       <div id="page-body">
-        <CvWork workData={workExperience} />
-        <CvEducation educationData={education} />
+        {workExperience.length > 0 ? <CvWork workData={workExperience} /> : null}
+        {education.length > 0 ? <CvEducation educationData={education} /> : null}
       </div>
     </div>
   );

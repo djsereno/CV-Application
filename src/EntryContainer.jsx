@@ -22,7 +22,6 @@ function EntryContainer({
           entryData={entryData}
           handleDelete={handleDelete}
           handleEdit={handleEdit}
-          isDeletable={isDeletable}
         />
       ) : (
         <EntryForm

@@ -3,7 +3,7 @@ import { formatDate, textToArray, formatPhoneNumber } from './functions';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { useState } from 'react';
 
-function EntryOutput({ dropdownId, entryData, handleDelete, handleEdit, isDeletable }) {
+function EntryOutput({ dropdownId, entryData, handleDelete, handleEdit }) {
   const [detailsShown, setDetailsShown] = useState(false);
 
   const toggleDetails = () => {
@@ -88,14 +88,6 @@ function EntryOutput({ dropdownId, entryData, handleDelete, handleEdit, isDeleta
       <div className="subsection-main-info">
         <div className="section-content">{content}</div>
         <div className="output-button-group">
-          <button onClick={handleEdit} className="edit-button">
-            <FontAwesomeIcon icon="fa-pencil" />
-          </button>
-          {isDeletable ? (
-            <button onClick={handleDelete} className="delete-button">
-              <FontAwesomeIcon icon="fa-trash-can" />
-            </button>
-          ) : null}
           {dropdownId === 'workExperience' ? (
             <button onClick={toggleDetails} className="show-details-button">
               {detailsShown ? (
@@ -105,6 +97,12 @@ function EntryOutput({ dropdownId, entryData, handleDelete, handleEdit, isDeleta
               )}
             </button>
           ) : null}
+          <button onClick={handleDelete} className="delete-button">
+            <FontAwesomeIcon icon="fa-trash-can" />
+          </button>
+          <button onClick={handleEdit} className="edit-button">
+            <FontAwesomeIcon icon="fa-pencil" />
+          </button>
         </div>
       </div>
       {detailsShown && dropdownId === 'workExperience' ? (

@@ -12,7 +12,8 @@ import { exampleData } from './exampledata.js';
 import { v4 as getUniqueId } from 'uuid';
 
 // TO DO:
-// - Allow blank entries
+// - updateSubmittedData should only ever update the current dropdown
+// - Funny behavior after Loading Example once all entries have been deleted manually
 // - Add some animations and transitions
 
 function App() {
@@ -21,6 +22,7 @@ function App() {
   const [unsubmittedData, setUnsubmittedData] = useState(initDataStructure(formProps));
   const [submissionFlags, setSubmissionFlags] = useState(initSubmissionFlags(unsubmittedData));
   const [formIds, setFormIds] = useState(initFormIds(unsubmittedData));
+  // console.log(JSON.stringify(unsubmittedData, null, 2));
 
   const updateUnsubmittedData = (newValue, dropdownId, entryIndex, inputFieldId) => {
     const newUnsubmittedData = { ...unsubmittedData };
