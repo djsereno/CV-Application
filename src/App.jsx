@@ -12,7 +12,6 @@ import { exampleData } from './exampledata.js';
 import { v4 as getUniqueId } from 'uuid';
 
 // TO DO:
-// - Funny behavior after Loading Example once all entries have been deleted manually
 // - Add some animations and transitions
 
 function App() {
@@ -86,10 +85,10 @@ function App() {
   };
 
   const loadExampleData = () => {
-    setUnsubmittedData(exampleData);
+    setUnsubmittedData(deepCopy(exampleData));
     setSubmissionFlags(initSubmissionFlags(exampleData, true));
     setFormIds(initFormIds(exampleData));
-    updateSubmittedData(exampleData);
+    updateSubmittedData(deepCopy(exampleData));
   };
 
   const clearAllData = () => {
