@@ -59,15 +59,12 @@ button:hover {
   border-bottom: 0;
 }
 .subsection-container {
-  padding: 20px 0;
+  padding: 0.75em 0;
   border-bottom: 1px solid rgb(199, 199, 199);
   border-top: 1px solid rgb(231, 231, 231);
-}
-
-.subsection-container {
+  line-height: 1.4;
   display: flex;
   flex-direction: column;
-  row-gap: 10px;
 }
 
 .subsection-main-info {
@@ -75,6 +72,7 @@ button:hover {
   flex-direction: row;
 }
 .subsection-details {
+  margin-top: 0.75em;
   background-color: rgb(235, 235, 235);
   padding: 0.75em;
   font-style: italic;
@@ -88,6 +86,7 @@ button:hover {
   display: flex;
   gap: 0.5em;
   align-items: center;
+  text-decoration: underline;
 }
 
 .section-form,
@@ -97,9 +96,6 @@ button:hover {
   width: 100%;
 }
 
-.section-content {
-  gap: 5px;
-}
 .section-content svg {
   color: rgba(0, 0, 0, 0.4);
 }
