@@ -24,7 +24,7 @@ function EntryForm({
 
   return (
     <>
-      <form className="section-form" id={formId} onSubmit={handleSubmit}>
+      <form className="entry__form" id={formId} onSubmit={handleSubmit}>
         {inputComponents}
       </form>
       <div className="form-button-group">

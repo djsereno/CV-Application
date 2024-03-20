@@ -89,17 +89,21 @@ function Dropdown({
     ) : null;
 
   return (
-    <div id={id} className="dropdown-module">
-      <div className="dropdown-header">
+    <div id={id} className="dropdown">
+      <div className="dropdown__header">
         <h2>
-          <FontAwesomeIcon icon={icon} /> {label}
+          <FontAwesomeIcon icon={icon} className="fa-fw" /> {label}
         </h2>
         <button onClick={toggleOpenStatus}>
-          {isOpen ? <FontAwesomeIcon icon="angle-up" /> : <FontAwesomeIcon icon="angle-down" />}
+          {isOpen ? (
+            <FontAwesomeIcon icon="angle-up" className="fa-fw" />
+          ) : (
+            <FontAwesomeIcon icon="angle-down" />
+          )}
         </button>
       </div>
       {isOpen ? (
-        <div className="section-container">
+        <div className="dropdown__body">
           {content}
           {addButton}
         </div>

@@ -15,7 +15,7 @@ function EntryContainer({
   updateUnsubmittedData
 }) {
   return (
-    <div className="subsection-container">
+    <div className="entry">
       {isSubmitted ? (
         <EntryOutput
           dropdownId={dropdownId}

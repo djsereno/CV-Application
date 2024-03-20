@@ -20,15 +20,15 @@ function EntryOutput({ dropdownId, entryData, handleDelete, handleEdit }) {
           <h3>
             {entryData.firstName} {entryData.lastName}
           </h3>
-          <p className="output-group">
+          <p className="entry__content-item">
             <FontAwesomeIcon icon={'fa-envelope'} className="fa-fw" />
             {entryData.email}
           </p>
-          <p className="output-group">
+          <p className="entry__content-item">
             <FontAwesomeIcon icon={'fa-phone'} className="fa-fw" />
             {formatPhoneNumber(entryData.phone)}
           </p>
-          <p className="output-group">
+          <p className="entry__content-item">
             <FontAwesomeIcon icon={'fa-location-dot'} className="fa-fw" />
             {entryData.location}
           </p>
@@ -40,15 +40,15 @@ function EntryOutput({ dropdownId, entryData, handleDelete, handleEdit }) {
       content = (
         <>
           <h3>{entryData.schoolName}</h3>
-          <p className="output-group">
+          <p className="entry__content-item">
             <FontAwesomeIcon icon="fa-graduation-cap" className="fa-fw" />
             {entryData.degree}
           </p>
-          <p className="output-group">
+          <p className="entry__content-item">
             <FontAwesomeIcon icon="fa-location-dot" className="fa-fw" />
             {entryData.location}
           </p>
-          <p className="output-group">
+          <p className="entry__content-item">
             <FontAwesomeIcon icon="fa-calendar-days" className="fa-fw" />
             {formatDate(entryData.startDate)} - {formatDate(entryData.endDate)}
           </p>
@@ -66,15 +66,15 @@ function EntryOutput({ dropdownId, entryData, handleDelete, handleEdit }) {
       content = (
         <>
           <h3>{entryData.companyName}</h3>
-          <p className="output-group">
+          <p className="entry__content-item">
             <FontAwesomeIcon icon="fa-id-badge" className="fa-fw" />
             {entryData.jobTitle}
           </p>
-          <p className="output-group">
+          <p className="entry__content-item">
             <FontAwesomeIcon icon="fa-location-dot" className="fa-fw" />
             {entryData.location}
           </p>
-          <p className="output-group">
+          <p className="entry__content-item">
             <FontAwesomeIcon icon="fa-calendar-days" className="fa-fw" />
             {formatDate(entryData.startDate)} - {formatDate(entryData.endDate)}
           </p>
@@ -85,9 +85,9 @@ function EntryOutput({ dropdownId, entryData, handleDelete, handleEdit }) {
 
   return (
     <>
-      <div className="subsection-main-info">
-        <div className="section-content">{content}</div>
-        <div className="output-button-group">
+      <div className="entry__body">
+        <div className="entry__content">{content}</div>
+        <div className="entry__buttons">
           {dropdownId === 'workExperience' ? (
             <button onClick={toggleDetails} className="show-details-button">
               {detailsShown ? (
@@ -106,11 +106,11 @@ function EntryOutput({ dropdownId, entryData, handleDelete, handleEdit }) {
         </div>
       </div>
       {detailsShown && dropdownId === 'workExperience' ? (
-        <div className="subsection-details">
-          <p className="subsection-subheading">
+        <div className="entry__details">
+          <h4>
             <FontAwesomeIcon icon="fa-list-check" /> Responsibilities:
-          </p>
-          <ul className="duty-list">{dutyBullets}</ul>
+          </h4>
+          <ul>{dutyBullets}</ul>
         </div>
       ) : null}
     </>
