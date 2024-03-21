@@ -87,7 +87,7 @@ function EntryOutput({ dropdownId, entryData, handleDelete, handleEdit }) {
     <>
       <div className="entry__body">
         <div className="entry__content">{content}</div>
-        <div className="entry__buttons">
+        <div className="entry__content-buttons">
           {dropdownId === 'workExperience' ? (
             <button onClick={toggleDetails} className="show-details-button">
               {detailsShown ? (

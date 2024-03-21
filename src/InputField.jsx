@@ -15,8 +15,8 @@ function InputField({ handleChange, icon, label, type, value }) {
     );
 
   return (
-    <label className="input-group">
-      <span className="input-icon">
+    <label className="entry__input">
+      <span>
         <FontAwesomeIcon icon={icon} className="fa-fw" />
       </span>
       {inputTag}

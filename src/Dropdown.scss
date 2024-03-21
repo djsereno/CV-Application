@@ -42,6 +42,16 @@
     margin: 20px;
     max-height: 600px;
     overflow-y: auto;
+
+    .add-button {
+      width: 100%;
+      margin-top: 20px;
+      padding: 1em;
+      border: transparent;
+      border-radius: 5px;
+      background-color: black;
+      color: white;
+    }
   }
 }
 
@@ -61,7 +71,7 @@
     padding-bottom: 0;
     border-bottom: 0;
   }
-  &:hover &__buttons * {
+  &:hover &__content-buttons * {
     font-size: 1em;
     color: #717171;
   }
@@ -81,7 +91,7 @@
     }
   }
 
-  &__buttons {
+  &__content-buttons {
     display: flex;
     flex-direction: row;
     width: max-content;
@@ -160,80 +170,68 @@
       outline: 0;
     }
   }
-}
 
-.input-group {
-  display: flex;
-  width: 100%;
-  border: 1px solid #e5e5e5;
-  border-radius: 5px;
-}
-
-.input-group,
-.input-icon {
-  transition: 0.35s ease-in-out;
-  transition: all 0.35s ease-in-out;
-  -webkit-transition: 0.35s ease-in-out;
-  -moz-transition: 0.35s ease-in-out;
-  -o-transition: 0.35s ease-in-out;
-}
-
-.input-icon,
-.entry button {
-  padding: 1em;
-}
-
-.input-icon {
-  border-right: 1px solid #e5e5e5;
-  border-radius: 5px 0 0 5px;
-  background-color: #f1f1f1;
-  color: rgba(0, 0, 0, 0.4);
-}
-
-.input-group:has(input:focus),
-.input-group:has(textarea:focus) {
-  border-color: #bd8200;
-  outline: 0;
-}
-.input-group:has(input:focus) .input-icon,
-.input-group:has(textarea:focus) .input-icon {
-  border-color: #bd8200;
-  color: #f0a500;
-}
-
-.add-button {
-  width: 100%;
-  margin-top: 20px;
-  padding: 1em;
-  border: transparent;
-  border-radius: 5px;
-  background-color: black;
-  color: white;
-}
-
-.form-button-group {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  grid-template-rows: auto auto;
-  column-gap: 10px;
-
-  .submit-button,
-  .delete-button {
+  &__input {
+    display: flex;
     width: 100%;
-    border: transparent;
+    border: 1px solid #e5e5e5;
     border-radius: 5px;
-    color: white;
+
+    &:has(input:focus),
+    &:has(textarea:focus) {
+      border-color: #bd8200;
+      outline: 0;
+    }
+    &:has(input:focus) span,
+    &:has(textarea:focus) span {
+      border-color: #bd8200;
+      color: #f0a500;
+    }
+
+    span {
+      padding: 1em;
+      border-right: 1px solid #e5e5e5;
+      border-radius: 5px 0 0 5px;
+      background-color: #f1f1f1;
+      color: rgba(0, 0, 0, 0.4);
+    }
   }
-  .submit-button {
-    grid-column: 1 / 3;
-    background-color: rgb(65, 129, 197);
+
+  &__input,
+  &__input span {
+    transition: 0.35s ease-in-out;
+    transition: all 0.35s ease-in-out;
+    -webkit-transition: 0.35s ease-in-out;
+    -moz-transition: 0.35s ease-in-out;
+    -o-transition: 0.35s ease-in-out;
   }
-  .submit-button:has(+ .delete-button) {
-    grid-column: 1 / 2;
-  }
-  .delete-button {
-    grid-column: 2 / 3;
-    background-color: rgb(199, 68, 68);
+
+  &__form-buttons {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: auto auto;
+    column-gap: 10px;
+    margin-top: 1em;
+
+    .submit-button,
+    .delete-button {
+      width: 100%;
+      border: transparent;
+      border-radius: 5px;
+      color: white;
+      padding: 1em;
+    }
+    .submit-button {
+      grid-column: 1 / 3;
+      background-color: rgb(65, 129, 197);
+    }
+    .submit-button:has(+ .delete-button) {
+      grid-column: 1 / 2;
+    }
+    .delete-button {
+      grid-column: 2 / 3;
+      background-color: rgb(199, 68, 68);
+    }
   }
 }
 
@@ -245,8 +243,7 @@ input[type='date']:invalid {
   display: flex;
   gap: 20px;
 
-  button.load-example-data,
-  button.clear-all-data {
+  button {
     width: fit-content;
     padding: 1em;
     border: transparent;

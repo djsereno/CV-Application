@@ -27,7 +27,7 @@ function EntryForm({
       <form className="entry__form" id={formId} onSubmit={handleSubmit}>
         {inputComponents}
       </form>
-      <div className="form-button-group">
+      <div className="entry__form-buttons">
         <button form={formId} type="submit" className="submit-button">
           <FontAwesomeIcon icon="fa-circle-check" />
           {' Submit'}
