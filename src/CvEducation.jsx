@@ -9,28 +9,30 @@ function CvEducation({ educationData }) {
     const { schoolName, degree, location, startDate, endDate } = data;
 
     return (
-      <div className="education-container" key={index}>
-        <div className="school-and-degree">
-          <p className="school-name">{schoolName}</p>
-          <p className="degree">{degree}</p>
-        </div>
-        <div className="location-and-dates">
-          <p className="location">
-            {location}
-            <FontAwesomeIcon icon="fa-location-dot" className="fa-fw" />
-          </p>
-          <p className="dates">
-            {formatDate(startDate)} - {formatDate(endDate)}
-            <FontAwesomeIcon icon="fa-calendar-days" className="fa-fw" />
-          </p>
+      <div className="cv-section__entry" key={index}>
+        <div className="cv-section__content">
+          <div className="main-info">
+            <p className="school-name">{schoolName}</p>
+            <p className="degree">{degree}</p>
+          </div>
+          <div className="location-and-dates">
+            <p className="location">
+              {location}
+              <FontAwesomeIcon icon="fa-location-dot" className="fa-fw" />
+            </p>
+            <p className="dates">
+              {formatDate(startDate)} - {formatDate(endDate)}
+              <FontAwesomeIcon icon="fa-calendar-days" className="fa-fw" />
+            </p>
+          </div>
         </div>
       </div>
     );
   });
 
   return (
-    <div id="education-section">
-      <h3 className="section-header">Education</h3>
+    <div className="cv-section">
+      <h3 className="cv-section__header">Education</h3>
       {content}
     </div>
   );

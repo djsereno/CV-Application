@@ -1,90 +1,78 @@
 #page-container {
   width: 8.5in;
   height: 11in;
+  padding: 0.5in;
   border: 1px solid #ccc;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-  padding: 0.5in;
   background-color: #fff;
   font-family: 'Garamond', serif;
   font-size: 12pt;
+  overflow: hidden;
 }
 
-#page-header {
-  text-align: center;
+.cv-header {
   margin-bottom: 20px;
-}
+  text-align: center;
 
-.full-name {
-  font-size: 28pt;
-  margin: 10px 0;
-}
-
-#contact-info {
-  display: flex;
-  justify-content: center;
-  margin-bottom: 10px;
-  gap: 20px;
-}
-
-.email,
-.phone,
-#page-header .location {
-  font-size: 12pt;
-  margin: 5px 0;
-}
-
-.section-header {
-  font-size: 14pt;
-  border-bottom: 3px double black;
-  margin-top: 1em;
-}
-
-.education-container,
-.work-container {
-  border-bottom: 1px solid #ccc;
-}
-.education-container:last-child,
-.work-container:last-child {
-  border-bottom: 0;
-}
-
-.education-container,
-.company-info {
-  display: flex;
-  justify-content: space-between;
-}
-.work-container {
-  display: flex;
-  flex-direction: column;
-}
-.education-container,
-.work-container {
-  padding: 0.5em 0;
-}
-.company-info {
-  padding: 0 0 0.5em;
-}
-
-.school-and-degree,
-.company-and-title,
-.location-and-dates {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-}
-
-#page-body {
-  .location,
-  .dates {
-    display: flex;
-    gap: 0.5em;
-    justify-content: end;
+  &__full-name {
+    margin: 10px 0;
+    font-size: 28pt;
   }
 
-  .school-name,
-  .company-name,
-  .location {
-    font-weight: bold;
-    margin-bottom: 0.1em;
+  &__contact-info {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 10px;
+    gap: 20px;
+
+    .email,
+    .phone,
+    .location {
+      margin: 5px 0;
+      font-size: 12pt;
+    }
+  }
+}
+
+.cv-section {
+  &__header {
+    margin-top: 1em;
+    border-bottom: 3px double black;
+    font-size: 14pt;
+  }
+
+  &__entry {
+    padding: 0.5em 0;
+    border-bottom: 1px solid #ccc;
+
+    &:last-child {
+      border-bottom: 0;
+    }
+  }
+
+  &__content {
+    display: flex;
+    justify-content: space-between;
+    padding: 0 0 0.5em;
+
+    .main-info,
+    .location-and-dates {
+      display: flex;
+      flex-direction: column;
+    }
+
+    .school-name,
+    .company-name,
+    .location {
+      margin-bottom: 0.1em;
+      font-weight: bold;
+    }
+
+    .location,
+    .dates {
+      display: flex;
+      justify-content: end;
+      gap: 0.5em;
+    }
   }
 }

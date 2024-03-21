@@ -84,7 +84,7 @@ function Dropdown({
   const addButton =
     id !== 'general' && submissionFlags.every((value) => value === true) ? (
       <button onClick={addEntry} className="add-button">
-        <FontAwesomeIcon icon="fa-circle-plus" /> Add {label}
+        <FontAwesomeIcon icon="fa-circle-plus" className='fa-fw'/> Add {label}
       </button>
     ) : null;
 

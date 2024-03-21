@@ -8,19 +8,19 @@ function CvGeneral({ generalData }) {
   const formattedPhone = formatPhoneNumber(phone);
 
   return (
-    <div id="page-header">
-      <h2 className="full-name">
+    <div className="cv-header">
+      <h2 className="cv-header__full-name">
         {firstName} {lastName}
       </h2>
-      <div id="contact-info">
+      <div className="cv-header__contact-info">
         <p className="email">
-          <FontAwesomeIcon icon="fa-envelope" /> {email}
+          <FontAwesomeIcon icon="fa-envelope" className='fa-fw'/> {email}
         </p>
         <p className="phone">
-          <FontAwesomeIcon icon="fa-phone" /> {formattedPhone}
+          <FontAwesomeIcon icon="fa-phone" className='fa-fw'/> {formattedPhone}
         </p>
         <p className="location">
-          <FontAwesomeIcon icon="fa-location-dot" /> {location}
+          <FontAwesomeIcon icon="fa-location-dot" className='fa-fw'/> {location}
         </p>
       </div>
     </div>

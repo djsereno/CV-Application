@@ -103,7 +103,7 @@ function App() {
     <>
       <div id="dropdown-container">
         <h1 id="title">
-          <FontAwesomeIcon icon="fa-file-signature" />
+          <FontAwesomeIcon icon="fa-file-signature" className="fa-fw" />
           CVWizard
         </h1>
         {formProps.map((dropdownProps, index) => (
@@ -129,10 +129,10 @@ function App() {
         ))}
         <div className="button-container">
           <button onClick={loadExampleData}>
-            <FontAwesomeIcon icon="fa-file-import" /> Load Example Data
+            <FontAwesomeIcon icon="fa-file-import" className='fa-fw'/> Load Example Data
           </button>
           <button onClick={clearAllData}>
-            <FontAwesomeIcon icon="fa-trash-can" /> Clear All Data
+            <FontAwesomeIcon icon="fa-trash-can" className='fa-fw'/> Clear All Data
           </button>
         </div>
       </div>

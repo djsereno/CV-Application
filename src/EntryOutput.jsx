@@ -91,24 +91,24 @@ function EntryOutput({ dropdownId, entryData, handleDelete, handleEdit }) {
           {dropdownId === 'workExperience' ? (
             <button onClick={toggleDetails} className="show-details-button">
               {detailsShown ? (
-                <FontAwesomeIcon icon="fa-angle-up" />
+                <FontAwesomeIcon icon="fa-angle-up" className='fa-fw'/>
               ) : (
-                <FontAwesomeIcon icon="fa-angle-down" />
+                <FontAwesomeIcon icon="fa-angle-down" className='fa-fw'/>
               )}
             </button>
           ) : null}
           <button onClick={handleDelete} className="delete-button">
-            <FontAwesomeIcon icon="fa-trash-can" />
+            <FontAwesomeIcon icon="fa-trash-can" className='fa-fw'/>
           </button>
           <button onClick={handleEdit} className="edit-button">
-            <FontAwesomeIcon icon="fa-pencil" />
+            <FontAwesomeIcon icon="fa-pencil" className='fa-fw'/>
           </button>
         </div>
       </div>
       {detailsShown && dropdownId === 'workExperience' ? (
         <div className="entry__details">
           <h4>
-            <FontAwesomeIcon icon="fa-list-check" /> Responsibilities:
+            <FontAwesomeIcon icon="fa-list-check" className='fa-fw'/> Responsibilities:
           </h4>
           <ul>{dutyBullets}</ul>
         </div>

@@ -14,9 +14,9 @@ function CvWork({ workData }) {
     ));
 
     return (
-      <div className="work-container" key={index}>
-        <div className="company-info">
-          <div className="company-and-title">
+      <div className="cv-section__entry" key={index}>
+        <div className="cv-section__content">
+          <div className="main-info">
             <p className="company-name">{companyName}</p>
             <p className="job-title">{jobTitle}</p>
           </div>
@@ -37,8 +37,8 @@ function CvWork({ workData }) {
   });
 
   return (
-    <div id="work-section">
-      <h3 className="section-header">Work Experience</h3>
+    <div className="cv-section">
+      <h3 className="cv-section__header">Work Experience</h3>
       {content}
     </div>
   );

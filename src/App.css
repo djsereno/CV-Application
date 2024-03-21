@@ -4,18 +4,18 @@
 }
 
 body {
-  background-color: silver;
   display: flex;
+  background-color: silver;
   place-items: center;
 }
 
 #root {
-  margin: auto;
-  padding: 100px;
   display: grid;
   grid-template-columns: minmax(400px, 600px) auto;
-  gap: 20px;
   min-width: 75%;
-  overflow: hidden;
   height: 100vh;
+  margin: auto;
+  padding: 100px;
+  gap: 20px;
+  overflow: hidden;
 }
