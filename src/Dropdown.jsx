@@ -84,30 +84,31 @@ function Dropdown({
   const addButton =
     id !== 'general' && submissionFlags.every((value) => value === true) ? (
       <button onClick={addEntry} className="add-button">
-        <FontAwesomeIcon icon="fa-circle-plus" className='fa-fw'/> Add {label}
+        <FontAwesomeIcon icon="fa-circle-plus" className="fa-fw" /> Add {label}
       </button>
     ) : null;
 
   return (
-    <div id={id} className="dropdown">
+    <div id={id} className={`dropdown ${isOpen ? '' : 'dropdown--collapsed'}`}>
       <div className="dropdown__header">
         <h2>
           <FontAwesomeIcon icon={icon} className="fa-fw" /> {label}
         </h2>
         <button onClick={toggleOpenStatus}>
-          {isOpen ? (
-            <FontAwesomeIcon icon="angle-up" className="fa-fw" />
-          ) : (
-            <FontAwesomeIcon icon="angle-down" />
-          )}
+          <FontAwesomeIcon icon="angle-down" className="fa-fw" />
         </button>
       </div>
-      {isOpen ? (
-        <div className="dropdown__body">
-          {content}
-          {addButton}
+      <div className="dropdown__body">
+        <div className="scrollable">
+          <div className="padding">
+            {/* these wrappers seems redundant but is required for smooth dropdown */}
+            {/* transitions since we can transition __body max-height but not padding*/}
+            {/* and better layout to accommodate the scrollbar */}
+            {content}
+            {addButton}
+          </div>
         </div>
-      ) : null}
+      </div>
     </div>
   );
 }

@@ -13,6 +13,8 @@ import { v4 as getUniqueId } from 'uuid';
 
 // TO DO:
 // - Add some animations and transitions
+// - Update color scheme
+// - Refactor JS
 
 function App() {
   const [openStatus, setOpenStatus] = useState([true, false, false]);
@@ -129,10 +131,10 @@ function App() {
         ))}
         <div className="button-container">
           <button onClick={loadExampleData}>
-            <FontAwesomeIcon icon="fa-file-import" className='fa-fw'/> Load Example Data
+            <FontAwesomeIcon icon="fa-file-import" className="fa-fw" /> Load Example Data
           </button>
           <button onClick={clearAllData}>
-            <FontAwesomeIcon icon="fa-trash-can" className='fa-fw'/> Clear All Data
+            <FontAwesomeIcon icon="fa-trash-can" className="fa-fw" /> Clear All Data
           </button>
         </div>
       </div>

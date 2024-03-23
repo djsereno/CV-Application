@@ -35,13 +35,28 @@
       background-color: transparent;
       color: white;
       font-size: 1.5em;
+      transform: rotate(180deg);
+      transition: transform 0.3s ease;
     }
   }
 
   &__body {
-    max-height: 600px;
-    margin: 20px;
-    overflow-y: auto;
+    --max-height: 600px;
+    --margin: 20px;
+
+    max-height: var(--max-height);
+    overflow: hidden;
+    transition: max-height 0.3s ease;
+
+    .scrollable {
+      max-height: calc(var(--max-height) - 2 * var(--margin));
+      margin: var(--margin) calc(0.25 * var(--margin));
+      overflow-y: auto;
+    }
+
+    .padding {
+      padding: 0 calc(0.75 * var(--margin));
+    }
 
     .add-button {
       width: 100%;
@@ -52,6 +67,14 @@
       background-color: black;
       color: white;
     }
+  }
+
+  &--collapsed &__body {
+    max-height: 0;
+  }
+
+  &--collapsed &__header button {
+    transform: rotate(0deg);
   }
 }
 
