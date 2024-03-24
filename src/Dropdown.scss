@@ -2,7 +2,7 @@
   --clr-neutral1: #feffff;
   --clr-neutral2: #eeeeee;
   --clr-neutral3: #d0d0d0;
-  --clr-dark: #404040;
+  --clr-dark: #373737;
   --clr-accent1: #162b4f;
   --clr-accent2: #2c68ad;
   --clr-accent3: #e7b344;
@@ -14,11 +14,14 @@
   --color-dropdown-text: var(--clr-neutral1);
   --color-text: var(--clr-dark);
   --color-icon: var(--clr-accent2);
-  --color-highlight-bg: var(--clr-accent2);
+  --color-highlight-bg: var(--clr-accent3);
   --color-highlight-text: var(--clr-accent3);
-  --color-button: var(--clr-accent1);
+  --color-button: var(--clr-accent2);
   --color-button-delete: #c74444;
   --color-button-submit: var(--clr-accent2);
+
+  --hover-brightness-darken: 0.7;
+  --hover-brightness-light: 1.2;
 }
 
 #title {
@@ -64,7 +67,7 @@
       transition: transform 0.3s ease;
 
       &:hover {
-        color: var(--color-highlight-text);
+        filter: brightness(var(--hover-brightness-darken));
       }
     }
   }
@@ -101,7 +104,7 @@
       color: var(--color-dropdown-text);
 
       &:hover {
-        background-color: var(--color-highlight-bg);
+        filter: brightness(var(--hover-brightness-light));
       }
     }
   }
@@ -166,7 +169,7 @@
       transition: all 0.1s ease-in-out;
 
       &:hover * {
-        color: var(--color-highlight-text);
+        filter: brightness(var(--hover-brightness-darken));
       }
     }
   }
@@ -277,7 +280,7 @@
       color: var(--color-dropdown-text);
 
       &:hover {
-        filter: brightness(1.2);
+        filter: brightness(var(--hover-brightness-light));
       }
     }
     .submit-button {
@@ -311,7 +314,7 @@ input[type='date']:invalid {
     color: var(--color-dropdown-text);
 
     &:hover {
-      background-color: var(--color-highlight-bg);
+      filter: brightness(var(--hover-brightness-light));
     }
   }
 }
