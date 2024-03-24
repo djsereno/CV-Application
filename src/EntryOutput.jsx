@@ -97,11 +97,11 @@ function EntryOutput({ dropdownId, entryData, handleDelete, handleEdit }) {
               )}
             </button>
           ) : null}
-          <button onClick={handleDelete} className="delete-button">
-            <FontAwesomeIcon icon="fa-trash-can" className='fa-fw'/>
-          </button>
           <button onClick={handleEdit} className="edit-button">
             <FontAwesomeIcon icon="fa-pencil" className='fa-fw'/>
+          </button>
+          <button onClick={handleDelete} className="delete-button">
+            <FontAwesomeIcon icon="fa-trash-can" className='fa-fw'/>
           </button>
         </div>
       </div>

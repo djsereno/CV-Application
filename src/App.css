@@ -6,7 +6,7 @@
 body {
   display: flex;
   place-items: center;
-  background-color: silver;
+  background-color: var(--color-bg);
 }
 
 #root {

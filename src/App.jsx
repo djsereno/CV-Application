@@ -12,8 +12,6 @@ import { exampleData } from './exampledata.js';
 import { v4 as getUniqueId } from 'uuid';
 
 // TO DO:
-// - Add some animations and transitions
-// - Update color scheme
 // - Refactor JS
 
 function App() {
