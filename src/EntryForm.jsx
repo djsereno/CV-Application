@@ -29,14 +29,16 @@ function EntryForm({
       </form>
       <div className="entry__form-buttons">
         <button form={formId} type="submit" className="submit-button">
-          <FontAwesomeIcon icon="fa-circle-check" className='fa-fw'/>
+          <FontAwesomeIcon icon="fa-circle-check" className="fa-fw" />
           {' Submit'}
         </button>
         {isDeletable ? (
           <button onClick={handleDelete} className="delete-button">
-            <FontAwesomeIcon icon="fa-trash-can" className='fa-fw'/> Delete
+            <FontAwesomeIcon icon="fa-trash-can" className="fa-fw" /> Delete
           </button>
-        ) : null}
+        ) : (
+          false
+        )}
       </div>
     </>
   );

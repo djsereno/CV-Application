@@ -2,17 +2,21 @@ import { useState } from 'react';
 import { formProps } from './formProps.js';
 import Dropdown from './Dropdown';
 import CvPage from './CvPage.jsx';
-import './normalize.css';
-import './App.css';
+import './normalize.scss';
+import './App.scss';
 import './Dropdown.scss';
 import './CV.scss';
 import './icons.js';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { exampleData } from './exampledata.js';
+import { exampleData } from './exampleData.js';
 import { v4 as getUniqueId } from 'uuid';
 
 // TO DO:
 // - Refactor JS
+// - Clean up propTypes
+// - Clean up unnecessary props
+// - Address props drilling
+// - Organize imports
 
 function App() {
   const [openStatus, setOpenStatus] = useState([true, false, false]);
@@ -28,9 +32,8 @@ function App() {
   };
 
   const updateSubmittedData = (dataToSubmit = unsubmittedData, dropdownId) => {
-    // Due to the async nature of setState, when updateSubmittedData is called right after
-    // updateUnsubmittedData(for example, in deleteEntryData), we need to provide the mutated
-    // form of unsubmittedData directly to this function.
+    // If dropdownId is provided, only that dropdownId will be submitted. the entire data
+    // Otherwise, the entire data structure will be submitted
     if (!dropdownId) {
       setSubmittedData(deepCopy(dataToSubmit));
     } else {
@@ -40,42 +43,24 @@ function App() {
   };
 
   const updateSubmissionFlags = (dropdownId, newFlagArray) => {
-    const newSubmissionFlags = { ...submissionFlags };
-    newSubmissionFlags[dropdownId] = newFlagArray;
-    setSubmissionFlags(newSubmissionFlags);
+    setSubmissionFlags({ ...submissionFlags, [dropdownId]: newFlagArray });
   };
 
   const updateFormIds = (dropdownId, newIdArray) => {
-    const newFormIds = { ...formIds };
-    newFormIds[dropdownId] = newIdArray;
-    setFormIds(newFormIds);
+    setFormIds({ ...formIds, [dropdownId]: newIdArray });
   };
 
   const addNewEntryData = (dropdownId) => {
     const [dropdownProps] = formProps.filter((dropdownProps) => dropdownProps.id === dropdownId);
     const newFormFields = initFormFields(dropdownProps);
     const newUnsubmittedData = { ...unsubmittedData };
-    const currentEntries = newUnsubmittedData[dropdownId];
-    newUnsubmittedData[dropdownId] = [...currentEntries, newFormFields];
+    newUnsubmittedData[dropdownId] = [...newUnsubmittedData[dropdownId], newFormFields];
     setUnsubmittedData(newUnsubmittedData);
   };
 
   const deleteEntryData = (dropdownId, entryIndex) => {
-    // CV component needs index removed AND values cleaned so unsubmitted form values don't get pushed
-    // However, sectionVals should preserve unsubmitted form data
-    const newUnsubmittedDropdownData = unsubmittedData[dropdownId].filter(
-      (values, i) => entryIndex !== i
-    );
-    const newUnsubmittedData = { ...unsubmittedData };
-    newUnsubmittedData[dropdownId] = newUnsubmittedDropdownData;
-    setUnsubmittedData(newUnsubmittedData);
-
-    const newSubmittedDropdownData = submittedData[dropdownId].filter(
-      (values, i) => entryIndex !== i
-    );
-    const newSubmittedData = { ...submittedData };
-    newSubmittedData[dropdownId] = newSubmittedDropdownData;
-    updateSubmittedData(newSubmittedData);
+    setUnsubmittedData(omitItemFromDropdownAtIndex(unsubmittedData, dropdownId, entryIndex));
+    setSubmittedData(omitItemFromDropdownAtIndex(submittedData, dropdownId, entryIndex));
   };
 
   const toggleOpenStatus = (index) => {
@@ -85,10 +70,10 @@ function App() {
   };
 
   const loadExampleData = () => {
-    setUnsubmittedData(deepCopy(exampleData));
-    setSubmissionFlags(initSubmissionFlags(exampleData, true));
     setFormIds(initFormIds(exampleData));
-    updateSubmittedData(deepCopy(exampleData));
+    setSubmissionFlags(initSubmissionFlags(exampleData, true));
+    setUnsubmittedData(deepCopy(exampleData));
+    setSubmittedData(deepCopy(exampleData));
   };
 
   const clearAllData = () => {
@@ -176,5 +161,10 @@ const initFormIds = (unsubmittedData) => {
 };
 
 const deepCopy = (object) => JSON.parse(JSON.stringify(object));
+
+const omitItemFromDropdownAtIndex = (data, dropdownId, index) => {
+  const newDropdownData = data[dropdownId].filter((values, i) => index !== i);
+  return { ...data, [dropdownId]: newDropdownData };
+};
 
 export default App;

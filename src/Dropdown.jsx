@@ -1,8 +1,8 @@
-// import { useState } from 'react';
 import PropTypes from 'prop-types';
 import { v4 as getUniqueId } from 'uuid';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import EntryContainer from './EntryContainer';
+import EntryForm from './EntryForm';
+import EntryOutput from './EntryOutput';
 
 function Dropdown({
   addNewEntryData,
@@ -35,8 +35,6 @@ function Dropdown({
   };
 
   const deleteEntry = (entryIndex) => {
-    // CV component needs index removed AND values cleaned so unsubmitted form values don't get pushed
-    // However, sectionVals should preserve unsubmitted form data
     if (dropdownData.length === 1) {
       updateSubmissionFlags([false]);
       clearEntry(entryIndex);
@@ -58,27 +56,32 @@ function Dropdown({
     const newFlag = !newFlags[entryIndex];
     newFlags[entryIndex] = newFlag;
     updateSubmissionFlags(newFlags);
-
     if (newFlag) updateSubmittedData(id);
   };
 
   const content = dropdownData.map((entryData, entryIndex) => (
-    <EntryContainer
-      key={formIds[entryIndex]}
-      entryData={dropdownData[entryIndex]}
-      formFields={formFields}
-      handleDelete={() => deleteEntry(entryIndex)}
-      handleEdit={(e) => toggleSubmit(e, entryIndex)}
-      handleSubmit={(e) => toggleSubmit(e, entryIndex)}
-      formId={formIds[entryIndex]}
-      initEntryData={entryData}
-      isDeletable={dropdownData.length > 1}
-      isSubmitted={submissionFlags[entryIndex]}
-      dropdownId={id}
-      updateUnsubmittedData={(newValue, inputFieldId) =>
-        updateUnsubmittedData(newValue, entryIndex, inputFieldId)
-      }
-    />
+    <div className="entry" key={formIds[entryIndex]}>
+      {submissionFlags[entryIndex] ? (
+        <EntryOutput
+          dropdownId={id}
+          entryData={entryData}
+          handleDelete={() => deleteEntry(entryIndex)}
+          handleEdit={(e) => toggleSubmit(e, entryIndex)}
+        />
+      ) : (
+        <EntryForm
+          entryData={entryData}
+          formFields={formFields}
+          formId={formIds[entryIndex]}
+          handleDelete={() => deleteEntry(entryIndex)}
+          handleSubmit={(e) => toggleSubmit(e, entryIndex)}
+          isDeletable={dropdownData.length > 1}
+          updateUnsubmittedData={(newValue, inputFieldId) =>
+            updateUnsubmittedData(newValue, entryIndex, inputFieldId)
+          }
+        />
+      )}
+    </div>
   ));
 
   const addButton =
@@ -86,7 +89,9 @@ function Dropdown({
       <button onClick={addEntry} className="add-button">
         <FontAwesomeIcon icon="fa-circle-plus" className="fa-fw" /> Add {label}
       </button>
-    ) : null;
+    ) : (
+      false
+    );
 
   return (
     <div id={id} className={`dropdown ${isOpen ? '' : 'dropdown--collapsed'}`}>
@@ -101,8 +106,8 @@ function Dropdown({
       <div className="dropdown__body">
         <div className="scrollable">
           <div className="padding">
-            {/* these wrappers seems redundant but is required for smooth dropdown */}
-            {/* transitions since we can transition __body max-height but not padding*/}
+            {/* these wrappers seems redundant but are required for smooth dropdown */}
+            {/* transitions since we can't transition __body padding*/}
             {/* and better layout to accommodate the scrollbar */}
             {content}
             {addButton}
