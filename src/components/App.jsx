@@ -1,22 +1,22 @@
 import { useState } from 'react';
-import { formProps } from './formProps.js';
-import Dropdown from './Dropdown';
-import CvPage from './CvPage.jsx';
-import './normalize.scss';
-import './App.scss';
-import './Dropdown.scss';
-import './CV.scss';
-import './icons.js';
+import { formProps } from '../utils/formProps.js';
+import Dropdown from '../components/Dropdown.jsx';
+import CvPage from '../components/CvPage.jsx';
+import '../styles/normalize.scss';
+import '../styles/App.scss';
+import '../styles/Dropdown.scss';
+import '../styles/CV.scss';
+import '../utils/icons.js';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { exampleData } from './exampleData.js';
+import { exampleData } from '../utils/exampleData.js';
 import { v4 as getUniqueId } from 'uuid';
 
 // TO DO:
-// - Refactor JS
+// - Organize imports
+// - Address props drilling
 // - Clean up propTypes
 // - Clean up unnecessary props
-// - Address props drilling
-// - Organize imports
+// - Editing multiple forms then submitting one submits both
 
 function App() {
   const [openStatus, setOpenStatus] = useState([true, false, false]);

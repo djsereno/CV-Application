@@ -1,6 +1,28 @@
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import PropTypes from 'prop-types';
-import InputField from './InputField';
+
+function InputField({ handleChange, icon, label, type, value }) {
+  const inputTag =
+    type === 'textarea' ? (
+      <textarea
+        value={value}
+        placeholder={label}
+        onChange={handleChange}
+        rows="5"
+        required></textarea>
+    ) : (
+      <input type={type} value={value} placeholder={label} onChange={handleChange} required></input>
+    );
+
+  return (
+    <label className="entry__input">
+      <span>
+        <FontAwesomeIcon icon={icon} className="fa-fw" />
+      </span>
+      {inputTag}
+    </label>
+  );
+}
 
 function EntryForm({
   entryData,
@@ -44,6 +66,13 @@ function EntryForm({
   );
 }
 
+InputField.propTypes = {
+  handleChange: PropTypes.func,
+  icon: PropTypes.string,
+  label: PropTypes.string,
+  type: PropTypes.string,
+  value: PropTypes.any
+};
 EntryForm.propTypes = {
   entryData: PropTypes.object,
   formFields: PropTypes.array,

@@ -1,5 +1,5 @@
 import PropTypes from 'prop-types';
-import { formatDate, textToArray, formatPhoneNumber } from './functions';
+import { formatDate, textToArray, formatPhoneNumber } from '../utils/functions';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { useState } from 'react';
 
