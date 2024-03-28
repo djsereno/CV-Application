@@ -1,7 +1,8 @@
-import PropTypes from 'prop-types';
-import { formatDate, textToArray, formatPhoneNumber } from '../utils/functions';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import PropTypes from 'prop-types';
 import { useState } from 'react';
+
+import { formatDate, textToArray, formatPhoneNumber } from '../utils/functions';
 
 function OutputGeneral({ entryData }) {
   return (

@@ -1,18 +1,22 @@
-import { useState } from 'react';
-import { formProps } from '../utils/formProps.js';
-import Dropdown from '../components/Dropdown.jsx';
-import CvPage from '../components/CvPage.jsx';
-import '../styles/normalize.scss';
-import '../styles/App.scss';
-import '../styles/Dropdown.scss';
-import '../styles/CV.scss';
-import '../utils/icons.js';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { exampleData } from '../utils/exampleData.js';
+import { useState } from 'react';
 import { v4 as getUniqueId } from 'uuid';
+
+import { exampleData } from '../utils/exampleData.js';
+import { formProps } from '../utils/formProps.js';
+
+import CvPage from '../components/CvPage.jsx';
+import Dropdown from '../components/Dropdown.jsx';
+import '../utils/icons.js';
+
+import '../styles/App.scss';
+import '../styles/CV.scss';
+import '../styles/Dropdown.scss';
+import '../styles/normalize.scss';
 
 // TO DO:
 // - Organize imports
+// - Figure out better way to import '../utils/icons.js';
 // - Address props drilling
 // - Clean up propTypes
 // - Clean up unnecessary props

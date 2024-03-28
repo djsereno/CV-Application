@@ -1,5 +1,6 @@
-import PropTypes from 'prop-types';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import PropTypes from 'prop-types';
+
 import { formatDate, formatPhoneNumber, hasNonEmptyObjects, textToArray } from '../utils/functions';
 
 function CvGeneral({ generalData }) {

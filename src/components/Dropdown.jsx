@@ -1,6 +1,7 @@
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import PropTypes from 'prop-types';
 import { v4 as getUniqueId } from 'uuid';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+
 import EntryForm from '../components/EntryForm.jsx';
 import EntryOutput from '../components/EntryOutput.jsx';
 
