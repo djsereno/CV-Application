@@ -1,4 +1,5 @@
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faCircleCheck, faTrashCan } from '@fortawesome/free-solid-svg-icons';
 import PropTypes from 'prop-types';
 
 function InputField({ handleChange, icon, label, type, value }) {
@@ -51,12 +52,12 @@ function EntryForm({
       </form>
       <div className="entry__form-buttons">
         <button form={formId} type="submit" className="submit-button">
-          <FontAwesomeIcon icon="fa-circle-check" className="fa-fw" />
+          <FontAwesomeIcon icon={faCircleCheck} className="fa-fw" />
           {' Submit'}
         </button>
         {isDeletable ? (
           <button onClick={handleDelete} className="delete-button">
-            <FontAwesomeIcon icon="fa-trash-can" className="fa-fw" /> Delete
+            <FontAwesomeIcon icon={faTrashCan} className="fa-fw" /> Delete
           </button>
         ) : (
           false

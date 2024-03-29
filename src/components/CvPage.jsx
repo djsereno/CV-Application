@@ -1,4 +1,10 @@
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import {
+  faEnvelope,
+  faPhone,
+  faLocationDot,
+  faCalendarDays
+} from '@fortawesome/free-solid-svg-icons';
 import PropTypes from 'prop-types';
 
 import { formatDate, formatPhoneNumber, hasNonEmptyObjects, textToArray } from '../utils/functions';
@@ -15,13 +21,13 @@ function CvGeneral({ generalData }) {
       </h2>
       <div className="cv-header__contact-info">
         <p className="email">
-          <FontAwesomeIcon icon="fa-envelope" className="fa-fw" /> {email}
+          <FontAwesomeIcon icon={faEnvelope} className="fa-fw" /> {email}
         </p>
         <p className="phone">
-          <FontAwesomeIcon icon="fa-phone" className="fa-fw" /> {formattedPhone}
+          <FontAwesomeIcon icon={faPhone} className="fa-fw" /> {formattedPhone}
         </p>
         <p className="location">
-          <FontAwesomeIcon icon="fa-location-dot" className="fa-fw" /> {location}
+          <FontAwesomeIcon icon={faLocationDot} className="fa-fw" /> {location}
         </p>
       </div>
     </div>
@@ -44,11 +50,11 @@ function CvEducation({ educationData }) {
           <div className="location-and-dates">
             <p className="location">
               {location}
-              <FontAwesomeIcon icon="fa-location-dot" className="fa-fw" />
+              <FontAwesomeIcon icon={faLocationDot} className="fa-fw" />
             </p>
             <p className="dates">
               {formatDate(startDate)} - {formatDate(endDate)}
-              <FontAwesomeIcon icon="fa-calendar-days" className="fa-fw" />
+              <FontAwesomeIcon icon={faCalendarDays} className="fa-fw" />
             </p>
           </div>
         </div>
@@ -85,11 +91,11 @@ function CvWork({ workData }) {
           <div className="location-and-dates">
             <p className="location">
               {location}
-              <FontAwesomeIcon icon="fa-location-dot" className="fa-fw" />
+              <FontAwesomeIcon icon={faLocationDot} className="fa-fw" />
             </p>
             <p className="dates">
               {formatDate(startDate)} - {formatDate(endDate)}
-              <FontAwesomeIcon icon="fa-calendar-days" className="fa-fw" />
+              <FontAwesomeIcon icon={faCalendarDays} className="fa-fw" />
             </p>
           </div>
         </div>

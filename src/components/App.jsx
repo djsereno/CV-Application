@@ -1,4 +1,5 @@
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faFileImport, faFileSignature, faTrashCan } from '@fortawesome/free-solid-svg-icons';
 import { useState } from 'react';
 import { v4 as getUniqueId } from 'uuid';
 
@@ -7,7 +8,6 @@ import { formProps } from '../utils/formProps.js';
 
 import CvPage from '../components/CvPage.jsx';
 import Dropdown from '../components/Dropdown.jsx';
-import '../utils/icons.js';
 
 import '../styles/App.scss';
 import '../styles/CV.scss';
@@ -15,8 +15,6 @@ import '../styles/Dropdown.scss';
 import '../styles/normalize.scss';
 
 // TO DO:
-// - Organize imports
-// - Figure out better way to import '../utils/icons.js';
 // - Address props drilling
 // - Clean up propTypes
 // - Clean up unnecessary props
@@ -92,7 +90,7 @@ function App() {
     <>
       <div id="dropdown-container">
         <h1 id="title">
-          <FontAwesomeIcon icon="fa-file-signature" className="fa-fw" />
+          <FontAwesomeIcon icon={faFileSignature} className="fa-fw" />
           CVWizard
         </h1>
         {formProps.map((dropdownProps, index) => (
@@ -118,10 +116,10 @@ function App() {
         ))}
         <div className="button-container">
           <button onClick={loadExampleData}>
-            <FontAwesomeIcon icon="fa-file-import" className="fa-fw" /> Load Example Data
+            <FontAwesomeIcon icon={faFileImport} className="fa-fw" /> Load Example Data
           </button>
           <button onClick={clearAllData}>
-            <FontAwesomeIcon icon="fa-trash-can" className="fa-fw" /> Clear All Data
+            <FontAwesomeIcon icon={faTrashCan} className="fa-fw" /> Clear All Data
           </button>
         </div>
       </div>

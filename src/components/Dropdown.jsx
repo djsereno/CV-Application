@@ -1,4 +1,5 @@
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faAngleDown, faCirclePlus } from '@fortawesome/free-solid-svg-icons';
 import PropTypes from 'prop-types';
 import { v4 as getUniqueId } from 'uuid';
 
@@ -88,7 +89,7 @@ function Dropdown({
   const addButton =
     id !== 'general' && submissionFlags.every((value) => value === true) ? (
       <button onClick={addEntry} className="add-button">
-        <FontAwesomeIcon icon="fa-circle-plus" className="fa-fw" /> Add {label}
+        <FontAwesomeIcon icon={faCirclePlus} className="fa-fw" /> Add {label}
       </button>
     ) : (
       false
@@ -101,7 +102,7 @@ function Dropdown({
           <FontAwesomeIcon icon={icon} className="fa-fw" /> {label}
         </h2>
         <button onClick={toggleOpenStatus}>
-          <FontAwesomeIcon icon="angle-down" className="fa-fw" />
+          <FontAwesomeIcon icon={faAngleDown} className="fa-fw" />
         </button>
       </div>
       <div className="dropdown__body">

@@ -1,4 +1,17 @@
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import {
+  faAngleDown,
+  faAngleUp,
+  faCalendarDays,
+  faEnvelope,
+  faGraduationCap,
+  faIdBadge,
+  faListCheck,
+  faLocationDot,
+  faPencil,
+  faPhone,
+  faTrashCan
+} from '@fortawesome/free-solid-svg-icons';
 import PropTypes from 'prop-types';
 import { useState } from 'react';
 
@@ -11,15 +24,15 @@ function OutputGeneral({ entryData }) {
         {entryData.firstName} {entryData.lastName}
       </h3>
       <p className="entry__content-item">
-        <FontAwesomeIcon icon={'fa-envelope'} className="fa-fw" />
+        <FontAwesomeIcon icon={faEnvelope} className="fa-fw" />
         {entryData.email}
       </p>
       <p className="entry__content-item">
-        <FontAwesomeIcon icon={'fa-phone'} className="fa-fw" />
+        <FontAwesomeIcon icon={faPhone} className="fa-fw" />
         {formatPhoneNumber(entryData.phone)}
       </p>
       <p className="entry__content-item">
-        <FontAwesomeIcon icon={'fa-location-dot'} className="fa-fw" />
+        <FontAwesomeIcon icon={faLocationDot} className="fa-fw" />
         {entryData.location}
       </p>
     </>
@@ -31,15 +44,15 @@ function OutputEducation({ entryData }) {
     <>
       <h3>{entryData.schoolName}</h3>
       <p className="entry__content-item">
-        <FontAwesomeIcon icon="fa-graduation-cap" className="fa-fw" />
+        <FontAwesomeIcon icon={faGraduationCap} className="fa-fw" />
         {entryData.degree}
       </p>
       <p className="entry__content-item">
-        <FontAwesomeIcon icon="fa-location-dot" className="fa-fw" />
+        <FontAwesomeIcon icon={faLocationDot} className="fa-fw" />
         {entryData.location}
       </p>
       <p className="entry__content-item">
-        <FontAwesomeIcon icon="fa-calendar-days" className="fa-fw" />
+        <FontAwesomeIcon icon={faCalendarDays} className="fa-fw" />
         {formatDate(entryData.startDate)} - {formatDate(entryData.endDate)}
       </p>
     </>
@@ -51,15 +64,15 @@ function OutputWork({ entryData }) {
     <>
       <h3>{entryData.companyName}</h3>
       <p className="entry__content-item">
-        <FontAwesomeIcon icon="fa-id-badge" className="fa-fw" />
+        <FontAwesomeIcon icon={faIdBadge} className="fa-fw" />
         {entryData.jobTitle}
       </p>
       <p className="entry__content-item">
-        <FontAwesomeIcon icon="fa-location-dot" className="fa-fw" />
+        <FontAwesomeIcon icon={faLocationDot} className="fa-fw" />
         {entryData.location}
       </p>
       <p className="entry__content-item">
-        <FontAwesomeIcon icon="fa-calendar-days" className="fa-fw" />
+        <FontAwesomeIcon icon={faCalendarDays} className="fa-fw" />
         {formatDate(entryData.startDate)} - {formatDate(entryData.endDate)}
       </p>
     </>
@@ -92,7 +105,7 @@ function EntryOutput({ dropdownId, entryData, handleDelete, handleEdit }) {
     dutyList = (
       <div className="entry__details">
         <h4>
-          <FontAwesomeIcon icon="fa-list-check" className="fa-fw" /> Responsibilities:
+          <FontAwesomeIcon icon={faListCheck} className="fa-fw" /> Responsibilities:
         </h4>
         <ul>{dutyBullets}</ul>
       </div>
@@ -101,9 +114,9 @@ function EntryOutput({ dropdownId, entryData, handleDelete, handleEdit }) {
     detailsButton = (
       <button onClick={toggleDetails} className="show-details-button">
         {detailsShown ? (
-          <FontAwesomeIcon icon="fa-angle-up" className="fa-fw" />
+          <FontAwesomeIcon icon={faAngleUp} className="fa-fw" />
         ) : (
-          <FontAwesomeIcon icon="fa-angle-down" className="fa-fw" />
+          <FontAwesomeIcon icon={faAngleDown} className="fa-fw" />
         )}
       </button>
     );
@@ -116,10 +129,10 @@ function EntryOutput({ dropdownId, entryData, handleDelete, handleEdit }) {
         <div className="entry__content-buttons">
           {dropdownId === 'workExperience' ? detailsButton : false}
           <button onClick={handleEdit} className="edit-button">
-            <FontAwesomeIcon icon="fa-pencil" className="fa-fw" />
+            <FontAwesomeIcon icon={faPencil} className="fa-fw" />
           </button>
           <button onClick={handleDelete} className="delete-button">
-            <FontAwesomeIcon icon="fa-trash-can" className="fa-fw" />
+            <FontAwesomeIcon icon={faTrashCan} className="fa-fw" />
           </button>
         </div>
       </div>

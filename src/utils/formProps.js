@@ -1,7 +1,21 @@
+import {
+  faBuilding,
+  faCalendarCheck,
+  faCalendarPlus,
+  faEnvelope,
+  faIdBadge,
+  faGraduationCap,
+  faListCheck,
+  faLocationDot,
+  faPhone,
+  faSchool,
+  faUser
+} from '@fortawesome/free-solid-svg-icons';
+
 export const formProps = [
   {
     id: 'general',
-    icon: 'fa-user',
+    icon: faUser,
     label: 'General',
     formFields: [
       {
@@ -9,41 +23,41 @@ export const formProps = [
         label: 'First Name',
         placeholder: 'John',
         type: 'text',
-        icon: 'fa-user'
+        icon: faUser
       },
       {
         id: 'lastName',
         label: 'Last Name',
         placeholder: 'Smith',
         type: 'text',
-        icon: 'fa-user'
+        icon: faUser
       },
       {
         id: 'email',
         label: 'Email',
         placeholder: 'johnsmith123@gmail.com',
         type: 'email',
-        icon: 'fa-envelope'
+        icon: faEnvelope
       },
       {
         id: 'phone',
         label: 'Phone',
         placeholder: '(555) 123-4567',
         type: 'tel',
-        icon: 'fa-phone'
+        icon: faPhone
       },
       {
         id: 'location',
         label: 'Location',
         placeholder: 'Springfield, IL',
         type: 'text',
-        icon: 'fa-location-dot'
+        icon: faLocationDot
       }
     ]
   },
   {
     id: 'education',
-    icon: 'fa-graduation-cap',
+    icon: faGraduationCap,
     label: 'Education',
     formFields: [
       {
@@ -51,41 +65,41 @@ export const formProps = [
         label: 'School Name',
         placeholder: 'Harvard',
         type: 'text',
-        icon: 'fa-school'
+        icon: faSchool
       },
       {
         id: 'degree',
         label: 'Degree',
         placeholder: 'Culinary Arts',
         type: 'text',
-        icon: 'fa-graduation-cap'
+        icon: faGraduationCap
       },
       {
         id: 'location',
         label: 'Location',
         placeholder: 'Cambridge, MA',
         type: 'text',
-        icon: 'fa-location-dot'
+        icon: faLocationDot
       },
       {
         id: 'startDate',
         label: 'Start Date',
         placeholder: '2010',
         type: 'date',
-        icon: 'fa-calendar-plus'
+        icon: faCalendarPlus
       },
       {
         id: 'endDate',
         label: 'End Date',
         placeholder: '2014',
         type: 'date',
-        icon: 'fa-calendar-check'
+        icon: faCalendarCheck
       }
     ]
   },
   {
     id: 'workExperience',
-    icon: 'fa-building',
+    icon: faBuilding,
     label: 'Work Experience',
     formFields: [
       {
@@ -93,42 +107,42 @@ export const formProps = [
         label: 'Company Name',
         placeholder: 'Burger King',
         type: 'text',
-        icon: 'fa-building'
+        icon: faBuilding
       },
       {
         id: 'jobTitle',
         label: 'Job Title',
         placeholder: 'Head Chef',
         type: 'text',
-        icon: 'fa-id-badge'
+        icon: faIdBadge
       },
       {
         id: 'location',
         label: 'Location',
         placeholder: 'Boston, MA',
         type: 'text',
-        icon: 'fa-location-dot'
+        icon: faLocationDot
       },
       {
         id: 'startDate',
         label: 'Start Date',
         placeholder: '2014',
         type: 'date',
-        icon: 'fa-calendar-plus'
+        icon: faCalendarPlus
       },
       {
         id: 'endDate',
         label: 'End Date',
         placeholder: '2020',
         type: 'date',
-        icon: 'fa-calendar-check'
+        icon: faCalendarCheck
       },
       {
         id: 'duties',
         label: 'Responsibilities',
         placeholder: 'Use the fryer',
         type: 'textarea',
-        icon: 'fa-list-check'
+        icon: faListCheck
       }
     ]
   }
