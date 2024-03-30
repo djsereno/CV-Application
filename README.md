@@ -1,10 +1,33 @@
-# React + Vite
+# CVWizard
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+<div id="top"></div>
 
-Currently, two official plugins are available:
+<!-- PROJECT LOGO -->
+<br />
+<div align="center">
+  <p align="center">
+    A simple web app to build and customize your CV.
+    <br />
+    <!-- <a href="https://djsereno.github.io/CV-Application/">Preview</a> -->
+    ·
+    <a href="https://github.com/djsereno/CV-Application/issues">Report Bug</a>
+    ·
+    <a href="https://github.com/djsereno/CV-Application/issues">Request Feature</a>
+  </p>
+</div>
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## Built With
 
-<a target="_blank" href="https://icons8.com/icon/104082/cv">CV</a> icon by <a target="_blank" href="https://icons8.com">Icons8</a>
+- React
+- Javascript
+- HTML/CSS
+
+## Contact
+
+Derek Sereno - [LinkedIn](https://www.linkedin.com/in/dereksereno/) - [Email](mailto:djsereno91@gmail.com)
+
+Project Link: [https://github.com/djsereno/CV-Application/](https://github.com/djsereno/CV-Application/)
+
+## Acknowledgments
+
+- Icons by [Font Awesome](https://fontawesome.com/) and [Icons8](https://icons8.com/)
