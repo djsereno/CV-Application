@@ -14,9 +14,6 @@ import '../styles/CV.scss';
 import '../styles/Dropdown.scss';
 import '../styles/normalize.scss';
 
-// TO DO:
-// - Deleting only entry does not clear CV page
-
 function App() {
   const [openStatus, setOpenStatus] = useState([true, false, false]);
   const [submittedData, setSubmittedData] = useState(initDataStructure(formProps));
@@ -31,20 +28,10 @@ function App() {
   };
 
   const updateSubmittedData = (sourceData = unsubmittedData, dropdownId, entryIndex) => {
-    // If dropdownId + entryIndex is provided, only that entryIndex will be submitted.
-    // If only dropdownId is provided, only that dropdownId will be submitted.
-    // Otherwise, the entire source data will be submitted
-    if (dropdownId !== null && entryIndex !== null) {
-      const newEntryData = deepCopy(sourceData)[dropdownId][entryIndex];
-      const dataToSubmit = deepCopy(submittedData);
-      dataToSubmit[dropdownId][entryIndex] = newEntryData;
-      setSubmittedData(dataToSubmit);
-    } else if (dropdownId !== null) {
-      const newDropdownData = deepCopy(sourceData)[dropdownId];
-      setSubmittedData({ ...submittedData, [dropdownId]: newDropdownData });
-    } else {
-      setSubmittedData(deepCopy(sourceData));
-    }
+    const newEntryData = deepCopy(sourceData)[dropdownId][entryIndex];
+    const dataToSubmit = deepCopy(submittedData);
+    dataToSubmit[dropdownId][entryIndex] = newEntryData;
+    setSubmittedData(dataToSubmit);
   };
 
   const updateSubmissionFlags = (dropdownId, newFlagArray) => {
@@ -132,6 +119,7 @@ function App() {
     </>
   );
 }
+const deepCopy = (object) => JSON.parse(JSON.stringify(object));
 
 const initDataStructure = (formProps) => {
   // Creates a blank data structure to store the form data.
@@ -150,15 +138,6 @@ const initFormFields = (dropdownProps) => {
   return Object.fromEntries(keyValuePairs);
 };
 
-const initSubmissionFlags = (unsubmittedData, submitAll = false) => {
-  const keyValuePairs = Object.entries(unsubmittedData).map(([dropdownId, entries]) => {
-    const flagArray = Array(entries.length).fill(true);
-    if (!submitAll) flagArray[0] = false;
-    return [dropdownId, flagArray];
-  });
-  return Object.fromEntries(keyValuePairs);
-};
-
 const initFormIds = (unsubmittedData) => {
   const keyValuePairs = Object.entries(unsubmittedData).map(([dropdownId, entries]) => {
     const idArray = entries.map(() => getUniqueId());
@@ -167,7 +146,14 @@ const initFormIds = (unsubmittedData) => {
   return Object.fromEntries(keyValuePairs);
 };
 
-const deepCopy = (object) => JSON.parse(JSON.stringify(object));
+const initSubmissionFlags = (unsubmittedData, submitAll = false) => {
+  const keyValuePairs = Object.entries(unsubmittedData).map(([dropdownId, entries]) => {
+    const flagArray = Array(entries.length).fill(true);
+    if (!submitAll) flagArray[0] = false;
+    return [dropdownId, flagArray];
+  });
+  return Object.fromEntries(keyValuePairs);
+};
 
 const omitItemFromDropdownAtIndex = (data, dropdownId, index) => {
   const newDropdownData = data[dropdownId].filter((values, i) => index !== i);

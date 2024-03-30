@@ -33,7 +33,7 @@ function Dropdown({
     Object.keys(dropdownData[entryIndex]).forEach((inputFieldId) => {
       updateUnsubmittedData('', entryIndex, inputFieldId);
     });
-    updateSubmittedData();
+    updateSubmittedData(entryIndex);
   };
 
   const deleteEntry = (entryIndex) => {
