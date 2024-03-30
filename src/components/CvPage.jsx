@@ -125,7 +125,7 @@ function CvPage({ general, education, workExperience }) {
 }
 
 CvGeneral.propTypes = {
-  generalData: PropTypes.object
+  generalData: PropTypes.array
 };
 CvEducation.propTypes = {
   educationData: PropTypes.array

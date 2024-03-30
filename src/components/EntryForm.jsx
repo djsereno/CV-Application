@@ -69,7 +69,7 @@ function EntryForm({
 
 InputField.propTypes = {
   handleChange: PropTypes.func,
-  icon: PropTypes.string,
+  icon: PropTypes.object,
   label: PropTypes.string,
   type: PropTypes.string,
   value: PropTypes.any

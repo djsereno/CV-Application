@@ -58,7 +58,7 @@ function Dropdown({
     const newFlag = !newFlags[entryIndex];
     newFlags[entryIndex] = newFlag;
     updateSubmissionFlags(newFlags);
-    if (newFlag) updateSubmittedData(id);
+    if (newFlag) updateSubmittedData(entryIndex);
   };
 
   const content = dropdownData.map((entryData, entryIndex) => (

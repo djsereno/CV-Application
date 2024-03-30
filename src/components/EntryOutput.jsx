@@ -87,7 +87,7 @@ function EntryOutput({ dropdownId, entryData, handleDelete, handleEdit }) {
   let dutyList;
 
   const toggleDetails = () => {
-    if (dropdownId !== 'workExperience') return null;
+    if (dropdownId !== 'workExperience') return false;
     setDetailsShown(!detailsShown);
   };
 

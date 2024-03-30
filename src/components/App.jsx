@@ -15,10 +15,7 @@ import '../styles/Dropdown.scss';
 import '../styles/normalize.scss';
 
 // TO DO:
-// - Address props drilling
-// - Clean up propTypes
-// - Clean up unnecessary props
-// - Editing multiple forms then submitting one submits both
+// - Deleting only entry does not clear CV page
 
 function App() {
   const [openStatus, setOpenStatus] = useState([true, false, false]);
@@ -33,14 +30,20 @@ function App() {
     setUnsubmittedData(newUnsubmittedData);
   };
 
-  const updateSubmittedData = (dataToSubmit = unsubmittedData, dropdownId) => {
-    // If dropdownId is provided, only that dropdownId will be submitted. the entire data
-    // Otherwise, the entire data structure will be submitted
-    if (!dropdownId) {
-      setSubmittedData(deepCopy(dataToSubmit));
-    } else {
-      const newDropdownData = deepCopy(dataToSubmit)[dropdownId];
+  const updateSubmittedData = (sourceData = unsubmittedData, dropdownId, entryIndex) => {
+    // If dropdownId + entryIndex is provided, only that entryIndex will be submitted.
+    // If only dropdownId is provided, only that dropdownId will be submitted.
+    // Otherwise, the entire source data will be submitted
+    if (dropdownId !== null && entryIndex !== null) {
+      const newEntryData = deepCopy(sourceData)[dropdownId][entryIndex];
+      const dataToSubmit = deepCopy(submittedData);
+      dataToSubmit[dropdownId][entryIndex] = newEntryData;
+      setSubmittedData(dataToSubmit);
+    } else if (dropdownId !== null) {
+      const newDropdownData = deepCopy(sourceData)[dropdownId];
       setSubmittedData({ ...submittedData, [dropdownId]: newDropdownData });
+    } else {
+      setSubmittedData(deepCopy(sourceData));
     }
   };
 
@@ -108,7 +111,9 @@ function App() {
             updateSubmissionFlags={(newFlagArray) =>
               updateSubmissionFlags(dropdownProps.id, newFlagArray)
             }
-            updateSubmittedData={(dropdownId) => updateSubmittedData(unsubmittedData, dropdownId)}
+            updateSubmittedData={(entryIndex) =>
+              updateSubmittedData(unsubmittedData, dropdownProps.id, entryIndex)
+            }
             updateUnsubmittedData={(newValue, entryIndex, inputFieldId) =>
               updateUnsubmittedData(newValue, dropdownProps.id, entryIndex, inputFieldId)
             }
