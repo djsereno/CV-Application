@@ -26,8 +26,8 @@
 
 Derek Sereno - [LinkedIn](https://www.linkedin.com/in/dereksereno/) - [Email](mailto:djsereno91@gmail.com)
 
-Project Link: [https://github.com/djsereno/CV-Application/](https://github.com/djsereno/CV-Application/)
-Application Link: [https://cvwizard.netlify.app/](https://cvwizard.netlify.app/)
+- Project Link: [https://github.com/djsereno/CV-Application/](https://github.com/djsereno/CV-Application/)
+- Application Link: [https://cvwizard.netlify.app/](https://cvwizard.netlify.app/)
 
 ## Acknowledgments
 
